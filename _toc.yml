@@ -4,6 +4,7 @@
 format: jb-book
 root: intro
 chapters:
-- file: 01-zahlendarstellung-int
-- file: notebooks
-- file: markdown-notebooks
+- file: 01-integer
+- file: 02-multiplication
+- file: 03-number-theory
+- file: 04-euclids-algorithm

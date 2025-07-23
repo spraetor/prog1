@@ -4,7 +4,7 @@
 title: Programmieren - Grundlegende Konzepte
 author: Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
 copyright: "2025"
-logo: logo3.png
+logo: logo3a.png
 
 exclude_patterns: [_build, venv, .vscode, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 
@@ -38,6 +38,9 @@ execute:
   execute_notebooks: auto
 
 sphinx:
+  config:
+    language: de
   extra_extensions:
     - sphinx_proof
+    - sphinx_exercise
     - myst_nb
