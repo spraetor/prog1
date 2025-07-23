@@ -40,12 +40,14 @@ mark_sieve!(range,3)
 - If we want to sift numbers up to $m$, stop sifting when $p^2 > m$.
 
 We use the following formulas:
+
 $$
 value(i) = 3 + 2(i-1) = 1 + 2i \\
 index(v) = \frac{v - 1}{2}
 $$
 
 step between multiple $k$ and multiple $k+2$ of value at $i$:
+
 $$
 step(i) = index((k+2)(2i+1)) - index(k(2i + 1))
         = index(2ki + k + 4i + 2) - index(2ki + k) \\
@@ -54,6 +56,7 @@ step(i) = index((k+2)(2i+1)) - index(k(2i + 1))
 $$
 
 index of square of value at $i$:
+
 $$
 index(value(i)^2) = \frac{(2i + 1)^2 - 1}{2}
                   = \frac{4i^2+4i+1-1}{2}

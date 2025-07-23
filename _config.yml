@@ -8,11 +8,6 @@ logo: logo3a.png
 
 exclude_patterns: [_build, venv, .vscode, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 
-# Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
-execute:
-  execute_notebooks: force
-
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
@@ -35,7 +30,7 @@ html:
   use_repository_button: true
 
 execute:
-  execute_notebooks: auto
+  execute_notebooks: cache
 
 sphinx:
   config:
