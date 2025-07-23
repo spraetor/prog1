@@ -2,8 +2,11 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Programmieren - Grundlegende Konzepte
-author: Dr. Simon Praetorius
-logo: logo.png
+author: Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
+copyright: "2025"
+logo: logo3.png
+
+exclude_patterns: [_build, venv, .vscode, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -13,7 +16,7 @@ execute:
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
-    targetname: book.tex
+    targetname: math-ba-pr10.tex
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
@@ -30,3 +33,11 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+execute:
+  execute_notebooks: auto
+
+sphinx:
+  extra_extensions:
+    - sphinx_proof
+    - myst_nb
