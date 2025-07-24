@@ -19,6 +19,8 @@ In der gesamten Vorlesung werden die natürlichen Zahlen als die Menge $\mathbb{
 angenommen. Für die Menge der Zahlen inklusive der 0 wollen wir $\mathbb{N}_0 = \{0, 1, 2, 3, \ldots\}$ schreiben.
 ```
 
+## Darstellung
+
 Neben der uns vertrauten dezimalen Zahldarstellung, einem *Positionssystem/Stellenwertsystem*
 mit der Basis 10, sind auch Stellenwertsysteme mit anderen Basen $b$ möglich, vornehmlich mit
 $b \in \mathbb{N}\setminus\{0, 1\}$. Man nennt diese auch $b$-adische Zahldarstellungen.
@@ -40,19 +42,19 @@ Zahlen typischerweise nur einige wenige binäre `Integer`-Formate mit jeweils ei
 Speicherbreite (z.B. 16, 32 oder 64 bits) hardware-unterstützt zur Verfügung.
 
 ```{hint}
-In Julia heißen die zugehörigen Integer Type entsprechend `Int16`, `Int32`, und `Int64`.
+In Julia heißen die zugehörigen Integer Typen entsprechend `Int16`, `Int32`, und `Int64`.
 ```
 
-Zum Beispiel ergibt sich für eine natürliche Zahl mit $n=4$ Ziffern zur Basis $b=2$:
+Zum Beispiel ergibt sich für eine natürliche Zahl mit $n=3$ Ziffern zur Basis $b=2$:
 
 $$
-[m_3 m_2 m_1 m_0]_2 = \sum_{i=0}^3 m_i \cdot 2^i
+[m_2 m_1 m_0]_2 = \sum_{i=0}^2 m_i \cdot 2^i
 $$(binary-int4)
 
 mit Ziffern (bits) $m_i\in\{0,1\}$. Es lassen sich folglich die natürlichen Zahlen
-$0,1,2,\ldots,15=2^4-1$ darstellen.
+$0,1,2,\ldots,7=2^3-1$ darstellen.
 
-## Konversion einer natürlichen Zahl zu einer Zielbasis b
+### Konversion einer natürlichen Zahl zu einer Zielbasis b
 Algorithmus zur Basiskonversion:
 1. Ausgangszahl durch Zielbasis b dividieren.
 2. Falls das Ergebnis 0 ist, fahre fort mit Schritt 5.
@@ -68,12 +70,12 @@ Konvertiere die Dezimalzahl 57 in die Binärdarstellung.
 
 ```{solution} number-conversion
 $$
-57 : 2 \to 28\, R\, 1\\
-28 : 2 \to 14\, R\, 0\\
-14 : 2 \to 7\, R\, 0\\
-7 : 2 \to 3\, R\, 1\\
-3 : 2 \to 1\, R\, 1\\
-1 : 2 \to 0\, R\, 1
+57 : 2 &\to 28\, R\, 1\\
+28 : 2 &\to 14\, R\, 0\\
+14 : 2 &\to 7\, R\, 0\\
+7 : 2 &\to 3\, R\, 1\\
+3 : 2 &\to 1\, R\, 1\\
+1 : 2 &\to 0\, R\, 1
 $$
 
 Das Ergebnis ist $[57]_{10} = [111001]_2$.
@@ -100,28 +102,43 @@ Beachte: In dieser Rechnung haben wir binäre Division mit Rest angewendet.
 
 Das Verfahren zur Konvertierung von Zahlen von einer in eine andere Darstellung wurden
 durch einen Algorithmus beschrieben. Wir werden uns später noch viel mehr mit Algorithmen
-auseinandersetzen. Eine alternative Darstellung des Konvertierungsalgorithmus nutzt eine
-spezielle Terminologie. Diese soll hier zur Illustration schonmal gezeigt werden.
+auseinandersetzen. Eine alternative Darstellung des Konvertierungsalgorithmus nutzt die
+Sprache Julia, um das Verfahren zu illustrieren. Die verwendeten Operationen `÷` und `%`
+werden weiter unten noch erklärt.
 
-### Algorithm 1: Basiskonvertierung
+````{prf:algorithm} Basiskonvertierung
+:label: alg-basiskonvertierung
 
 **Input**: Given an integer number $z$ and a target basis $b$.<br>
 **Output**: The sequence of digits $m_i$ representing $z$ in basis $b$.
 
-```{code-cell} julia-1.11
+```julia
 function convert(z::Integer, b::Integer)
   m = Integer[]
   while z != 0
-    (z, r) = (z ÷ b, z % b) # divide by b and compute the reminder
+    z, r = z ÷ b, z % b   # divide by b and compute the remainder
     prepend!(m, r)
   end
   return m
 end
+```
+````
 
+Running the above code with `convert(57,2)` results in the following output:
+```{code-cell}
+:tags: ["remove-input"]
+function convert(z::Integer, b::Integer)
+  m = Integer[]
+  while z != 0
+    z, r = z ÷ b, z % b   # divide by b and compute the remainder
+    prepend!(m, r)
+  end
+  return m
+end
 convert(57,2)
 ```
 
-## Vorzeichenlose und -behaftete Zahlen
+## Vorzeichenbehaftete Zahlen
 Bisher haben wir nur die Darstellung der natürlichen Zahlen betrachtet. In der Programmierung bezeichnet man diesen
 Zahlenbereich auch als "vorzeichenlos", bzw. `Unsigned`. Dem gegenüber stehen noch die vorzeichenbehafteten Zahlen (`Signed`),
 die auch negative Werte annehmen können.
@@ -144,10 +161,19 @@ $$
 Im wissenschaftlichen Rechnen finden diese vorzeichenlosen Typen eher selten Anwendung. Ein Beispiel für eine Anwendung sind
 die Räpresentation von Speicheradressen, oder auch in der Modulo-Arithmetik.
 
-In Julia werden Zahlen von diesem Typ dargestellt in einem Hexadezimalformat
+In Julia werden Zahlen von diesem Typ dargestellt im *Hexadezimalformat*, d.h., in einer Darstellung
+zur Basis $b=16$. Man verwendet als Symbole für die Ziffern die Dezimalziffern `0-9` und zusätzlich die Buchstaben `a-f`.
+Die Darstellung in Julia fügt zur besseren Unterscheidbarkeit von Dezimalzahlen den Prefix `0x` vorne ran:
 
 ```{code-cell} julia-1.11
 x = UInt32(3403759)
+```
+
+```{warning}
+In Julia können unsigned Integer auch über die Hexadezimaldarstellung direkt eingegeben werden, z.B.
+`y=0x0033efef`. Da Julia weiterhin auch die Multiplikation einer Variablen oder Funktion mit einem
+Faktor ohne Multiplikationszeichen zulässt, z.B. `2x`, kann es dazu führen, dass man unerwartet einen
+Fehler bekommt, denn `0x` ist  eine unvollständige Darstellung einer Hexadezimalzahl.
 ```
 
 ```{admonition} Beispiel
@@ -158,19 +184,61 @@ Bit verworfen und es bleibt $[8]_{10} = [000]_2 = [0]_{10}$.
 ```
 
 Die Darstellung der unsigned integer ist zyklisch modulo $2^n$. Mathematisch ausgedrückt, bildet die Zahlenmenge `UInt<n>` einen
-*Restklassenring modulo $2^n$*, geschrieben als $\mathbb{Z}/(2^n)\mathbb{Z}$. Die Zahlen $0,1,\ldots,2^{n}-1$ bilden dabei die Repräsentanten,
+*Restklassenring modulo $2^n$*, geschrieben als $\mathbb{Z}/2^n\mathbb{Z}$. Die Zahlen $0,1,\ldots,2^{n}-1$ bilden dabei die Repräsentanten,
 oder Elemente, der Klassen.
+
+Bekannt aus der Vorlesung Math-Ba-LA1 ist die folgende Aussage über den Quotienten $q=a \div b$ mit Rest $r$ bekannt:
+````{prf:theorem} Division mit Rest in $\mathbb{Z}$
+:label: thm-div-rem
+Sei $0\neq b\in\mathbb{Z}$. Für jedes $a\in\mathbb{Z}$ gibt es eindeutig bestimmte $q,r\in\mathbb{Z}$ mit $a = q b + r$ und $0\leq r < |b|$.
+````
 
 ```{admonition} Definition
 :class: note
-Sei $a\in\mathbb{Z}$ und bezeichne $\overline{a}$ die Resklasse von $a$ dargestellt durch einen Repräsentanten, dann definiert man die Addition
+Sei $a\in\mathbb{Z}$ und bezeichne $\overline{a}$ die Restklasse von $a$, dargestellt durch einen Repräsentanten, dann definiert man die Addition
 und Multiplikation von Restklassen durch ganzzahlige Addition und Multiplikation mit anschließender Restbildung, d.h.
 
 $$
-\overline{a} + \overline{b} := \overline{a + b}\\
-\overline{a} \cdot \overline{b} := \overline{a \cdot b}
+\overline{a} \oplus \overline{b} := \overline{a + b}\\
+\overline{a} \odot \overline{b} := \overline{a \cdot b}
 $$
 ```
+
+````{prf:theorem} Rechenregeln in Restklassenringen
+:label: thm-restklassenring
+Für alle natürlichen Zahlen $m\in\mathbb{N}$ sind die Operationen $\oplus,\odot$
+über den Restklassen $\mathbb{Z}/m\mathbb{Z}$ wohldefiniert und für alle
+$\overline{a},\overline{b},\overline{c}\in\mathbb{Z}/m\mathbb{Z}$ gelten
+- die Assoziativgesetze:
+
+$$
+\overline{a} \oplus (\overline{b} \oplus \overline{c}) &= (\overline{a} \oplus \overline{b}) \oplus \overline{c} \\
+\text{und }\quad \overline{a} \odot (\overline{b} \odot \overline{c}) &= (\overline{a} \odot \overline{b}) \odot \overline{c},
+$$
+
+- die Kommutativgesetze:
+
+$$
+\overline{a} \oplus \overline{b} &= \overline{b} \oplus \overline{a} \\
+\text{und }\quad \overline{a} \odot \overline{b} &= \overline{b} \odot \overline{a},
+$$
+
+- das Distributivgesetz: $\overline{a} \odot (\overline{b} \oplus \overline{c}) = (\overline{a} \odot \overline{b}) \oplus (\overline{a} \odot \overline{c})$,
+- die Existenz neutraler Elemente: $\overline{a} \oplus \overline{0} = \overline{a}$ und $\overline{1} \odot \overline{a} = \overline{a}$
+- und die Existenz inverser Elemente für $\oplus$: $\overline{a} \oplus \overline{-a} = \overline{0}$.
+````
+````{prf:proof}
+Für die Wohldefiniertheit muss man zeigen, dass die Operationen unabhängig von der Wahl der Repräsentanten der Restklasse ist.
+
+Exemplarisch zeigen wir das Distributivgesetz:
+
+$$
+\overline{a} \odot (\overline{b} \oplus \overline{c}) &\overset{\text{Def.}\oplus}{=} \overline{a} \odot \overline{b+c} \overset{\text{Def.}\odot}{=} \overline{a\cdot(b+c)} \\
+&\overset{\text{DG.}}{=} \overline{a\cdot b + a\cdot c} \overset{\text{Def.}\oplus}{=} \overline{a\cdot b} \oplus \overline{a\cdot c} \overset{\text{Def.}\odot}{=} (\overline{a} \odot \overline{b}) \oplus (\overline{a} \odot \overline{c})
+$$
+````
+Im folgenden schreiben schreiben wir einfach $+,\cdot$ für die Operationen und lassen i.d.R. den Überstrich weg.
+
 Die Arithmetik mit `Unsigned` Integer Zahlen folgt der Arithmetik im Restklassenring. Das bedeutet insbesondere, dass wir beim
 Rechnen mit Zahlen vom gleichen Typ nicht aus dessen Wertebereich herauslaufen können.
 
@@ -198,12 +266,12 @@ und `255` für Weiß, und man nicht bei kleinen Bildänderungen von Schwarz auf 
 ### Signed integer
 
 Wie stellt man mit einem Bitmuster aus `0` und `1` eine negative Zahl dar? In der Dezimalrepräsentation nehmen wir einfach
-ein zusätzliches Zeichen hinzu, das Minus `-`. Dies benötigt allerdings eine weitere "Ziffer" zum speichern und hat nur zwei
+ein zusätzliches Zeichen hinzu, das Minus `-`. Dies benötigt allerdings eine weitere "Ziffer" zum Speichern und hat dabei nur zwei
 Zustände `-` oder `+`. Binär ließen sich diese zwei Zustände einfach als `1` oder `0` repräsentieren.
 
 Statt ein Bit einfach nur als Vorzeichen zu verwenden, um die negativen Zahlen darstellen zu können, hat man sich verschiedene
 Varianten der Repräsentation der gesamten Zahl überlegt, die einen möglichst großen Wertebereich hat und deren Arithmetik
-einfach umzusetzen ist. Heutzutage hat sich die *2er-Komplement-Darstellung* etabliert.
+einfach umzusetzen ist. Heutzutage hat sich die *2er-Komplement-Darstellung* etabliert, siehe unten.
 
 Analog wie bei `Unsigned` Typen, gibt es in Julia die Klasse der `Signed` Typen:
 
@@ -213,8 +281,8 @@ subtypes(Signed)  # Alle Repräsentationen des abstrakten Typs `Signed`
 ```
 
 Ignorieren wir mal den speziellen Typ `BigInt`, dann habe alle wieder die Bezeichnung `Int<n>`, wobei `n` für die Länge des
-Bitmusters, also die Anzahl an verfügbaren Bits, steht. Reserviert man vorderst Bit $m_{n-1}$ für das Vorzeichen, dann
-bleiben nur noch $n-1$ Bits für die Darstellung der Ziffern übrig. In der 2er-Komplet Darstellung ergibt sich für die
+Bitmusters, also die Anzahl an verfügbaren Bits, steht. Reserviert man das vorderste Bit $m_{n-1}$ für das Vorzeichen, dann
+bleiben nur noch $n-1$ Bits für die Darstellung der Ziffern übrig. In der 2er-Komplement Darstellung ergibt sich für die
 verschiedenen Integer Typen der Wertebereich
 
 $$
@@ -360,14 +428,15 @@ Grund, warum alle ALUs für die Darstellung vorzeichenbehafteter ganzer Zahlen s
 Jahren *2er-Komplement* verwenden. Darüberhinaus ist dieselbe Hardware auch für das Rechnen
 mit `Unsigned` Zahlen ohne Änderung geeignet, siehe auch Negation oben.
 
-Zum Schluss sei noch bemerkt, dass der einzige ernsthafte Konkurrent, das *1er-Komplement*,
+```{note}
+Es sei noch bemerkt, dass der einzige ernsthafte Konkurrent, das *1er-Komplement*,
 zwar eine bestechend einfache Negation besitzt, dafür aber die wesentlich häufiger auftretende
 Addition unter dem Problem leidet, dass ein eventuell auftretender Übertrag (carry-out) aus
 der vorderen Bitposition als sog. *end-around carry* in einer zweiten Additionsphase in der hinteren
 Bitposition addiert werden muss. Auch diese zweite Phase kann einen weit durchlaufenden
 Übertrag erzeugen, und dies macht die 1er-Komplement-Addition komplexer und langsamer.
 Außerdem kann eine 1er-Komplement-Darstellung nicht ohne Weiteres für `Unsigned` Typen verwendet werden.
-
+```
 
 ```{admonition} Beispiel
 Betrachten wir wieder einen *fiktiven* Datentype mit nur 3 Bits, `Int3`. Sei $a=[-1]_{10}=[111]_2$ und
@@ -393,20 +462,23 @@ $$
    & 1  &0  &0   &   & -4
 \end{array}
 $$
-
+Die *Überträge* (*carrys*) sind in der obigen Darstellung als kleine Fußzahlen dargestellt und das
+zusätzliche carry-in Bit als `(1)` in Klammern, zur Verdeutlichung.
 ```
 
 ### Multiplikation
-Die Multiplikation zweier natürlicher Zahlen kann man sich erst mal vorstellen als wiederholte Addition. Die sog. Ägyptische
-Multiplikationsmethode basiert auf zwei Eigenschaften der Multiplikation natürlicher Zahlen: Seien $n,a\in\mathbb{N}_0$, dann gilt
+Die Multiplikation zweier natürlicher Zahlen kann man sich erst mal vorstellen als wiederholte Addition.
+Eine rekursive/induktive Definition der Multiplikation basiert auf zwei Eigenschaften der Multiplikation natürlicher Zahlen:
+Seien $n,a\in\mathbb{N}$, dann gilt
 
 $$
 1 a = a \\
 (n + 1) a = n a + a
 $$
 
-Die erste Eigenschaft ist die Existenz eines *Einselements*, d.h. eines neutralen Elements bzgl. der Multiplikation und die
-zweite Eigenschaft ist im Prinzip das Assoziativgesetz.
+Die erste Eigenschaft ist die Existenz eines *Einselements*, d.h. eines neutralen Elements bzgl. der Multiplikation, und die
+zweite Eigenschaft ist im Prinzip das Distributivgesetz. Laut {prf:ref}`thm-restklassenring`
+gelten diese Eigenschaften auch für das Rechnen mit `Integer` Zahlen.
 
 Wir können damit einen einfachen Algorithm, also eine Verfahrenvorschrift, formulieren, mit der wir zwei Zahlen $n$ und $a$
 multiplizieren können, in dem wir mehrfach addieren und subtrahieren:
@@ -420,7 +492,6 @@ function multiply(n, a)
   end
 end
 
-# Test der Multiplikation: 5 * 4
 multiply(5,4)
 # =                   multiply(4,4) + 4
 # =             (multiply(3,4) + 4) + 4
@@ -431,6 +502,24 @@ multiply(5,4)
 
 Dies scheint noch eine sehr ineffiziente Methode zu sein, sie liefert aber erstmal das richtige Ergebnis.
 
+````{prf:theorem}
+:label: thm-multiply-algorithm
+
+Der `multiply` Algorithmus liefert für alle Zahlen $n,a\in\mathbb{N}$ das Produkt $n\cdot a$.
+````
+````{prf:proof}
+Der Beweis für die Korrektheit des Algorithmus wird per Induktionsargument über den Faktor $n$ geführt.
+
+- Für $n=1$ liefert der Algorithmus das korrekte Ergebnis $1\cdot n = a$.
+- Sei $m>1$. Wir nehmen im Folgenden an, dass für alle $n=1,2,\ldots,m-1$ gilt `multiply(n,a) == n*a`.
+- Betrachte den Fall $n=m>1$. Es gilt `multiply(m,a) == multiply(m-1,a) + a == (m-1)*a + a == m*a` und damit
+  die Behauptung.
+````
+
+Auch wenn auf den ersten Blick der Beweis für die Korrektheit des Algorithmus hier trivial erscheint,
+gilt es doch die Details zu beachten. Wir haben gezeigt, dass der Algorithmus für alle
+$n,a\in\mathbb{N}=\{1,2,\ldots\}$ funktioniert, aber was ist mit der Zahl 0? Was ist mit negativen Zahlen?
+
 ```{tip}
 Bevor man anfängt einen Algorithmus zu verbessern oder zu erweitern, ist es wichtig erst mal einen funktionierenden
 Basisalgorithmus zu haben. Mit dem kann man dann das Ergebnis verifizieren, und mit dem kann man auch die Geschwindigkeit
@@ -438,18 +527,25 @@ oder Komplexität (siehe später) vergleichen.
 ```
 
 Wenn man mehr Eigenschaften der ganzen Zahlen ausnutzt, kann man sich eine Variante überlegen, die z.B. weniger
-Additionsschritte benötigt.
+Additionsschritte benötigt. Betrachten wir dazu erstmal folgendes Beispiel:
 
-Bekannt aus der Vorlesung math-Ba-LA1 ist das folgende Theorem über den Quotienten $q=a \div b$ mit Rest $r$ bekannt:
-````{prf:theorem} Division mit Rest in $\mathbb{Z}$
-:label: thm-div-rem
-Sei $0\neq b\in\mathbb{Z}$. Für jedes $a\in\mathbb{Z}$ gibt es eindeutig bestimmte $q,r\in\mathbb{Z}$ mit $a = q b + r$ und $0\leq r < |b|$.
-````
+$$
+4a &= ((a + a) + a) + a \\
+   &= (a + a) + (a + a)
+$$
 
-Betrachten wir im speziellen die Division durch 2, dann nimmer der Rest die Werte $r\in\{0,1\}$ an. Eine Zahl $a$ is
-demnach eine gerade Zahl, wenn bei Division durch 2 der Rest $r=0$ bleibt, ansonsten ist sie ungerade. Im Kontext von Binärzahlen
-lassen sich die Operationen "mal 2" und "durch 2", sowie Rest bei Division durch 2, sehr einfach durchführen. Sei $a$ eine $n$-stellige
-Binärzahl mit den Ziffern $m_i$. Dann ergibt sich aus der Darstellung
+Hierbei haben wir das Assoziativgesetz ausgenutzt. Anstelle also 4x einzeln das $a$ zu addieren, könnte man zuerst $a+a$ berechnen,
+und dies auf sich selbst addieren. Dadurch hätten wir die Gesamtanzahl an Additionen reduziert.
+
+Diese Beobachtung geht wohl zurück auf die Ägypter, andere bezeichnen den Algorithmus, der auf dieser Idee basiert, auch
+als "Russische Bauernmultiplikation". Die Grundidee ist, dass man kontinuierlich $n$ halbiert, während man $a$ verdoppelt und
+damit Summen von Vielfachen von $2^i$ produziert. (Beachte den Bezug zur Darstellung von Binärzahlen!)
+
+Betrachten wir nochmal Division mit Rest, {prf:ref}`thm-div-rem`, im Speziellen die Division durch 2. Dann nimmer
+der Rest die Werte $r\in\{0,1\}$ an. Wir nennen eine Zahl $a$ eine *gerade Zahl*, wenn bei Division durch 2 der Rest $r=0$
+bleibt, ansonsten heißt sie *ungerade*. Im Kontext von Binärzahlen lassen sich die Operationen "mal 2" und "durch 2", sowie Rest
+bei Division durch 2, sehr einfach durchführen. Sei $a$ eine $n$-stellige Binärzahl mit den Ziffern $m_i$. Dann ergibt sich
+aus der Darstellung
 
 $$
 2\cdot\sum_{i=0}^{n-1} m_i\cdot 2^i = \sum_{i=0}^{n-1} m_i\cdot 2^{i+1} =: \sum_{j=0}^{n} \tilde{m}_j\cdot 2^j
@@ -465,23 +561,29 @@ der Division. Der Rest ist also das hinterste Bit in der Ausgangszahl.
 
 In der Sprache Julia wird der arithmetische Shift nach links oder rechts mittels der Operatoren `<<` bzw. `>>` durchgeführt,
 wobei man die Anzahl an Stellen angiebt, um die verschoben werden soll. Dies entspricht der Potenz von 2 mit der multipliziert
-bzw. dividiert werden soll.
+bzw. dividiert werden soll. Die bitweise "Und"-Verknüpfung mit der Zahl 1 liefert entweder 1 oder 0 wenn das letzte Bit
+gesetzt ist, oder nicht.
 
 ```{code-cell}
 x = Int8(-7)
-@show bitstring(x) bitstring(x<<1) bitstring(x>>1)
+println("x    = ",bitstring(x))
+println("x<<1 = ",bitstring(x<<1))
+println("x>>1 = ",bitstring(x>>1))
+println("x&1  = ",bitstring(x & 0x1));
 ```
 
-Zurück zur Multiplikation zweier beliebiger ganzer Zahlen. Wenn $n$ eine gerade Zahl ist, dann kann man sie einfach halbieren.
+Zurück zur Multiplikation zweier beliebiger natürlicher Zahlen. Wenn $n$ eine gerade Zahl ist, dann kann man sie einfach halbieren.
 Dann ließe sich ausnutzen
 
 $$
 n\cdot a = \left\{\begin{array}{ll}
+a & \text{ wenn }n=1,\\
 (n\div 2) \cdot (2\cdot a)     & \text{ wenn }n\text{ gerade,} \\
-(n\div 2) \cdot (2\cdot a) + a & \text{ andernfalls.}
+((n-1)\div 2) \cdot (2\cdot a) + a & \text{ wenn }n\text{ ungerade}.
 \end{array}\right.
 $$
 
+Weil die Integer-Division $\div 2$ mittels Rest definiert ist, gilt für $n$ ungerade außerdem $n\div 2=(n-1)\div 2$.
 Anstelle also in 1er Schritten den Faktor $n$ solange zu reduzieren, bis wir 1 erreichen, können wir ihn solange halbieren, wie
 das Ergebnis eine gerade Zahl ist:
 
@@ -504,7 +606,11 @@ multiply2(5,4)
 # = 16 + 4
 ```
 
-```{note}
+```{exercise}
+Man beweise, dass der Algorithmus `multiply2` für alle $n,a\in\mathbb{N}$ das korrekte Ergebnis $n\cdot a$ liefert.
+```
+
+```{hint}
 In Julia ist die Multiplikation direkt über `a * b` abgebildet und muss nicht manuell implementiert werden. Für `Unsigned`
 Typen ist die Arithmetik modulo $2^n$ Die Gedanken, die wir uns hier gemacht haben, wie man eine Multiplikation selbst
 implementiert sind aber sehr nützlich wenn man dies auf andere Objekte als ganze Zahlen übertragen möchte. Man beachte
@@ -543,7 +649,7 @@ divide(21, 4)
 
 Analog wie bei der Multiplikation kann man sich auch hier eine schnellere Variante des Algorithmus überlegen.
 
-```{note}
+```{hint}
 In der Sprache Julia gibt es verschiedene Divisions-Operationen. Die hier vorgestellte Division mit Rest, oder *Integer-Division*
 wird entweder über die integrierte Funktion `div(a,b)` durchgeführt, oder mittels des Operators `a ÷ b`. Dieser kann als
 Sonderzeichen eingegeben werden, oder in der REPL Umgebung durch den LaTeX Befehl `\div[TAB]`, wobei `[TAB]` die Tabulator-Taste
@@ -589,10 +695,10 @@ end
 power(3,5)  # (((3 * 3) * 3) * 3) * 3
 ```
 
-udn genau wie beim Multiplizieren, kann man einen schnelleren Algorithmus finden, in dem man weitere Potenzgesetze in die
-Herleitung des Algorithmus mit einbezieht. Nach {prf:ref}`Theorem zu Division mit Rest <thm-div-rem>` wissen wir, dass es
-zu jedem $n$ eine eindeutige Zerlegung in $n=2q + r$ gibt mit $r\in\{0,1\}$. Das bedeutet, man kann das Potenzieren folgendermaßen
-umschreiben:
+und genau wie beim Multiplizieren, kann man einen schnelleren Algorithmus finden, in dem man weitere Potenzgesetze in die
+Herleitung des Algorithmus mit einbezieht. Das Verfahren wird auch als *Binäre Exponentiation* bezeichnet. Nach Division
+mit Rest, {prf:ref}`thm-div-rem`, wissen wir, dass es zu jedem $n$ eine eindeutige Zerlegung in $n=2q + r$ gibt mit $r\in\{0,1\}$.
+Das bedeutet, man kann das Potenzieren folgendermaßen umschreiben:
 
 $$
 a^n &= a^{2q+r} \\
@@ -617,13 +723,125 @@ end
 power2(3,5)  # (3^2)^2 * 3
 ```
 
-```{note}
+```{hint}
 In Julia gibt es den Operator `a^n` zum Potenzieren zweier ganzer Zahlen. Ist der Exponent nicht-negativ, dann wird das
 Ergebnis exakt module $2^n$ berechnet, bei negativen Exponenten allerdings ergibt sich eine Gleitkommazahl. Der Spezialfall `0^0`
 ist in Julia als `1` definiert.
-
+```
+```{note}
 Die Potenzierungs-Operation `^` ist in manchen Programmiersprachen (z.B. Python, Fortran) mit dem doppelten Multiplikationssymbol `**`
 repräsentiert. Andere Sprachen, wie C, C++, oder Java haben keinen power Operator, sondern implementieren dies über eine Bibliotheksfunktion,
 z.B. `std::pow(a,n)` in C++ oder `Math.pow(a,n)` in Java. Der Operator `^` ist in diesen Sprachen dem xor (exklusives bitweises Oder)
 zugeordnet und hat insbesondere eine andere Präzedenz/Priorität.
+```
+
+## Große Integer
+
+Neben den Integer Datentype `Int<n>` und `UInt<n>`, gibt es in Julia auch noch den Datentyp `BigInt`. Dieser ermöglicht Ganzzahlen beliebiger Länge, hat dadurch allerdings keine feste Breite in Bits mehr, sondern belegt soviel Speicher wie für die Repräsentation benötigt wird.
+
+Numerische Konstanten haben automatisch einen ausreichend großen Typ:
+
+```{code-cell}
+z = 10
+@show typeof(z)
+z = 10_000_000_000_000_000    # 10 Billiarden
+@show typeof(z)
+z = 10_000_000_000_000_000_000  # 10 Trillionen
+@show typeof(z)
+z = 10_000_000_000_000_000_000_000_000_000_000_000_000_000   # 10 Sextilliarden
+@show typeof(z);
+```
+
+```{hint}
+Im Beispiel oben sieht man ein weiteres Feature von Julia. Man kann die 1000er Stellen einer Zahl zur besser Lesbarkeit mittels des `_` abtrennen.
+```
+
+Der Standard Integer Typ ist, wie im obigen Beispiel zu sehen, der Typ `Int64`, der auch mit `Int` abgekürzt werden kann.
+Meist wird man dadurch den Datentyp `BigInt` explizit anfordern müssen, damit nicht modulo $2^n$ gerechnet wird:
+
+```{code-cell}
+@show 3^300;
+@show BigInt(3)^300;
+```
+
+Die Arithmetik mit `BigInt` ist deutlich langsamer als die mit `Int`, da es über eine Implementierung in Software realisiert ist (In Julia wird die [GMP Bibliothek](https://gmplib.org) verwendet). Damit sollten Zahlen dieses Typs nur dann verwendet werden, wenn
+zu erwarten ist, dass der Wertebereich von 64-Bit oder 128-Bit Integern nicht ausreicht.
+
+```{exercise}
+Erzeuge einen Vektor mit $10^7$ Zufallszahlen vom Typ `Int64` mittels der Methode `rand()`, und einen Vektor mit den gleichen Zahlen als `BigInt`. Miss die Zeit die es benötigt, um alle Einträge des Vektors aufzusummieren. Dafür steht das macro `@time` und die Methode `sum()` zur Verfügung.
+```
+
+## Zusammenfassung
+In diesem Kapitel haben wir uns mit der Darstellung von ganzen und natürlichen (signed und unsigned)
+Zahlen beschäftigt, sowie einige Operationen mit diesen Zahlen kennengelernt.
+
+Zur Übersicht über die entsprechenden Datentypen, wie sie in der Sprache Julia verfügbar sind, lässt
+sich folgende rekursive Funktion verwenden:
+
+```{code-cell}
+function show_subtype_tree(T, i=0)
+    println("    "^i, T)
+    for Ts ∈ subtypes(T)
+        show_subtype_tree(Ts, i+1)
+    end
+end
+
+show_subtype_tree(Integer)
+```
+
+Wir werden im Laufe des Kurses noch weitere Datentypen kennenlernen.
+
+### Begriffe
+
+```{list-table}
+:header-rows: 0
+
+* - 1er-Komplement
+  - 2er-Komplement
+  - Basisdarstellung
+* - Basiskonversion
+  - Binärzahl
+  - Bitshift
+* - carry-in, carry-out
+  - Division mit Rest
+  - Integer
+* - Restklassenring
+  - saturierende Arithmetik
+  - Signed
+* - Überlauf (overflow)
+  - Unsigned
+  - zyklische Arithmetik
+```
+
+### Julia Befehle
+
+```{list-table} Types
+:header-rows: 0
+
+* - `BigInt`
+  - `Int`, `Int<n>`
+  - `Integer`
+* - `UInt`, `UInt<n>`
+  - `Unsigned`
+  - `Signed`
+```
+
+```{list-table} Methods
+:header-rows: 0
+
+* - `abs()`
+  - `bitstring()`
+  - `div()`, `÷`
+* - `divrem()`
+  - `one()`
+  - `prepend!()`
+* - `println()`
+  - `rem()`, `%`
+  - `subtypes()`
+* - `typemin()`
+  - `typeof()`
+  - `~`
+* - `<<`, `>>`
+  -
+  -
 ```
