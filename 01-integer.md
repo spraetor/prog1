@@ -775,6 +775,8 @@ Erzeuge einen Vektor mit $10^7$ Zufallszahlen vom Typ `Int64` mittels der Method
 In diesem Kapitel haben wir uns mit der Darstellung von ganzen und natürlichen (signed und unsigned)
 Zahlen beschäftigt, sowie einige Operationen mit diesen Zahlen kennengelernt.
 
+### todo: Deinition Datentyp
+
 Zur Übersicht über die entsprechenden Datentypen, wie sie in der Sprache Julia verfügbar sind, lässt
 sich folgende rekursive Funktion verwenden:
 

@@ -17,6 +17,7 @@ können in ein Terminal oder eine Kommandozeile eingegeben werden. Wenn du noch 
 [^video-no-connection]: Es besteht kein Zusammenhang zwischen dem Video, dessen Autor und der Universität bzw. dieser Lehrveranstaltung.
 
 ### Windows
+
 Julia kann direkt über den [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN) installiert werden.
 Nutze dafür folgenden Befehl in der Windows-Kommandozeile (`cmd.exe` oder PowerShell):
 
@@ -26,18 +27,34 @@ winget install julia -s msstore
 
 Alternativ kann auch `juliaup` verwendet werden (siehe unten).
 
+
 ### macOS & Linux
+
 Für macOS und viele Linux-Distributionen lässt sich Julia bequem über ein Installationsskript von der offiziellen Webseite installieren. Öffne dazu ein Terminal und gib folgenden Befehl ein:
 
 ```shell
 curl -fsSL https://install.julialang.org | sh
 ```
-sollen
+Das Skript lädt automatisch die passende Julia-Version herunter und installiert sie.
+
+
+### Weitere Installationsmethoden: `juliaup`
+
+Ein modernes Tool zur Verwaltung von Julia-Installationen ist `juliaup`. Damit kannst du verschiedene Versionen installieren, verwalten und aktualisieren.
+
 1. Howmebrew (macOS): `brew install juliaup`
 2. OpenSuse (Linux): `zypper install juliaup`
 3. cargo (Rust): `cargo install juliaup`
 
 `juliaup` bietet zusätzliche Flexibilität, z. B. parallele Versionen oder automatische Updates - besonders nützlich, wenn du längerfristig mit Julia arbeitest.
+
+Um eine Julia Version hinzuzufügen und als Default zu setzen, gib folgende Befehle in die Komandozeile ein, nachdem du `juliaup` installiert hast:
+
+```shell
+juliaup add 1.11
+juliaup default 1.11
+```
+Dies gibt eine Meldung aus in der Form `Configured the default Julia version to be '1.11'`.
 
 
 ## Julia als Taschenrechner
@@ -68,6 +85,53 @@ Für die Entwicklung von Code benötigt man einen Editor. Dieser erlaubt i.d.R. 
 
 VS Code bietet Syntax Highlighting, REPL-Integration, IntelliSense, Plot-Output und mehr - ideal für den Julia-Workflow!
 
+````{grid} 3
+:gutter: 3
+
+```{grid-item-card}
+:class-body: figure
+![vscode1](images/vscode1.png)
++++
+Starte VS Code mittels `code` im Terminal. Klicke auf "Open Folder..." in der Mitte, oder unter "File/Open Folder" im Menü.
+```
+
+```{grid-item-card}
+:class-body: figure
+![vscode3](images/vscode3.png)
++++
+Wähle einen Ordner aus, in dem du deine Julia `.jl` und Jupyter Notebooks `.ipynb` ablegen möchtest.
+```
+
+```{grid-item-card}
+:class-body: figure
+![vscode5](images/vscode5.png)
++++
+Erzeuge eine neue Datei, z.B. mittels "New File..." in der Mitte, oder per "File/New File..." im Menü. Wähle "Julia File" aus.
+```
+
+```{grid-item-card}
+:class-body: figure
+![vscode6](images/vscode6.png)
++++
+Schreibe einen Julia Befehl in die Datei, z.B. `println("Hallo Welt")` und speicher die Datei unter einem Dateinamen ab, z.B. `hallowelt.jl`. ("File/Save File...")
+```
+
+```{grid-item-card}
+:class-body: figure
+![vscode8](images/vscode8.png)
++++
+Mit Klick auf den Play Button öffnet sich ein integrierter Julia Terminal (Julia REPL), in dem das Programm ausgeführt wird. (Beim ersten Started dauert es etwas länger.)
+```
+
+```{grid-item-card}
+:class-body: figure
+![vscode9](images/vscode9.png)
++++
+Im Julia Terminal selbst kann die Datei auch ausgeführt werden, mittels `include("hallowelt.jl")`. Oder man führt dort direkt Julia Befehle im REPL aus.
+```
+````
+
+
 
 ## Jupyter Notebooks mit Julia
 
@@ -88,7 +152,7 @@ using IJulia
 IJulia.notebook()
 ```
 
-Dies offnet Jupyter in deinem Browser. dort kannst du dann Dateien mit der Endnung `.ipynb`.
+Dies öffnet Jupyter in deinem Browser. dort kannst du dann Dateien mit der Endnung `.ipynb`.
 
 Alternative kann man auch `jupyterlab` mittels
 
@@ -142,6 +206,32 @@ Insbesondere hinsichtlich der Ausgabe von Zwischenergebnissen unterscheiden sich
 
 **Innerhalb von VS Code oder Jupyter:**
 Der Editor ist mit einer einer integrierten REPL Umgebung verbunden. Scripte lassen sich einfach per Klick auf den Play-Button starten. Zusätzlich erlaub der Editor das öffnen von Jupyter Notebooks (`.ipynb`-Dateien), in dem einzelne Zellen ausgeführt oder das ganze Notebook abgearbeitet werden kann.
+
+````{grid} 3
+:gutter: 3
+
+```{grid-item-card}
+:class-body: figure
+![vscode5](images/vscode5.png)
++++
+Starte VS Code mittels `code` im Terminal. Öffne den Arbeitsordner, wie oben. Klicke auf "New File..." und erstelle ein Jupyter Notebook.
+```
+
+```{grid-item-card}
+:class-body: figure
+![vscode10](images/vscode10.png)
++++
+Es öffnet sich eine neuer Eingabebereich, mit einer dunkleren Zelle. Klicke "Select Kernel" rechts oben und wähle Julia aus.
+Speichere das Notebook unter einer Datei, z.B. `hallowelt.ipynb` ab.
+```
+
+```{grid-item-card}
+:class-body: figure
+![vscode11](images/vscode12.png)
++++
+Klicke auf die leere Zelle, gibt Julia code ein und führe mit einem Klick auf den Play Button neben der Zelle diese aus.
+```
+````
 
 ## Nützliche Links
 

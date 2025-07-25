@@ -36,6 +36,7 @@ sphinx:
   config:
     language: de
     html_theme_options:
+      extra_footer: <p>License information!</p><div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
       logo:
         text: "Math-Ba-PR10 WS25/26"
         image_dark: images/logo3a.png
