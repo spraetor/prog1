@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+
+
+<html lang="de" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting started with Julia &#8212; Programmieren - Grundlegende Konzepte</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a9a42987" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=91fba89f"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=79cc9f76"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '00-getting-started';</script>
+    <script src="_static/custom.js?v=629f8674"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Ganze Zahlen" href="01-integer.html" />
+    <link rel="prev" title="Programmieren - Grundlegende Konzepte" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="de"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo3a_light.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo3a.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Math-Ba-PR10 WS25/26</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Suche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Getting started with Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-integer.html">Ganze Zahlen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9x-bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Laden Sie diese Seite herunter">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/00-getting-started.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Quelldatei herunterladen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="In PDF drucken"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Vollbildmodus"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getting started with Julia</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Inhalt </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-installieren">Julia installieren</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos-linux">macOS &amp; Linux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weitere-installationsmethoden-juliaup">Weitere Installationsmethoden: <code class="docutils literal notranslate"><span class="pre">juliaup</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-als-taschenrechner">Julia als Taschenrechner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editor-einrichten">Editor einrichten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks-mit-julia">Jupyter Notebooks mit Julia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-code-ausfuhren">Julia Code ausführen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nutzliche-links">Nützliche Links</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-with-julia">
+<h1>Getting started with Julia<a class="headerlink" href="#getting-started-with-julia" title="Link to this heading">#</a></h1>
+<section id="julia-installieren">
+<h2>Julia installieren<a class="headerlink" href="#julia-installieren" title="Link to this heading">#</a></h2>
+<p>Es gibt verschiedene Wege, die nötigen Programme für die Programmiersprache Julia zu installieren. In der Regel erfolgt dies über den Paketmanager des jeweiligen Betriebssystems. In manchen Fällen ist jedoch eine manuelle Installation notwendig.</p>
+<p>Im Folgenden findest du Anleitungen für die gängigsten Betriebssysteme.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Befehle in <code class="docutils literal notranslate"><span class="pre">Typewriter-Schrift</span></code> im Text, oder abgesetzt in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">einer</span> <span class="n">hervorgehobenen</span> <span class="n">Box</span>
+</pre></div>
+</div>
+<p>können in ein Terminal oder eine Kommandozeile eingegeben werden. Wenn du noch keine Erfahrung mit der Kommandozeile hast, empfehlen wir das Video: <a class="reference external" href="https://www.youtube.com/watch?v=4xjaPQCiBfM">„Kommandozeile Lernen in 20 Minuten - Tutorial für Anfänger“</a> <a class="footnote-reference brackets" href="#video-no-connection" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+</div>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
+<p>Julia kann direkt über den <a class="reference external" href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> installiert werden.
+Nutze dafür folgenden Befehl in der Windows-Kommandozeile (<code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> oder PowerShell):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>winget<span class="w"> </span>install<span class="w"> </span>julia<span class="w"> </span>-s<span class="w"> </span>msstore
+</pre></div>
+</div>
+<p>Alternativ kann auch <code class="docutils literal notranslate"><span class="pre">juliaup</span></code> verwendet werden (siehe unten).</p>
+</section>
+<section id="macos-linux">
+<h3>macOS &amp; Linux<a class="headerlink" href="#macos-linux" title="Link to this heading">#</a></h3>
+<p>Für macOS und viele Linux-Distributionen lässt sich Julia bequem über ein Installationsskript von der offiziellen Webseite installieren. Öffne dazu ein Terminal und gib folgenden Befehl ein:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://install.julialang.org<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
+</div>
+<p>Das Skript lädt automatisch die passende Julia-Version herunter und installiert sie.</p>
+</section>
+<section id="weitere-installationsmethoden-juliaup">
+<h3>Weitere Installationsmethoden: <code class="docutils literal notranslate"><span class="pre">juliaup</span></code><a class="headerlink" href="#weitere-installationsmethoden-juliaup" title="Link to this heading">#</a></h3>
+<p>Ein modernes Tool zur Verwaltung von Julia-Installationen ist <code class="docutils literal notranslate"><span class="pre">juliaup</span></code>. Damit kannst du verschiedene Versionen installieren, verwalten und aktualisieren.</p>
+<ol class="arabic simple">
+<li><p>Howmebrew (macOS): <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">juliaup</span></code></p></li>
+<li><p>OpenSuse (Linux): <code class="docutils literal notranslate"><span class="pre">zypper</span> <span class="pre">install</span> <span class="pre">juliaup</span></code></p></li>
+<li><p>cargo (Rust): <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">install</span> <span class="pre">juliaup</span></code></p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">juliaup</span></code> bietet zusätzliche Flexibilität, z. B. parallele Versionen oder automatische Updates - besonders nützlich, wenn du längerfristig mit Julia arbeitest.</p>
+<p>Um eine Julia Version hinzuzufügen und als Default zu setzen, gib folgende Befehle in die Komandozeile ein, nachdem du <code class="docutils literal notranslate"><span class="pre">juliaup</span></code> installiert hast:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>juliaup<span class="w"> </span>add<span class="w"> </span><span class="m">1</span>.11
+juliaup<span class="w"> </span>default<span class="w"> </span><span class="m">1</span>.11
+</pre></div>
+</div>
+<p>Dies gibt eine Meldung aus in der Form <code class="docutils literal notranslate"><span class="pre">Configured</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">Julia</span> <span class="pre">version</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">'1.11'</span></code>.</p>
+</section>
+</section>
+<section id="julia-als-taschenrechner">
+<h2>Julia als Taschenrechner<a class="headerlink" href="#julia-als-taschenrechner" title="Link to this heading">#</a></h2>
+<p>Die einfachste Art Julia zu verwenden und damit zu experimentieren ist die interaktive <em>REPL</em> (<em>Read-Eval-Print-Loop</em>) Umgebung. Es ist eine spezielle Eingabeaufforderung in der direkt Julia Code ausgeführt werden kann. Sie lässt sich starten mittels Doppelklick auf das Julia Program, oder durch Ausführen des Befehls <code class="docutils literal notranslate"><span class="pre">julia</span></code> in einer Komandozeile.</p>
+<p><img alt="REPL" src="_images/julia-commandline.png" /></p>
+<p>Wie bei einem Taschenrechner gibt man den zu berechnenden Ausdruck ein, z.B. <code class="docutils literal notranslate"><span class="pre">123.4</span> <span class="pre">+</span> <span class="pre">234.5</span></code> und bekommt nach bestätigung mit der <code class="docutils literal notranslate"><span class="pre">[Enter]</span></code> Taste das Ergebnis angezeigt. Das letzte Antwort lässt sich auch immer wiederholen oder in folgenden Ausdrücken verwenden, mittels der Variable <code class="docutils literal notranslate"><span class="pre">ans</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="mf">123.4</span> <span class="o">+</span> <span class="mf">234.5</span>
+<span class="mf">357.9</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">ans</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mf">358.9</span>
+</pre></div>
+</div>
+</section>
+<section id="editor-einrichten">
+<h2>Editor einrichten<a class="headerlink" href="#editor-einrichten" title="Link to this heading">#</a></h2>
+<p>Für die Entwicklung von Code benötigt man einen Editor. Dieser erlaubt i.d.R. nicht nur einfache Texteingabe, sondern häufig auch die farbliche Darstellung von Code (Syntax-Highlighting), die Integration von Compilern und Programmiertools, sowie Projektverarbeitung. Wir empfehlen VS Code, mit der offiziellen Julia-Erweiterung für diese Vorlesung (oder die Alternative VS Codium)</p>
+<p><strong>VS Code + Julia Extension:</strong></p>
+<ol class="arabic simple">
+<li><p>Lade <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> herunter und installiere es.</p></li>
+<li><p>Installiere die <a class="reference external" href="https://code.visualstudio.com/docs/languages/julia">Julia Extension</a></p></li>
+</ol>
+<p>VS Code bietet Syntax Highlighting, REPL-Integration, IntelliSense, Plot-Output und mehr - ideal für den Julia-Workflow!</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-3 sd-row-cols-xs-3 sd-row-cols-sm-3 sd-row-cols-md-3 sd-row-cols-lg-3 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode1" src="_images/vscode1.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Starte VS Code mittels <code class="docutils literal notranslate"><span class="pre">code</span></code> im Terminal. Klicke auf „Open Folder…“ in der Mitte, oder unter „File/Open Folder“ im Menü.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode3" src="_images/vscode3.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Wähle einen Ordner aus, in dem du deine Julia <code class="docutils literal notranslate"><span class="pre">.jl</span></code> und Jupyter Notebooks <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> ablegen möchtest.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode5" src="_images/vscode5.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Erzeuge eine neue Datei, z.B. mittels „New File…“ in der Mitte, oder per „File/New File…“ im Menü. Wähle „Julia File“ aus.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode6" src="_images/vscode6.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Schreibe einen Julia Befehl in die Datei, z.B. <code class="docutils literal notranslate"><span class="pre">println(&quot;Hallo</span> <span class="pre">Welt&quot;)</span></code> und speicher die Datei unter einem Dateinamen ab, z.B. <code class="docutils literal notranslate"><span class="pre">hallowelt.jl</span></code>. („File/Save File…“)</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode8" src="_images/vscode8.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Mit Klick auf den Play Button öffnet sich ein integrierter Julia Terminal (Julia REPL), in dem das Programm ausgeführt wird. (Beim ersten Started dauert es etwas länger.)</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode9" src="_images/vscode9.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Im Julia Terminal selbst kann die Datei auch ausgeführt werden, mittels <code class="docutils literal notranslate"><span class="pre">include(&quot;hallowelt.jl&quot;)</span></code>. Oder man führt dort direkt Julia Befehle im REPL aus.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="jupyter-notebooks-mit-julia">
+<h2>Jupyter Notebooks mit Julia<a class="headerlink" href="#jupyter-notebooks-mit-julia" title="Link to this heading">#</a></h2>
+<p>Jupyter Notebooks sind ideal, um Julia-Code mit erklärendem Text und Visualisierungen zu kombinieren. Sie werde auch in den Übungen verwendet.</p>
+<p><strong>Einrichtung:</strong>
+Starte Julia und installiere das Paket <code class="docutils literal notranslate"><span class="pre">IJulia</span></code>:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Starte ein Notebook:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">IJulia</span>
+<span class="n">IJulia</span><span class="o">.</span><span class="n">notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Dies öffnet Jupyter in deinem Browser. dort kannst du dann Dateien mit der Endnung <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>.</p>
+<p>Alternative kann man auch <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code> mittels</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyterlab
+</pre></div>
+</div>
+<p>installieren und dann im Terminal</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+<p>starten.</p>
+</section>
+<section id="julia-code-ausfuhren">
+<h2>Julia Code ausführen<a class="headerlink" href="#julia-code-ausfuhren" title="Link to this heading">#</a></h2>
+<p>Neben dem Starten eines Julia Notebooks, lässt sich Code auch auf verschiedene andere Weise ausführen.</p>
+<p><strong>Interaktive Konsole (REPL):</strong>
+Dies haben wir schon im Kapitel „Julia als Taschenrechner“ gesehen:</p>
+<p>Einfach julia im Terminal starten:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>julia
+</pre></div>
+</div>
+<p>du erhälts eine interaktive Umgebung (Read-Eval-Print-Loop - REPL), ideal zum Ausprobieren und starten von Julia code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">println</span><span class="p">(</span><span class="s2">&quot;Hallo Welt&quot;</span><span class="p">)</span>
+<span class="n">Hallo</span> <span class="n">Welt</span>
+</pre></div>
+</div>
+<p><strong>Skripte (<code class="docutils literal notranslate"><span class="pre">.jl</span></code>-Dateien):</strong>
+Code kann in einer Datei mit der Endung <code class="docutils literal notranslate"><span class="pre">.jl</span></code> abgespeichert werden. Diesen kann man entweder direkt im Terminal ausführen:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>julia<span class="w"> </span>mein_script.jl
+</pre></div>
+</div>
+<p>oder innerhalb der REPL Umgebung laden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;mein_script.jl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Insbesondere hinsichtlich der Ausgabe von Zwischenergebnissen unterscheiden sich beide Methoden etwas. Es wird empfohlen code über die REPL zu laden anstelle ein Script auszuführen.</p>
+<p><strong>Innerhalb von VS Code oder Jupyter:</strong>
+Der Editor ist mit einer einer integrierten REPL Umgebung verbunden. Scripte lassen sich einfach per Klick auf den Play-Button starten. Zusätzlich erlaub der Editor das öffnen von Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>-Dateien), in dem einzelne Zellen ausgeführt oder das ganze Notebook abgearbeitet werden kann.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-3 sd-row-cols-xs-3 sd-row-cols-sm-3 sd-row-cols-md-3 sd-row-cols-lg-3 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode5" src="_images/vscode5.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Starte VS Code mittels <code class="docutils literal notranslate"><span class="pre">code</span></code> im Terminal. Öffne den Arbeitsordner, wie oben. Klicke auf „New File…“ und erstelle ein Jupyter Notebook.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode10" src="_images/vscode10.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Es öffnet sich eine neuer Eingabebereich, mit einer dunkleren Zelle. Klicke „Select Kernel“ rechts oben und wähle Julia aus.
+Speichere das Notebook unter einer Datei, z.B. <code class="docutils literal notranslate"><span class="pre">hallowelt.ipynb</span></code> ab.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body figure docutils">
+<p class="sd-card-text"><img alt="vscode11" src="_images/vscode12.png" /></p>
+</div>
+<div class="sd-card-footer docutils">
+<p class="sd-card-text">Klicke auf die leere Zelle, gibt Julia code ein und führe mit einem Klick auf den Play Button neben der Zelle diese aus.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="nutzliche-links">
+<h2>Nützliche Links<a class="headerlink" href="#nutzliche-links" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://exercism.org/tracks/julia">Exercism’s Julia Track</a></p></li>
+<li><p><a class="reference external" href="https://docs.julialang.org/en/v1/">Julia Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.julialang.org/en/v1/manual/getting-started/">Julia Getting Started Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://modernjuliaworkflows.org/">Modern Julia Workflow</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/user/JuliaLanguage/playlists">The Julia Language’s YouTube channel</a></p></li>
+</ul>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="video-no-connection" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Es besteht kein Zusammenhang zwischen dem Video, dessen Autor und der Universität bzw. dieser Lehrveranstaltung.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">zurück</p>
+        <p class="prev-next-title">Programmieren - Grundlegende Konzepte</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01-integer.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">weiter</p>
+        <p class="prev-next-title">Ganze Zahlen</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Inhalt
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-installieren">Julia installieren</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos-linux">macOS &amp; Linux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weitere-installationsmethoden-juliaup">Weitere Installationsmethoden: <code class="docutils literal notranslate"><span class="pre">juliaup</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-als-taschenrechner">Julia als Taschenrechner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editor-einrichten">Editor einrichten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks-mit-julia">Jupyter Notebooks mit Julia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-code-ausfuhren">Julia Code ausführen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nutzliche-links">Nützliche Links</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Durch Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>License information!</p><div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
