@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Komplexität und Korrektheit &#8212; Programmieren - Grundlegende Konzepte</title>
+    <title>Algorithmik &#8212; Programmieren - Grundlegende Konzepte</title>
   
   
   
@@ -206,7 +206,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Komplexität und Korrektheit</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Algorithmik</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="05.1-landau.html">Asymptotische Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
@@ -339,7 +340,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -350,11 +353,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Komplexität und Korrektheit</h1>
+    <h1>Algorithmik</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Inhalt </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algorithmik</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#komplexitat-und-korrektheit">Komplexität und Korrektheit</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korrektheit">Korrektheit</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -364,8 +380,64 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="komplexitat-und-korrektheit">
+  <section class="tex2jax_ignore mathjax_ignore" id="algorithmik">
+<h1>Algorithmik<a class="headerlink" href="#algorithmik" title="Link to this heading">#</a></h1>
+<p>Unter <em>Algorithmik</em> versteht man die Entwicklung und Analyse von Algorithmen, also von
+Computer-realisierbaren Verfahren zur systematischen Lösung einer Aufgabe. Typische Aufgaben
+sind das Sortieren von Listen, die Bestimmung der Lösung eines mathematischen
+Problems oder die Berechnung der Wahrscheinlichkeit eines Ereignisses auf Basis gegebener
+Daten. Bei der Analyse eines Algorithmus sind die folgenden Kriterien relevant.</p>
+<ol class="arabic simple">
+<li><p><strong>Durchführbarkeit:</strong> Es muss sicher gestellt werden, dass alle Schritte wohldefiniert
+sind, sodass zum Beispiel keine Divisionen durch Null auftreten. Außerdem muss zu
+jedem Zeitpunkt des Verfahrens klar sein, welcher Schritt als nächstes auszuführen
+ist (<em>Determinismus</em>).</p></li>
+<li><p><strong>Terminierung:</strong> Es muss gewährleistet sein, dass das Verfahren regulär stoppt und
+nicht beispielsweise in eine Endlosschleife gerät.</p></li>
+<li><p><strong>Korrektheit:</strong> Es muss nachgewiesen werden, dass für alle zulässigen Eingaben das
+richtige Ergebnis berechnet wird. Außerdem sollten identische Eingaben zum gleichen
+Ergebnis führen (<em>Determiniertheit</em>).</p></li>
+<li><p><strong>Effizienz:</strong> Es muss untersucht werden, ob der Algorithmus für realistische Problemgrößen
+in akzeptabler Zeit terminiert.</p></li>
+</ol>
+<p>Häufig wird außerdem gefordert, dass die Anweisungen in einem endlichen Text darstellbar
+sind (<em>Finitheit</em>) und dass in jedem Schritt des Algorithmus nur endlich viel Speicherplatz
+benötigt wird (<em>dynamische Finitheit</em>). Einige dieser Aspekte erscheinen auf den ersten Blick
+trivial, ihre Relevanz zeigt sich jedoch, wenn man unterschiedliche Beispiele von Algorithmen
+betrachtet.</p>
+<p>Wenn wir von einem Algorithmus sprechen, so meinen wir immer das Verfahren an sich,
+unabhängig von einer konkreten Realisierung in einer Programmiersprache. Mit der Implementierung
+eines Verfahrens sollte man idealerweise erst dann beginnen, wenn man sein
+Verhalten unter gegebenen Voraussetzungen bereits verstanden verstanden hat. Bei der Formulierung
+eines Algorithmus lohnt es sich jedoch, die spätere Umsetzung zu bedenken. Das
+effizienteste Verfahren ist praktisch nutzlos, wenn man nicht in der Lage ist, es adäquat zu
+implementieren.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="komplexitat-und-korrektheit">
 <h1>Komplexität und Korrektheit<a class="headerlink" href="#komplexitat-und-korrektheit" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>In the early 1960s one of the American spaceships in the Mariner series sent to
+Venus was lost forever at a cost of millions of dollars, due to a mistake in a flight
+control computer program.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Some years ago, a Danish lady received, around her 107th birthday, a computerized letter from the local school authorities with instructions as to the registration
+procedure for first grade in elementary school. It turned out that only two digits
+were allotted for the „age“ field in the database.</p>
+</div></blockquote>
+<blockquote>
+<div><p>At the turn of the millennium, software problems became headline news with the
+so-called Year 2000 Problem, or the <em>Y2K bug</em>. The fear was that on January 1,
+2000, all hell would break loose, because computers that used two digits for
+storing years would erroneously assume that a year given as 00 was 1900, when
+in fact it was 2000. An extremely expensive (and, in retrospect, quite successful)
+effort to correct these programs had to be taken by software companies worldwide.</p>
+</div></blockquote>
+<p>Zwei wichtige Fragestellungen zu Algorithmen werden uns beschäftigen um zu analysieren, ob ein Verfahren zur Lösung eines Problems geeignet ist, oder nicht: 1. ist der Algorithmus korrekt, also findet er eine oder alle Lösungen des Problems, 2. ist der Algorithmus effizient, also schnell und braucht wenig Ressourcen.</p>
+<section id="korrektheit">
+<h2>Korrektheit<a class="headerlink" href="#korrektheit" title="Link to this heading">#</a></h2>
+<p>Ein Problem bei auf elekromechanischen Bauteilen der ersten Rechenmaschinen, die zur Zeit des zweiten Weltkriegs verwendet wurden (= <em>Relais-Rechner</em>), waren Kakerlaken, die regelmäßig die Relais blockierten. Um die daraus resultierenden Fehler zu beheben, ging man auf die Suche nach „bugs“ (Wanzen). Im Sprachgebrauch sucht man deshalb auch heute noch in fehlerhaften Programmen nach „bugs“.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -422,6 +494,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Inhalt
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algorithmik</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#komplexitat-und-korrektheit">Komplexität und Korrektheit</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korrektheit">Korrektheit</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

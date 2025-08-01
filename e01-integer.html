@@ -184,6 +184,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.9-debugging.html">Fehlersuche</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
 <ul class="nav bd-sidenav">
@@ -208,8 +209,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="05-algorithmen.html">Komplexität und Korrektheit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05.1-landau.html">Asymptotische Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-algorithmik.html">Algorithmik</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="05.1-komplexitaet.html">Komplexität</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
 </ul>
@@ -341,7 +343,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -357,6 +361,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Inhalt </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Übungen zu ganzen und natürlichen Zahlen</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -368,7 +382,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ubungen-zu-ganzen-und-naturlichen-zahlen">
 <h1>Übungen zu ganzen und natürlichen Zahlen<a class="headerlink" href="#ubungen-zu-ganzen-und-naturlichen-zahlen" title="Link to this heading">#</a></h1>
-<p>Consider the problem of adding two <span class="math notranslate nohighlight">\(n\)</span>-bit binary integers <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>1.1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Consider the problem of adding two <span class="math notranslate nohighlight">\(n\)</span>-bit binary integers <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, stored in two <span class="math notranslate nohighlight">\(n\)</span>-element arrays <code class="docutils literal notranslate"><span class="pre">A[1:n]</span></code> and <code class="docutils literal notranslate"><span class="pre">B[1:n]</span></code>, where each element is either 0 or 1, <span class="math notranslate nohighlight">\(a = \sum_{i=1}^n A[i] \cdot 2^{i-1}\)</span> and <span class="math notranslate nohighlight">\(b = \sum_{i=1}^n B[i] \cdot 2^{i-1}\)</span>. The sum <span class="math notranslate nohighlight">\(c = a + b\)</span> of the two integers should be stored in binary form in an <span class="math notranslate nohighlight">\((n+1)\)</span>-element array <code class="docutils literal notranslate"><span class="pre">C[1:n+1]</span></code>, where <span class="math notranslate nohighlight">\(c = \sum_{i=1}^{n+1} C[i] \cdot 2^{i-1}\)</span>. Write a method <code class="docutils literal notranslate"><span class="pre">add()</span></code> that takes as input arrays <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>, and returns the array <code class="docutils literal notranslate"><span class="pre">C</span></code> holding the sum bits.</p>
+<p>(Source: Introduction to Algorithms, Exercise 2.1-5)</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -407,6 +425,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Inhalt
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Übungen zu ganzen und natürlichen Zahlen</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -63,7 +63,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '05.1-landau';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05.1-komplexitaet';</script>
     <script src="_static/custom.js?v=629f8674"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
@@ -184,6 +184,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.9-debugging.html">Fehlersuche</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
 <ul class="nav bd-sidenav">
@@ -271,7 +272,7 @@
       
       
       
-      <li><a href="_sources/05.1-landau.md" target="_blank"
+      <li><a href="_sources/05.1-komplexitaet.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Quelldatei herunterladen"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -390,12 +391,12 @@ verändert, wenn wir die Problemgröße verändern.</p>
 <div class="proof definition admonition" id="def-gross-Oh-notation">
 <p class="admonition-title"><span class="caption-number">Definition 17 </span></p>
 <section class="definition-content" id="proof-content">
-<p>Sei <span class="math notranslate nohighlight">\(g\colon\mathbb{N}_0\to\mathbb{N}_0\)</span>, dann bezeichnet</p>
+<p>Sei <span class="math notranslate nohighlight">\(g\colon\mathbb{N}\to\mathbb{N}\)</span>, dann bezeichnet</p>
 <div class="math notranslate nohighlight">
 \[
-\mathcal{O}(g) := \big\{ f\colon\mathbb{N}_0\to\mathbb{N}_0\,\mid\,\exists c &gt; 0\text{ und }\exists n_0\in\mathbb{N}_0\text{ mit }f(n)\leq c\cdot g(n)\;\forall n\geq n_0 \big\}.
+\mathcal{O}(g) := \big\{ f\colon\mathbb{N}\to\mathbb{N}\,\mid\,\exists c &gt; 0\text{ und }\exists n_0\in\mathbb{N}\text{ mit }f(n)\leq c\cdot g(n)\;\forall n\geq n_0 \big\}.
 \]</div>
-<p>Man schreibt auch <span class="math notranslate nohighlight">\(f\in\mathcal{O}(g)\)</span> und sagt „<span class="math notranslate nohighlight">\(f\)</span> ist von der Größenordnung groß Oh von g“.</p>
+<p>Man schreibt auch <span class="math notranslate nohighlight">\(f\in\mathcal{O}(g)\)</span> und sagt „<span class="math notranslate nohighlight">\(f\)</span> ist von der Größenordnung groß Oh von g“, bzw. <span class="math notranslate nohighlight">\(f\)</span> wächst höchstens so schnell wie <span class="math notranslate nohighlight">\(g\)</span> wenn <span class="math notranslate nohighlight">\(n\to\infty\)</span>.</p>
 </section>
 </div><p>Nehmen wir an, wir ermitteln die Rechenzeit <span class="math notranslate nohighlight">\(T(n)\)</span> für einen bestimmten Algorithmus. Die Variable <span class="math notranslate nohighlight">\(n\)</span>
 kann z. B. die Anzahl der Ein- und Ausgabewerte sein, ihre Summe, oder auch die Größe eines dieser
@@ -404,7 +405,8 @@ der Zeit nicht. Jedoch kann man mit Hilfe einer <em>a priori Analyse</em> ein <s
 <p>Wenn wir sagen, dass ein Algorithmus eine Rechenzeit <span class="math notranslate nohighlight">\(\mathcal{O}(g(n))\)</span> hat, dann meinen wir damit Folgendes:
 Wenn der Algorithmus auf unterschiedlichen Computern mit den gleichen Datensätzen läuft, und
 diese die Größe <span class="math notranslate nohighlight">\(n\)</span> haben, dann werden die resultierenden Laufzeiten immer kleiner sein als eine Konstante
-mal <span class="math notranslate nohighlight">\(g(n)\)</span>. Bei der Suche nach der Größenordnung von <span class="math notranslate nohighlight">\(T(n)\)</span> werden wir darum bemüht sein, das „kleinste“ <span class="math notranslate nohighlight">\(g(n)\)</span>
+mal <span class="math notranslate nohighlight">\(g(n)\)</span>, zumindest wen <span class="math notranslate nohighlight">\(n\)</span> groß genug ist. (deswegen „asymptotisches Verhalten“) Bei der Suche nach der
+Größenordnung von <span class="math notranslate nohighlight">\(T(n)\)</span> werden wir darum bemüht sein, das „kleinste“ <span class="math notranslate nohighlight">\(g(n)\)</span>
 zu finden, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathcal{O}(g(n))\)</span> gilt.</p>
 <p>Ist <span class="math notranslate nohighlight">\(f(n)=p(n)\)</span> z.B. ein Polynom, so gilt:</p>
 <div class="proof theorem admonition" id="thm-complexity-polynom">
@@ -412,7 +414,100 @@ zu finden, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathca
 <section class="theorem-content" id="proof-content">
 <p>Für ein Polynom <span class="math notranslate nohighlight">\(p(n) = a_0 + a_1 n + a_2 n^2 + \cdots + a_m n^{m}\)</span> vom Grade <span class="math notranslate nohighlight">\(m\)</span> gilt: <span class="math notranslate nohighlight">\(p(n)\in\mathcal{O}(n^m)\)</span>.</p>
 </section>
-</div><figure class="align-default" id="id2">
+</div><p>Wenn es eine „groß Oh“-Notation gibt, dann auch eine „klein Oh“-Notation.</p>
+<div class="proof definition admonition" id="def-klein-Oh-notation">
+<p class="admonition-title"><span class="caption-number">Definition 18 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Sei <span class="math notranslate nohighlight">\(g\colon\mathbb{N}\to\mathbb{N}\)</span>, dann bezeichnet</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{o}(g) := \big\{ f\colon\mathbb{N}\to\mathbb{N}\,\mid\,\forall c &gt; 0\,\exists n_0\in\mathbb{N}\text{ mit }f(n) &lt; c\cdot g(n)\;\forall n\geq n_0 \big\}.
+\]</div>
+<p>Man schreibt auch <span class="math notranslate nohighlight">\(f\in\mathcal{o}(g)\)</span> und sagt „<span class="math notranslate nohighlight">\(f\)</span> ist von der Größenordnung klein Oh von g“, bzw. <span class="math notranslate nohighlight">\(f\)</span> wächst langsamer als <span class="math notranslate nohighlight">\(g\)</span> wenn <span class="math notranslate nohighlight">\(n\to\infty\)</span>.</p>
+</section>
+</div><p>Das Landau-Symbol <span class="math notranslate nohighlight">\(\mathcal{o}\)</span> läßt uns Größenordnungen unterscheiden. Wir können für zwei beliebige Funktionen
+<span class="math notranslate nohighlight">\(f(n)\)</span>, <span class="math notranslate nohighlight">\(g(n)\)</span> entscheiden, ob sie gleich schnell wachsen, oder welche Funktion schneller wächst, also eine größere
+Größenordnung hat. Deshalb führen wir eine Ordnung der Größenordnungen ein, in dem wir <span class="math notranslate nohighlight">\(\mathcal{O}(f(n)) &lt; \mathcal{O}(g(n))\)</span>
+schreiben, falls <span class="math notranslate nohighlight">\(f \in \mathcal{o}(g)\)</span> ist .Für einige wichtige Funktionen, die bei der Laufzeitanalyse des öfteren
+eine Rolle spielen, ist diese Ordnung durch</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{O}(1) &lt; \mathcal{O}(\log n) &lt; \mathcal{O}(n) &lt; \mathcal{O}(n \log n) &lt; \mathcal{O}(n^2) &lt; \mathcal{O}(n^{\log n}) &lt; \mathcal{O}(2^n)
+\]</div>
+<p>gegeben.</p>
+<div class="exercise admonition" id="05.1-komplexitaet-exercise-3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 8 </span></p>
+<section id="exercise-content">
+<p>Beweise diese Abschätzungen!</p>
+</section>
+</div>
+<p>Zur Illustration wichtiger Größenordnungen sind in folgender Tabelle einige Werte von <span class="math notranslate nohighlight">\(n\)</span> in die entsprechenden Funktionen eingesetzt.</p>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="tbl-groessenordnungen">
+<caption><span class="caption-number">Tab. 4 </span><span class="caption-text">Wachstum verschiedener Größenordnungen</span><a class="headerlink" href="#tbl-groessenordnungen" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(\log{n}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(n\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(n\log{n}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(n^2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(n^{\log n}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(2^n\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>16</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>9</p></td>
+<td><p>24</p></td>
+<td><p>64</p></td>
+<td><p>512</p></td>
+<td><p>256</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+<td><p>256</p></td>
+<td><p>65536</p></td>
+<td><p>65536</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>32</p></td>
+<td><p>160</p></td>
+<td><p>1024</p></td>
+<td><p><span class="math notranslate nohighlight">\(\approx 3.4\cdot 10^7\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\approx 4.3\cdot 10^9\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>1024</p></td>
+<td><p>10240</p></td>
+<td><p>1048576</p></td>
+<td><p><span class="math notranslate nohighlight">\(\approx 1.3\cdot 10^{30}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\approx 1.8\cdot 10^{308}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="align-default" id="id2">
 <img alt="_images/asymptotisches-verhalten.png" src="_images/asymptotisches-verhalten.png" />
 <figcaption>
 <p><span class="caption-number">Abb. 3 </span><span class="caption-text">Visualisierung der (a) oberen und (B) unteren Schranken <span class="math notranslate nohighlight">\(\mathcal{O}, \Omega\)</span>, sowie (c) der Einschließung <span class="math notranslate nohighlight">\(\Theta\)</span>. Der Punkt <span class="math notranslate nohighlight">\(n_0\)</span> besagt immer, dass erst ab einem gewissen Wert die Ungleichung gelten muss, dann aber für alle <span class="math notranslate nohighlight">\(n\geq n_0\)</span>. (Quelle: <span id="id1">[<a class="reference internal" href="9x-bibliography.html#id7" title="Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. Introduction to Algorithms. MIT Press, 4th edition, 2022.">1</a>]</span>)</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>

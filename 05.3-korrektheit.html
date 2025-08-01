@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Komplexität &#8212; Programmieren - Grundlegende Konzepte</title>
+    <title>&lt;no title&gt; &#8212; Programmieren - Grundlegende Konzepte</title>
   
   
   
@@ -61,14 +61,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '05.1-landau';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05.3-korrektheit';</script>
     <script src="_static/custom.js?v=629f8674"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
-    <link rel="next" title="Laufzeitanalyse" href="05.2-laufzeitanalyse.html" />
-    <link rel="prev" title="Algorithmik" href="05-algorithmik.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
   </head>
@@ -131,6 +127,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -184,6 +182,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.9-debugging.html">Fehlersuche</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
 <ul class="nav bd-sidenav">
@@ -207,10 +206,10 @@
 <li class="toctree-l1"><a class="reference internal" href="04-plotting.html">Plotting</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="05-algorithmik.html">Algorithmik</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Komplexität</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.1-komplexitaet.html">Komplexität</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
 </ul>
@@ -271,7 +270,7 @@
       
       
       
-      <li><a href="_sources/05.1-landau.md" target="_blank"
+      <li><a href="_sources/05.3-korrektheit.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Quelldatei herunterladen"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +354,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Komplexität</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -364,9 +363,9 @@ document.write(`
                 <h2> Inhalt </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotisches-verhalten">Asymptotisches Verhalten</a></li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
+
             </nav>
         </div>
     </div>
@@ -377,50 +376,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="komplexitat">
-<h1>Komplexität<a class="headerlink" href="#komplexitat" title="Link to this heading">#</a></h1>
-<p>Wir wollen die Zeit, die ein Algorithmus zur Lösung eines Problems benötigt,
-unabhängig von der Art und Weise seiner praktischen Umsetzung quantifizieren.
-Dazu untersuchen wir, wie sich der Aufwand, das heißt die Anzahl der
-benötigten Operationen wie arithmetischen Operationen oder Vergleichen,
-verändert, wenn wir die Problemgröße verändern.</p>
-<section id="asymptotisches-verhalten">
-<h2>Asymptotisches Verhalten<a class="headerlink" href="#asymptotisches-verhalten" title="Link to this heading">#</a></h2>
-<p>Anstelle zu zählen wie häufig exakt eine Operation durchgeführt wird, begnügt man sich mit dem Wissen über eine obere Schranke der Häufigkeit, in Abhängigkeit der größe der Eingabedaten. Solch eine Schranke wird mit Hilfe der <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-Notation (= „groß Oh“) beschrieben:</p>
-<div class="proof definition admonition" id="def-gross-Oh-notation">
-<p class="admonition-title"><span class="caption-number">Definition 17 </span></p>
-<section class="definition-content" id="proof-content">
-<p>Sei <span class="math notranslate nohighlight">\(g\colon\mathbb{N}_0\to\mathbb{N}_0\)</span>, dann bezeichnet</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{O}(g) := \big\{ f\colon\mathbb{N}_0\to\mathbb{N}_0\,\mid\,\exists c &gt; 0\text{ und }\exists n_0\in\mathbb{N}_0\text{ mit }f(n)\leq c\cdot g(n)\;\forall n\geq n_0 \big\}.
-\]</div>
-<p>Man schreibt auch <span class="math notranslate nohighlight">\(f\in\mathcal{O}(g)\)</span> und sagt „<span class="math notranslate nohighlight">\(f\)</span> ist von der Größenordnung groß Oh von g“.</p>
-</section>
-</div><p>Nehmen wir an, wir ermitteln die Rechenzeit <span class="math notranslate nohighlight">\(T(n)\)</span> für einen bestimmten Algorithmus. Die Variable <span class="math notranslate nohighlight">\(n\)</span>
-kann z. B. die Anzahl der Ein- und Ausgabewerte sein, ihre Summe, oder auch die Größe eines dieser
-Werte. Da <span class="math notranslate nohighlight">\(T(n)\)</span> maschinenabhängig ist, genügt eine Analyse durch Ausführung des Algorithmus und Messen
-der Zeit nicht. Jedoch kann man mit Hilfe einer <em>a priori Analyse</em> ein <span class="math notranslate nohighlight">\(g(n)\)</span> bestimmen, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathcal{O}(g(n))\)</span>.</p>
-<p>Wenn wir sagen, dass ein Algorithmus eine Rechenzeit <span class="math notranslate nohighlight">\(\mathcal{O}(g(n))\)</span> hat, dann meinen wir damit Folgendes:
-Wenn der Algorithmus auf unterschiedlichen Computern mit den gleichen Datensätzen läuft, und
-diese die Größe <span class="math notranslate nohighlight">\(n\)</span> haben, dann werden die resultierenden Laufzeiten immer kleiner sein als eine Konstante
-mal <span class="math notranslate nohighlight">\(g(n)\)</span>. Bei der Suche nach der Größenordnung von <span class="math notranslate nohighlight">\(T(n)\)</span> werden wir darum bemüht sein, das „kleinste“ <span class="math notranslate nohighlight">\(g(n)\)</span>
-zu finden, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathcal{O}(g(n))\)</span> gilt.</p>
-<p>Ist <span class="math notranslate nohighlight">\(f(n)=p(n)\)</span> z.B. ein Polynom, so gilt:</p>
-<div class="proof theorem admonition" id="thm-complexity-polynom">
-<p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Polynomielle Komplexität)</p>
-<section class="theorem-content" id="proof-content">
-<p>Für ein Polynom <span class="math notranslate nohighlight">\(p(n) = a_0 + a_1 n + a_2 n^2 + \cdots + a_m n^{m}\)</span> vom Grade <span class="math notranslate nohighlight">\(m\)</span> gilt: <span class="math notranslate nohighlight">\(p(n)\in\mathcal{O}(n^m)\)</span>.</p>
-</section>
-</div><figure class="align-default" id="id2">
-<img alt="_images/asymptotisches-verhalten.png" src="_images/asymptotisches-verhalten.png" />
-<figcaption>
-<p><span class="caption-number">Abb. 3 </span><span class="caption-text">Visualisierung der (a) oberen und (B) unteren Schranken <span class="math notranslate nohighlight">\(\mathcal{O}, \Omega\)</span>, sowie (c) der Einschließung <span class="math notranslate nohighlight">\(\Theta\)</span>. Der Punkt <span class="math notranslate nohighlight">\(n_0\)</span> besagt immer, dass erst ab einem gewissen Wert die Ungleichung gelten muss, dann aber für alle <span class="math notranslate nohighlight">\(n\geq n_0\)</span>. (Quelle: <span id="id1">[<a class="reference internal" href="9x-bibliography.html#id7" title="Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. Introduction to Algorithms. MIT Press, 4th edition, 2022.">1</a>]</span>)</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-</section>
-
+  
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -451,24 +407,6 @@ zu finden, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathca
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="05-algorithmik.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">zurück</p>
-        <p class="prev-next-title">Algorithmik</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="05.2-laufzeitanalyse.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title">Laufzeitanalyse</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -484,9 +422,9 @@ zu finden, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathca
     <i class="fa-solid fa-list"></i> Inhalt
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotisches-verhalten">Asymptotisches Verhalten</a></li>
+    <ul class="simple visible nav section-nav flex-column">
 </ul>
+
   </nav></div>
 
 </div></div>

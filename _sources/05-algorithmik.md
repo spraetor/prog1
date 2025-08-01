@@ -35,6 +35,19 @@ eines Algorithmus lohnt es sich jedoch, die spätere Umsetzung zu bedenken. Das
 effizienteste Verfahren ist praktisch nutzlos, wenn man nicht in der Lage ist, es adäquat zu
 implementieren.
 
+## Analysearten
+
+Man unterscheidet folgende Arten der Analyse.
+1. **A priori Analyse** (rechnerunabhängig)
+Der Algorithmus wird in seiner Struktur untersucht, um Aussagen über die Anzahl auszuführender Operationen zu bekommen, als Indikator für die Asuführungszeit, unabhängig von konkreten Inputwerten aber abhängig von der "Größe" des Inputs.
+
+2. **A posteriori Analyse** (rechnerabhängig)
+Hierunter versteht man das Testen einer Implementation des Algorithmus an hinreichend großen
+Datensätzen, so dass "alle" Verhaltensweisen des Algorithmus auftreten. Man erstellt dann eine
+Sammlung statistischer Daten über Ziel- und Speicherbedarf in Abhängigkeit des Datenmaterials.
+
+
+
 # Komplexität und Korrektheit
 
 > In the early 1960s one of the American spaceships in the Mariner series sent to

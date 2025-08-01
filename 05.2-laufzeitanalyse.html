@@ -61,12 +61,14 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '05.2-laufzeitanalyse';</script>
     <script src="_static/custom.js?v=629f8674"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Rekursion" href="05.3-rekursion.html" />
-    <link rel="prev" title="Asymptotische Notation" href="05.1-landau.html" />
+    <link rel="prev" title="Komplexität" href="05.1-komplexitaet.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
   </head>
@@ -182,6 +184,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.9-debugging.html">Fehlersuche</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
 <ul class="nav bd-sidenav">
@@ -206,8 +209,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="05-algorithmen.html">Komplexität und Korrektheit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05.1-landau.html">Asymptotische Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-algorithmik.html">Algorithmik</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="05.1-komplexitaet.html">Komplexität</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Laufzeitanalyse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
 </ul>
@@ -339,7 +343,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -355,6 +361,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Inhalt </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zeitmessung-und-benchmarking">Zeitmessung und Benchmarking</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -366,6 +380,66 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="laufzeitanalyse">
 <h1>Laufzeitanalyse<a class="headerlink" href="#laufzeitanalyse" title="Link to this heading">#</a></h1>
+<p>Wie lange ein Algorithmus zur Lösung eines gegebenen Problems tatsächlich braucht, hängt von vielen Faktoren ab. Die a-priori Komplexitätsanalyse gibt uns i.d.R. nur eine Aussage über das asymptotische Verhalten, also für große Eingabedaten. Für kleine <span class="math notranslate nohighlight">\(n\)</span> kann es bedeuten, dass ein Algorithmus mit einer Laufzeitkomplexität von <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> schneller ist, als ein Algorithmus mit Komplexität <span class="math notranslate nohighlight">\(\mathcal{O}(\log{n})\)</span>. Eine Grundprinzip der Programmierung lautet „teste!“ und „messe!“. Die theoretische Korrektheit eines Algorithmus verhindert nicht, dass wir Programmierfehler in den Code einbauen. Deswegen sollte man Tests und Überprüfungen in den Code einbauen. Siehe auch Kapitel „Debugging“. Die reale Laufzeit eines Programms hängt von der CPU, der konkreten Zusammensetzung der Eingabedaten, der Datentypen, aber auch der Fähigkeit des Compilers den Code zu optimieren, ab Deswegen sollte man Implementierungen nicht nur hinsichtlich ihrer theoretischen Komplexität, sondern auch ihrer praktischen Laufzeit vergleichen.</p>
+<section id="zeitmessung-und-benchmarking">
+<h2>Zeitmessung und Benchmarking<a class="headerlink" href="#zeitmessung-und-benchmarking" title="Link to this heading">#</a></h2>
+<p>Der einfachste Weg zu messen, wie schnell ein Programm ist, besteht in dem <code class="docutils literal notranslate"><span class="pre">&#64;time</span></code> macro, welches die Zeit zur Ausführung des Codes misst und die Anzahl Speicherallokationen zurückgibt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sum_abs</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">vec</span><span class="p">);</span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="nd">@time</span><span class="w"> </span><span class="n">sum_abs</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c"># Inaccurate, note the &gt;99% compilation time</span>
+<span class="nd">@time</span><span class="w"> </span><span class="n">sum_abs</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c"># Accurate</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.013830 seconds (70.39 k allocations: 3.391 MiB, 99.91% compilation time)
+  0.000003 seconds (1 allocation: 16 bytes)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Julia Code wird bei der ersten Ausführung erst kompiliert, also in Maschinencode übersetzt. Diese Übersetzung kann selbst auch einige Zeit in Anspruch nehmen. Das sollte man beim Messen von Zeiten mit berücksichtigen und evtl. die Messung mehrfach durchführen.</p>
+</div>
+<p>Beim Messen der Laufzeit einer Funktion oder eines Code Abschnitts muss man auch berücksichtigen, dass die Ausführungszeit auch von anderen Faktoren beeinflusst werden kann, nicht zuletzt der aktuellen Auslastung des Computers, oder ob die CPU für diese Operationen schon „warm gelaufen“ ist.</p>
+<p>Eine Alternative zum <code class="docutils literal notranslate"><span class="pre">&#64;time</span></code> macro, welches den Code nur genau einmal ausführt und dabei die Messung durchführt, ist das Paket <a class="reference external" href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a>. Diese Sammlung von Hilfsfunktionen zur Code Analyse bietet z.B. die Macros <code class="docutils literal notranslate"><span class="pre">&#64;btime</span></code> und <code class="docutils literal notranslate"><span class="pre">&#64;benchmark</span></code>, die analog zu <code class="docutils literal notranslate"><span class="pre">&#64;time</span></code> vor eine Anweisung gestellt werden können um deren Laufzeit zu bestimmen. Dabei wird der Code u.U. mehrfach ausgeführt, um genauere Messung durchführen zu können.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">BenchmarkTools</span>
+<span class="n">sum_abs</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">vec</span><span class="p">);</span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="nd">@btime</span><span class="w"> </span><span class="n">sum_abs</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="c"># already accurate</span>
+<span class="nd">@benchmark</span><span class="w"> </span><span class="n">sum_abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  26.374 ns
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> (1 allocation: 16 bytes)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BenchmarkTools.Trial: 10000 samples with 995 evaluations per sample.
+ Range (<span class=" -Color -Color-Bold -Color-Bold-Cyan">min</span> … <span class=" -Color -Color-Magenta">max</span>):  <span class=" -Color -Color-Bold -Color-Bold-Cyan">26.514 ns</span> … <span class=" -Color -Color-Magenta">749.586 ns</span>  ┊ GC (min … max): 0.00% … 94.04%
+ Time  (<span class=" -Color -Color-Bold -Color-Bold-Blue">median</span>):     <span class=" -Color -Color-Bold -Color-Bold-Blue">28.791 ns               </span>┊ GC (median):    0.00%
+ Time  (<span class=" -Color -Color-Bold -Color-Bold-Green">mean</span> ± <span class=" -Color -Color-Green">σ</span>):   <span class=" -Color -Color-Bold -Color-Bold-Green">29.431 ns</span> ± <span class=" -Color -Color-Green"> 12.061 ns</span>  ┊ GC (mean ± σ):  0.78% ±  1.86%
+
+     ▃▃   ▁▃▇█<span class=" -Color -Color-Blue">▆</span>▆▄<span class=" -Color -Color-Green">▂</span>▁▂▁▂▁▁▁ ▁▂▂▂▁                                ▂
+  ▇▇▆███▄█████<span class=" -Color -Color-Blue">█</span>██<span class=" -Color -Color-Green">█</span>██████████████▆▆▅▄▅▆▇▆▄▅▄▄▃▄▃▁▁▃▃▃▁▁▄▄▄▄▄▃▁▅ █
+  26.5 ns       Histogram: <span class=" -Color -Color-Bold">log(</span>frequency<span class=" -Color -Color-Bold">)</span> by time      38.2 ns <span class=" -Color -Color-Bold">&lt;</span>
+
+ Memory estimate: <span class=" -Color -Color-Yellow">16 bytes</span>, allocs estimate: <span class=" -Color -Color-Yellow">1</span>.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -377,16 +451,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "julia-1.11"
         },
         kernelOptions: {
-            name: "python3",
+            name: "julia-1.11",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'julia-1.11'</script>
 
                 </article>
               
@@ -399,12 +473,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="05.1-landau.html"
+       href="05.1-komplexitaet.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">zurück</p>
-        <p class="prev-next-title">Asymptotische Notation</p>
+        <p class="prev-next-title">Komplexität</p>
       </div>
     </a>
     <a class="right-next"
@@ -422,6 +496,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Inhalt
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zeitmessung-und-benchmarking">Zeitmessung und Benchmarking</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

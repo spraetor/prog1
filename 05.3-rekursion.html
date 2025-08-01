@@ -184,6 +184,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.9-debugging.html">Fehlersuche</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
 <ul class="nav bd-sidenav">
@@ -208,8 +209,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="05-algorithmen.html">Komplexität und Korrektheit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05.1-landau.html">Asymptotische Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-algorithmik.html">Algorithmik</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="05.1-komplexitaet.html">Komplexität</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Rekursion</a></li>
 </ul>
@@ -398,7 +400,7 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Example 4 </span> (Die Türme von Hanoi)</p>
 <section class="example-content" id="proof-content">
 <p>Ein Rätsel oder Spiel, das man den Hindu Pristern im größen Tempel von Benares zuschreibt, basiert darauf, dass man einen Stapel von Scheiben unterschiedlicher Größe von einer Position A auf einer Positions B bringen soll unter Ausnutzung einer dritten Position C. Dabei gilt es nur wenige Regeln zu beachten: 1. Die Scheiben müssen immer der Größe nach sortiert sein, d.h. kleinere Scheiben liegen immer über größeren Scheiben, und 2. es darf immer nur die oberste Scheibe eines Stapels bewegt werden.</p>
-<p>Betrachten wir die Situation wie in <a class="reference internal" href="#fig-tuerme-von-hanoi"><span class="std std-numref">Abb. 3</span></a> mit 3 Scheiben auf Stapel A, die auf Stapel B bewegt werden sollen. Wir beschreiben die Bewegung einfach als einen Pfeil <span class="math notranslate nohighlight">\(A\to B\)</span>, um auszudrücken, dass die oberste Scheibe von <span class="math notranslate nohighlight">\(A\)</span> auf den Stapel <span class="math notranslate nohighlight">\(B\)</span> bewegt werden soll.
+<p>Betrachten wir die Situation wie in <a class="reference internal" href="#fig-tuerme-von-hanoi"><span class="std std-numref">Abb. 4</span></a> mit 3 Scheiben auf Stapel A, die auf Stapel B bewegt werden sollen. Wir beschreiben die Bewegung einfach als einen Pfeil <span class="math notranslate nohighlight">\(A\to B\)</span>, um auszudrücken, dass die oberste Scheibe von <span class="math notranslate nohighlight">\(A\)</span> auf den Stapel <span class="math notranslate nohighlight">\(B\)</span> bewegt werden soll.
 Eine Lösung des Spiels sieht nun folgendermaßen aus:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -413,7 +415,7 @@ A &amp;\to B.
 </section>
 </div><div class="exercise admonition" id="05.3-rekursion-exercise-1">
 
-<p class="admonition-title"><span class="caption-number">Exercise 8 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 9 </span></p>
 <section id="exercise-content">
 <p>Erweitern Sie das das Beispiel um eine 4te Scheibe. Wieviele Schritte werden benötigt, um den Turm von <span class="math notranslate nohighlight">\(A\)</span> nach <span class="math notranslate nohighlight">\(B\)</span> zu verschieben? Die Hindu Prister hatten angebich Türme von 64 Scheiben. Wie lange wird die Lösung dieses Spiels wohl dauern?</p>
 </section>
@@ -421,7 +423,7 @@ A &amp;\to B.
 <figure class="align-default" id="fig-tuerme-von-hanoi">
 <img alt="_images/tuerme-von-hanoi.png" src="_images/tuerme-von-hanoi.png" />
 <figcaption>
-<p><span class="caption-number">Abb. 3 </span><span class="caption-text">Beispielkonfiguration der Türme von Hanoi mit 3 Scheiben.</span><a class="headerlink" href="#fig-tuerme-von-hanoi" title="Link to this image">#</a></p>
+<p><span class="caption-number">Abb. 4 </span><span class="caption-text">Beispielkonfiguration der Türme von Hanoi mit 3 Scheiben.</span><a class="headerlink" href="#fig-tuerme-von-hanoi" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Wie kann dieser Algorithmus in ein rekursives Verfahren überführt werden? Nehmen wir für einen Moment an, dass wir mehr als eine Scheibe auf einmal bewegen könnten, z.B. alle Scheiben bis auf die unterste. Dann könnte man die Lösung in drei Schritten aufschreiben:</p>
@@ -501,12 +503,13 @@ move(1,A,B,C)
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Die Rekursionstiefe im Beispiel der „Türme von Hanoi“ ist durch die Größe <span class="math notranslate nohighlight">\(n\)</span> des Aufgangsstapels definiert.</p>
+<p>Genauer: Skript Computerorientierte Mathematik I (R. Möhring), Satz 8.3</p>
 </div>
 <section id="korrektheit-eines-rekursiven-algorithmus">
 <h3>Korrektheit eines rekursiven Algorithmus<a class="headerlink" href="#korrektheit-eines-rekursiven-algorithmus" title="Link to this heading">#</a></h3>
 <p>Wie können wir zeigen, dass der rekursive Algorithmus korrekt ist? Die Grundbeweisstrategie basiert wieder auf einem Induktionsargument. Als weiteres Argument benötigen wir noch, dass der Algorithmus ein Ergebnis in endlicher Anzahl Schritten produziert.</p>
 <div class="proof theorem admonition" id="theorem-3">
-<p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Korrektheit des rekursiven Algorithmus)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 4 </span> (Korrektheit des rekursiven Algorithmus)</p>
 <section class="theorem-content" id="proof-content">
 <p>Wir gehen davon aus, dass die Operation <code class="docutils literal notranslate"><span class="pre">move(n,X,Y,Z)</span></code> mit einem <span class="math notranslate nohighlight">\(n\geq 1\)</span> und <span class="math notranslate nohighlight">\(X\neq Y\neq Z\)</span> aufgerufen wurde. Dann gilt:</p>
 <ol class="arabic simple">
@@ -609,7 +612,7 @@ fibonacci(1)
 <p>Diese Mehrfachberechnung führt dazu, dass der Gesamtaufwand sehr groß wird und ein Fibonacci-Zahl für große <span class="math notranslate nohighlight">\(n\)</span> kaum mehr berechnet werden können.</p>
 <div class="exercise admonition" id="05.3-rekursion-exercise-5">
 
-<p class="admonition-title"><span class="caption-number">Exercise 9 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 10 </span></p>
 <section id="exercise-content">
 <p>Erhöhen Sie das Argument <span class="math notranslate nohighlight">\(n\)</span>. Wie weit können Sie gehen um in einer vertretbaren Zeit, z.B. &lt; 1min, die Zahl mir dem rekursiven Algorithmus zu berechnen?</p>
 </section>
@@ -710,7 +713,7 @@ f_{n}   &amp;= f_{n-1} + f_{n-2}
 <p>Das bedeutet, man kann die Fibonacci-Zahlen <span class="math notranslate nohighlight">\(f_{n+1}\)</span> und <span class="math notranslate nohighlight">\(f_n\)</span> direkt ausrechnen, durch eine Matrix-Potenz und ein Matrix-Vektor Produkt. Wir haben bei der ganzzahligen Arithmetik einen Potenzierungsalgorithmus kennengelernt, der nur <span class="math notranslate nohighlight">\(\mathcal{O}(\log(n))\)</span> Schritte benötigt, indem der Exponent mittels Division mit Rest zerlegt wurde und wir Potenzgesetze angewendet haben. Diese Zerlegung gilt auch hier. Die Potenzgesetze gelte hier weitestgehen auch.</p>
 <div class="exercise admonition" id="05.3-rekursion-exercise-6">
 
-<p class="admonition-title"><span class="caption-number">Exercise 10 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 11 </span></p>
 <section id="exercise-content">
 <p>Welche Potenzgesetze gelten für allgemeine quadratische Matrizen? Welche gelten nur für symmetrische Matrizen?</p>
 </section>
@@ -752,7 +755,7 @@ f_{n}   &amp;= f_{n-1} + f_{n-2}
 <p>Da das Potenzieren logarithmische Komplexität hat, gilt dies auch für die Fibonacci-Algorithmus.</p>
 <div class="exercise admonition" id="05.3-rekursion-exercise-7">
 
-<p class="admonition-title"><span class="caption-number">Exercise 11 </span></p>
+<p class="admonition-title"><span class="caption-number">Exercise 12 </span></p>
 <section id="exercise-content">
 <p>Warum ist der Code trotzdem deutlich langsamer, als der iterative oder recursive Memoisation Algorithmus?</p>
 </section>
@@ -774,7 +777,7 @@ f_{n}   &amp;= f_{n-1} + f_{n-2}
 </div><section id="endrekursion">
 <h3>Endrekursion<a class="headerlink" href="#endrekursion" title="Link to this heading">#</a></h3>
 <div class="proof definition admonition" id="def-endrekursiv">
-<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Endrekursiv)</p>
+<p class="admonition-title"><span class="caption-number">Definition 19 </span> (Endrekursiv)</p>
 <section class="definition-content" id="proof-content">
 <p>Wir bezeichnen eine rekursive Funktion als <strong>endrekursiv</strong> (= <em>tail recursive</em>) wenn der rekursive Funktionsaufruf die letzte Anweisung der Funktion ist.</p>
 </section>
@@ -836,7 +839,7 @@ f_{n}   &amp;= f_{n-1} + f_{n-2}
 </div>
 <p>Die Varianten <code class="docutils literal notranslate"><span class="pre">multiply_acc2()</span></code> und <code class="docutils literal notranslate"><span class="pre">multiply_acc3()</span></code> sind beide schon <em>endrekursiv</em>. Geht man aber noch einen Schritt weiter, lässt sich die Transformation in einen iterativen Algorithmus noch leichter durchführen:</p>
 <div class="proof definition admonition" id="dfn-strictly-endrecursive">
-<p class="admonition-title"><span class="caption-number">Definition 18 </span> (Strikt endrekursiv)</p>
+<p class="admonition-title"><span class="caption-number">Definition 20 </span> (Strikt endrekursiv)</p>
 <section class="definition-content" id="proof-content">
 <p>Eine <strong>strikt endrekursive</strong> Funktion <span class="math notranslate nohighlight">\(f\)</span> hat als endrekursiven Aufruf die Funktion selbst mit den Argumenten die den formalen Parametern von <span class="math notranslate nohighlight">\(f\)</span> entsprechen.</p>
 </section>

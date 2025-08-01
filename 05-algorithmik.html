@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Komplexität &#8212; Programmieren - Grundlegende Konzepte</title>
+    <title>Algorithmik &#8212; Programmieren - Grundlegende Konzepte</title>
   
   
   
@@ -61,14 +61,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '05.1-landau';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05-algorithmik';</script>
     <script src="_static/custom.js?v=629f8674"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
-    <link rel="next" title="Laufzeitanalyse" href="05.2-laufzeitanalyse.html" />
-    <link rel="prev" title="Algorithmik" href="05-algorithmik.html" />
+    <link rel="next" title="Komplexität" href="05.1-komplexitaet.html" />
+    <link rel="prev" title="Plotting" href="04-plotting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
   </head>
@@ -184,6 +182,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.9-debugging.html">Fehlersuche</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
 <ul class="nav bd-sidenav">
@@ -208,9 +207,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="05-algorithmik.html">Algorithmik</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Algorithmik</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Komplexität</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.1-komplexitaet.html">Komplexität</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
 </ul>
@@ -271,7 +270,7 @@
       
       
       
-      <li><a href="_sources/05.1-landau.md" target="_blank"
+      <li><a href="_sources/05-algorithmik.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Quelldatei herunterladen"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +354,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Komplexität</h1>
+    <h1>Algorithmik</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -365,8 +364,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotisches-verhalten">Asymptotisches Verhalten</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algorithmik</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysearten">Analysearten</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#komplexitat-und-korrektheit">Komplexität und Korrektheit</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korrektheit">Korrektheit</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -377,47 +384,75 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="komplexitat">
-<h1>Komplexität<a class="headerlink" href="#komplexitat" title="Link to this heading">#</a></h1>
-<p>Wir wollen die Zeit, die ein Algorithmus zur Lösung eines Problems benötigt,
-unabhängig von der Art und Weise seiner praktischen Umsetzung quantifizieren.
-Dazu untersuchen wir, wie sich der Aufwand, das heißt die Anzahl der
-benötigten Operationen wie arithmetischen Operationen oder Vergleichen,
-verändert, wenn wir die Problemgröße verändern.</p>
-<section id="asymptotisches-verhalten">
-<h2>Asymptotisches Verhalten<a class="headerlink" href="#asymptotisches-verhalten" title="Link to this heading">#</a></h2>
-<p>Anstelle zu zählen wie häufig exakt eine Operation durchgeführt wird, begnügt man sich mit dem Wissen über eine obere Schranke der Häufigkeit, in Abhängigkeit der größe der Eingabedaten. Solch eine Schranke wird mit Hilfe der <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-Notation (= „groß Oh“) beschrieben:</p>
-<div class="proof definition admonition" id="def-gross-Oh-notation">
-<p class="admonition-title"><span class="caption-number">Definition 17 </span></p>
-<section class="definition-content" id="proof-content">
-<p>Sei <span class="math notranslate nohighlight">\(g\colon\mathbb{N}_0\to\mathbb{N}_0\)</span>, dann bezeichnet</p>
-<div class="math notranslate nohighlight">
-\[
-\mathcal{O}(g) := \big\{ f\colon\mathbb{N}_0\to\mathbb{N}_0\,\mid\,\exists c &gt; 0\text{ und }\exists n_0\in\mathbb{N}_0\text{ mit }f(n)\leq c\cdot g(n)\;\forall n\geq n_0 \big\}.
-\]</div>
-<p>Man schreibt auch <span class="math notranslate nohighlight">\(f\in\mathcal{O}(g)\)</span> und sagt „<span class="math notranslate nohighlight">\(f\)</span> ist von der Größenordnung groß Oh von g“.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="algorithmik">
+<h1>Algorithmik<a class="headerlink" href="#algorithmik" title="Link to this heading">#</a></h1>
+<p>Unter <em>Algorithmik</em> versteht man die Entwicklung und Analyse von Algorithmen, also von
+Computer-realisierbaren Verfahren zur systematischen Lösung einer Aufgabe. Typische Aufgaben
+sind das Sortieren von Listen, die Bestimmung der Lösung eines mathematischen
+Problems oder die Berechnung der Wahrscheinlichkeit eines Ereignisses auf Basis gegebener
+Daten. Bei der Analyse eines Algorithmus sind die folgenden Kriterien relevant.</p>
+<ol class="arabic simple">
+<li><p><strong>Durchführbarkeit:</strong> Es muss sicher gestellt werden, dass alle Schritte wohldefiniert
+sind, sodass zum Beispiel keine Divisionen durch Null auftreten. Außerdem muss zu
+jedem Zeitpunkt des Verfahrens klar sein, welcher Schritt als nächstes auszuführen
+ist (<em>Determinismus</em>).</p></li>
+<li><p><strong>Terminierung:</strong> Es muss gewährleistet sein, dass das Verfahren regulär stoppt und
+nicht beispielsweise in eine Endlosschleife gerät.</p></li>
+<li><p><strong>Korrektheit:</strong> Es muss nachgewiesen werden, dass für alle zulässigen Eingaben das
+richtige Ergebnis berechnet wird. Außerdem sollten identische Eingaben zum gleichen
+Ergebnis führen (<em>Determiniertheit</em>).</p></li>
+<li><p><strong>Effizienz:</strong> Es muss untersucht werden, ob der Algorithmus für realistische Problemgrößen
+in akzeptabler Zeit terminiert.</p></li>
+</ol>
+<p>Häufig wird außerdem gefordert, dass die Anweisungen in einem endlichen Text darstellbar
+sind (<em>Finitheit</em>) und dass in jedem Schritt des Algorithmus nur endlich viel Speicherplatz
+benötigt wird (<em>dynamische Finitheit</em>). Einige dieser Aspekte erscheinen auf den ersten Blick
+trivial, ihre Relevanz zeigt sich jedoch, wenn man unterschiedliche Beispiele von Algorithmen
+betrachtet.</p>
+<p>Wenn wir von einem Algorithmus sprechen, so meinen wir immer das Verfahren an sich,
+unabhängig von einer konkreten Realisierung in einer Programmiersprache. Mit der Implementierung
+eines Verfahrens sollte man idealerweise erst dann beginnen, wenn man sein
+Verhalten unter gegebenen Voraussetzungen bereits verstanden verstanden hat. Bei der Formulierung
+eines Algorithmus lohnt es sich jedoch, die spätere Umsetzung zu bedenken. Das
+effizienteste Verfahren ist praktisch nutzlos, wenn man nicht in der Lage ist, es adäquat zu
+implementieren.</p>
+<section id="analysearten">
+<h2>Analysearten<a class="headerlink" href="#analysearten" title="Link to this heading">#</a></h2>
+<p>Man unterscheidet folgende Arten der Analyse.</p>
+<ol class="arabic simple">
+<li><p><strong>A priori Analyse</strong> (rechnerunabhängig)
+Der Algorithmus wird in seiner Struktur untersucht, um Aussagen über die Anzahl auszuführender Operationen zu bekommen, als Indikator für die Asuführungszeit, unabhängig von konkreten Inputwerten aber abhängig von der „Größe“ des Inputs.</p></li>
+<li><p><strong>A posteriori Analyse</strong> (rechnerabhängig)
+Hierunter versteht man das Testen einer Implementation des Algorithmus an hinreichend großen
+Datensätzen, so dass „alle“ Verhaltensweisen des Algorithmus auftreten. Man erstellt dann eine
+Sammlung statistischer Daten über Ziel- und Speicherbedarf in Abhängigkeit des Datenmaterials.</p></li>
+</ol>
 </section>
-</div><p>Nehmen wir an, wir ermitteln die Rechenzeit <span class="math notranslate nohighlight">\(T(n)\)</span> für einen bestimmten Algorithmus. Die Variable <span class="math notranslate nohighlight">\(n\)</span>
-kann z. B. die Anzahl der Ein- und Ausgabewerte sein, ihre Summe, oder auch die Größe eines dieser
-Werte. Da <span class="math notranslate nohighlight">\(T(n)\)</span> maschinenabhängig ist, genügt eine Analyse durch Ausführung des Algorithmus und Messen
-der Zeit nicht. Jedoch kann man mit Hilfe einer <em>a priori Analyse</em> ein <span class="math notranslate nohighlight">\(g(n)\)</span> bestimmen, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathcal{O}(g(n))\)</span>.</p>
-<p>Wenn wir sagen, dass ein Algorithmus eine Rechenzeit <span class="math notranslate nohighlight">\(\mathcal{O}(g(n))\)</span> hat, dann meinen wir damit Folgendes:
-Wenn der Algorithmus auf unterschiedlichen Computern mit den gleichen Datensätzen läuft, und
-diese die Größe <span class="math notranslate nohighlight">\(n\)</span> haben, dann werden die resultierenden Laufzeiten immer kleiner sein als eine Konstante
-mal <span class="math notranslate nohighlight">\(g(n)\)</span>. Bei der Suche nach der Größenordnung von <span class="math notranslate nohighlight">\(T(n)\)</span> werden wir darum bemüht sein, das „kleinste“ <span class="math notranslate nohighlight">\(g(n)\)</span>
-zu finden, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathcal{O}(g(n))\)</span> gilt.</p>
-<p>Ist <span class="math notranslate nohighlight">\(f(n)=p(n)\)</span> z.B. ein Polynom, so gilt:</p>
-<div class="proof theorem admonition" id="thm-complexity-polynom">
-<p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Polynomielle Komplexität)</p>
-<section class="theorem-content" id="proof-content">
-<p>Für ein Polynom <span class="math notranslate nohighlight">\(p(n) = a_0 + a_1 n + a_2 n^2 + \cdots + a_m n^{m}\)</span> vom Grade <span class="math notranslate nohighlight">\(m\)</span> gilt: <span class="math notranslate nohighlight">\(p(n)\in\mathcal{O}(n^m)\)</span>.</p>
 </section>
-</div><figure class="align-default" id="id2">
-<img alt="_images/asymptotisches-verhalten.png" src="_images/asymptotisches-verhalten.png" />
-<figcaption>
-<p><span class="caption-number">Abb. 3 </span><span class="caption-text">Visualisierung der (a) oberen und (B) unteren Schranken <span class="math notranslate nohighlight">\(\mathcal{O}, \Omega\)</span>, sowie (c) der Einschließung <span class="math notranslate nohighlight">\(\Theta\)</span>. Der Punkt <span class="math notranslate nohighlight">\(n_0\)</span> besagt immer, dass erst ab einem gewissen Wert die Ungleichung gelten muss, dann aber für alle <span class="math notranslate nohighlight">\(n\geq n_0\)</span>. (Quelle: <span id="id1">[<a class="reference internal" href="9x-bibliography.html#id7" title="Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. Introduction to Algorithms. MIT Press, 4th edition, 2022.">1</a>]</span>)</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
+<section class="tex2jax_ignore mathjax_ignore" id="komplexitat-und-korrektheit">
+<h1>Komplexität und Korrektheit<a class="headerlink" href="#komplexitat-und-korrektheit" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>In the early 1960s one of the American spaceships in the Mariner series sent to
+Venus was lost forever at a cost of millions of dollars, due to a mistake in a flight
+control computer program.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Some years ago, a Danish lady received, around her 107th birthday, a computerized letter from the local school authorities with instructions as to the registration
+procedure for first grade in elementary school. It turned out that only two digits
+were allotted for the „age“ field in the database.</p>
+</div></blockquote>
+<blockquote>
+<div><p>At the turn of the millennium, software problems became headline news with the
+so-called Year 2000 Problem, or the <em>Y2K bug</em>. The fear was that on January 1,
+2000, all hell would break loose, because computers that used two digits for
+storing years would erroneously assume that a year given as 00 was 1900, when
+in fact it was 2000. An extremely expensive (and, in retrospect, quite successful)
+effort to correct these programs had to be taken by software companies worldwide.</p>
+</div></blockquote>
+<p>Zwei wichtige Fragestellungen zu Algorithmen werden uns beschäftigen um zu analysieren, ob ein Verfahren zur Lösung eines Problems geeignet ist, oder nicht: 1. ist der Algorithmus korrekt, also findet er eine oder alle Lösungen des Problems, 2. ist der Algorithmus effizient, also schnell und braucht wenig Ressourcen.</p>
+<section id="korrektheit">
+<h2>Korrektheit<a class="headerlink" href="#korrektheit" title="Link to this heading">#</a></h2>
+<p>Ein Problem bei auf elekromechanischen Bauteilen der ersten Rechenmaschinen, die zur Zeit des zweiten Weltkriegs verwendet wurden (= <em>Relais-Rechner</em>), waren Kakerlaken, die regelmäßig die Relais blockierten. Um die daraus resultierenden Fehler zu beheben, ging man auf die Suche nach „bugs“ (Wanzen). Im Sprachgebrauch sucht man deshalb auch heute noch in fehlerhaften Programmen nach „bugs“.</p>
 </section>
 </section>
 
@@ -452,20 +487,20 @@ zu finden, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathca
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="05-algorithmik.html"
+       href="04-plotting.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">zurück</p>
-        <p class="prev-next-title">Algorithmik</p>
+        <p class="prev-next-title">Plotting</p>
       </div>
     </a>
     <a class="right-next"
-       href="05.2-laufzeitanalyse.html"
+       href="05.1-komplexitaet.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title">Laufzeitanalyse</p>
+        <p class="prev-next-title">Komplexität</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -485,8 +520,16 @@ zu finden, so dass <span class="math notranslate nohighlight">\(T(n) \in \mathca
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymptotisches-verhalten">Asymptotisches Verhalten</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algorithmik</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysearten">Analysearten</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#komplexitat-und-korrektheit">Komplexität und Korrektheit</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korrektheit">Korrektheit</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
