@@ -1,0 +1,1082 @@
+
+<!DOCTYPE html>
+
+
+<html lang="de" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Rekursion &#8212; Programmieren - Grundlegende Konzepte</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a9a42987" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=91fba89f"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=79cc9f76"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05.1-rekursion';</script>
+    <script src="_static/custom.js?v=629f8674"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Bibliography" href="9x-bibliography.html" />
+    <link rel="prev" title="Komplexität und Korrektheit" href="05-algorithmen.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="de"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo3a_light.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo3a.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Math-Ba-PR10 WS25/26</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Suche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programmieren mit Julia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02-zahlen.html">Grundlagen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.1-integer.html">Ziffernsysteme und Zahlendarstellung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.2-float.html">Gleitkommazahlen</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fehler, Kondition und Stabilität</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03.1-fehler.html">Absoluter und relativer Fehler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.2-rundung.html">Rundung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.3-arithmetik.html">Gleitkommaarithmetik</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualisierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-plotting.html">Plotting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenstrukturen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-datenstrukturen.html">Datenstrukturen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.1-arrays.html">Arrays</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-algorithmen.html">Komplexität und Korrektheit</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Rekursion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anhang</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="9x-bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Laden Sie diese Seite herunter">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/05.1-rekursion.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Quelldatei herunterladen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="In PDF drucken"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Vollbildmodus"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Rekursion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Inhalt </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turme-von-hanoi">Türme von Hanoi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korrektheit-eines-rekursiven-algorithmus">Korrektheit eines rekursiven Algorithmus</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memoisation">Memoisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterativer-algorithmus">Iterativer Algorithmus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#endrekursion">Endrekursion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rekursive-datenstrukturen">Rekursive Datenstrukturen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listen">Listen</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="rekursion">
+<h1>Rekursion<a class="headerlink" href="#rekursion" title="Link to this heading">#</a></h1>
+<p>In den Vergangenen Kapiteln haben wir ein grundsätzliches algorithmisches Prinzip schon kennen gelernt: die Rekursion. Es basiert darauf, dass das Ergebnis eines Problems auf ein gleiches oder ähnliches Problem kleiner Größe zurück geführt wird, bis man ein minimales Problem direkt lösen kann. Im <a class="reference internal" href="02.1-integer.html#sec-integer-multiplication"><span class="std std-ref">Multiplikationsalgorithms</span></a> konnten wir das Produkt mit dem Faktor <span class="math notranslate nohighlight">\(1\)</span> direkt auswerten und größere Faktoren mit Hilfe der Rekursionsvorschrift <span class="math notranslate nohighlight">\(n\cdot a = (n-1)\cdot a + a\)</span> auf die Multiplikation mit einer kleineren Zahl zurückführen. In der Implementierung haben wir dann gesehen, dass die Funktion <code class="docutils literal notranslate"><span class="pre">multiply()</span></code> sich selber aufruft.</p>
+<section id="turme-von-hanoi">
+<h2>Türme von Hanoi<a class="headerlink" href="#turme-von-hanoi" title="Link to this heading">#</a></h2>
+<p>Wir betrachten noch ein weiteres Beispiel, das die Rekursionsprinzipien illustrieren soll:</p>
+<div class="proof example admonition" id="bsp-tuerme-von-hanoi">
+<p class="admonition-title"><span class="caption-number">Example 4 </span> (Die Türme von Hanoi)</p>
+<section class="example-content" id="proof-content">
+<p>Ein Rätsel oder Spiel, das man den Hindu Pristern im größen Tempel von Benares zuschreibt, basiert darauf, dass man einen Stapel von Scheiben unterschiedlicher Größe von einer Position A auf einer Positions B bringen soll unter Ausnutzung einer dritten Position C. Dabei gilt es nur wenige Regeln zu beachten: 1. Die Scheiben müssen immer der Größe nach sortiert sein, d.h. kleinere Scheiben liegen immer über größeren Scheiben, und 2. es darf immer nur die oberste Scheibe eines Stapels bewegt werden.</p>
+<p>Betrachten wir die Situation wie in <a class="reference internal" href="#fig-tuerme-von-hanoi"><span class="std std-numref">Abb. 3</span></a> mit 3 Scheiben auf Stapel A, die auf Stapel B bewegt werden sollen. Wir beschreiben die Bewegung einfach als einen Pfeil <span class="math notranslate nohighlight">\(A\to B\)</span>, um auszudrücken, dass die oberste Scheibe von <span class="math notranslate nohighlight">\(A\)</span> auf den Stapel <span class="math notranslate nohighlight">\(B\)</span> bewegt werden soll.
+Eine Lösung des Spiels sieht nun folgendermaßen aus:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A &amp;\to B; \\
+A &amp;\to C; \\
+B &amp;\to C; \\
+A &amp;\to B; \\
+C &amp;\to A; \\
+C &amp;\to B; \\
+A &amp;\to B.
+\end{split}\]</div>
+</section>
+</div><div class="exercise admonition" id="05.1-rekursion-exercise-1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 8 </span></p>
+<section id="exercise-content">
+<p>Erweitern Sie das das Beispiel um eine 4te Scheibe. Wieviele Schritte werden benötigt, um den Turm von <span class="math notranslate nohighlight">\(A\)</span> nach <span class="math notranslate nohighlight">\(B\)</span> zu verschieben? Die Hindu Prister hatten angebich Türme von 64 Scheiben. Wie lange wird die Lösung dieses Spiels wohl dauern?</p>
+</section>
+</div>
+<figure class="align-default" id="fig-tuerme-von-hanoi">
+<img alt="_images/tuerme-von-hanoi.png" src="_images/tuerme-von-hanoi.png" />
+<figcaption>
+<p><span class="caption-number">Abb. 3 </span><span class="caption-text">Beispielkonfiguration der Türme von Hanoi mit 3 Scheiben.</span><a class="headerlink" href="#fig-tuerme-von-hanoi" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Wie kann dieser Algorithmus in ein rekursives Verfahren überführt werden? Nehmen wir für einen Moment an, dass wir mehr als eine Scheibe auf einmal bewegen könnten, z.B. alle Scheiben bis auf die unterste. Dann könnte man die Lösung in drei Schritten aufschreiben:</p>
+<div class="proof algorithm admonition" id="alg-tuerme-von-hanoi">
+<p class="admonition-title"><span class="caption-number">Algorithm 5 </span> (Türme von Hanoi)</p>
+<section class="algorithm-content" id="proof-content">
+<p><em>Eingabe:</em> Anzahl Scheiben <span class="math notranslate nohighlight">\(n\)</span> auf Stapel A, Zielstapel B, Hilfsstapel C</p>
+<ol class="arabic simple">
+<li><p>Bewege den Stapel der obersten <span class="math notranslate nohighlight">\(n-1\)</span> Scheiben von Position A nach Position C.</p></li>
+<li><p>Bewege die oberste Scheibe von A nach B.</p></li>
+<li><p>Bewege den Stapel der obersten <span class="math notranslate nohighlight">\(n-1\)</span> Scheiben von Position C nach Position B.</p></li>
+</ol>
+</section>
+</div><p>Damit haben wir das Problem <span class="math notranslate nohighlight">\(n\)</span> Scheiben zu bewegen reduziert auf ein Problem <span class="math notranslate nohighlight">\(n-1\)</span> Scheiben zu bewegen. Außerdem wissen wir wie man eine einzelne Scheibe bewegt.</p>
+<p>Wir können dies auch in Julia Code ausdrücken. Dabei wird eine Bewege-Operation durch eine Ausgabe <span class="math notranslate nohighlight">\(A\to B\)</span> realisiert. Wir schreiben eine Methode <code class="docutils literal notranslate"><span class="pre">move()</span></code>, die als Eingabe nur die Information bekommt, wie viele Scheiben zu bewegen sind, von welcher zu welcher Position und welcher Hilfsstapel verwendet werden kann.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">  move(n, X, Y, Z)</span>
+
+<span class="s">Move the top ``n`` rings from position ``X`` to ``Y`` using ``Z``.</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="k">function</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">Z</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="s"> -&gt; </span><span class="si">$</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="n">move</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="s"> -&gt; </span><span class="si">$</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">move</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">move</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A -&gt; B
+A -&gt; C
+B -&gt; C
+A -&gt; B
+C -&gt; A
+C -&gt; B
+A -&gt; B
+</pre></div>
+</div>
+</div>
+</div>
+<p>Schaut man sich nun an, wie die Funktion sich selbst aufruft, muss man beachten, dass die Parameter <code class="docutils literal notranslate"><span class="pre">X</span></code>,<code class="docutils literal notranslate"><span class="pre">Y</span></code> und <code class="docutils literal notranslate"><span class="pre">Z</span></code> in jedem Aufruf einen anderen Wert haben könnten. Beim ersten Aufruf übergeben wir die Bezeichnungen der Stapel, „A“, „B“, und „C“, aber schon beim ersten rekursiven Aufruf bekommt Y den Wert „C“ und Z den Wert „B“:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">print_move</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">Z</span><span class="p">)</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;move(</span><span class="si">$</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="s">,</span><span class="si">$</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="s">,</span><span class="si">$</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="s">,</span><span class="si">$</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span><span class="s">)&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">print_move</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">print_move</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Z</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">print_move</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>move(3,A,B,C)
+move(2,A,C,B)
+move(1,A,B,C)
+move(1,B,C,A)
+move(2,C,B,A)
+move(1,C,A,B)
+move(1,A,B,C)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Jeder Aufruf der Funktion, muss sich „merken“ was ihre Parameter-Werte waren, und auch zu welchem Zustand es zurückkehren muss, nachdem die eigenen Schritte abgearbeitet sind. Um dies zu realisieren, werden die Daten (Parameter, lokale Variablen, Ergebnis) zusammen mit einer Ursprungsaddresse auf einen <em>Laufzeitstapel</em> (= <em>runtime stack</em>) abgelegt, sobald eine Funktion aufgerufen wird. Ist ein Funktionsaufruf beendet, werden die Daten wieder vom Stapel genommen und der freigewordene Speicher kann durch den nächsten Funktionsaufruf wieder überschrieben werden. Wir bezeichnen die maximale Anzahl an Einträgen auf diesem Stapel, zugehörig zu der Funktion (hier <code class="docutils literal notranslate"><span class="pre">move</span></code>), als Rekursionstiefe.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Rekursionstiefe im Beispiel der „Türme von Hanoi“ ist durch die Größe <span class="math notranslate nohighlight">\(n\)</span> des Aufgangsstapels definiert.</p>
+</div>
+<section id="korrektheit-eines-rekursiven-algorithmus">
+<h3>Korrektheit eines rekursiven Algorithmus<a class="headerlink" href="#korrektheit-eines-rekursiven-algorithmus" title="Link to this heading">#</a></h3>
+<p>Wie können wir zeigen, dass der rekursive Algorithmus korrekt ist? Die Grundbeweisstrategie basiert wieder auf einem Induktionsargument. Als weiteres Argument benötigen wir noch, dass der Algorithmus ein Ergebnis in endlicher Anzahl Schritten produziert.</p>
+<div class="proof theorem admonition" id="theorem-3">
+<p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Korrektheit des rekursiven Algorithmus)</p>
+<section class="theorem-content" id="proof-content">
+<p>Wir gehen davon aus, dass die Operation <code class="docutils literal notranslate"><span class="pre">move(n,X,Y,Z)</span></code> mit einem <span class="math notranslate nohighlight">\(n\geq 1\)</span> und <span class="math notranslate nohighlight">\(X\neq Y\neq Z\)</span> aufgerufen wurde. Dann gilt:</p>
+<ol class="arabic simple">
+<li><p>Der Algorithmus terminiert in einer endlichen Anzahl an Schritten.</p></li>
+<li><p>Der Algorithmus produziert einen validen Move eines Stapel mit <span class="math notranslate nohighlight">\(n\)</span> Scheiben von X nach Y unter Hilfe von Z.</p></li>
+</ol>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Zum 1. Teil: Jeder Aufruf der Operation <code class="docutils literal notranslate"><span class="pre">move()</span></code> impliziert höchstens zwei weitere Aufrufe mit jeweils um 1 reduziertem <span class="math notranslate nohighlight">\(n\)</span>. Es gibt also <span class="math notranslate nohighlight">\(1 + 2 + 4 + 8 +\ldots = \sum_{m=0}^{n-1} 2^m\)</span> Aufrufe insgesamt und diese Zahl ist mit <span class="math notranslate nohighlight">\(n&lt;\infty\)</span> auch endlich.</p>
+<p>Für den 2. Teil des Beweises kann man nun ein Induktionsargument verwenden. Dafür müssen wir noch etwas klarer Spezifizieren, was wir mit einem „validen Move“ meinen. Die Idee des Induktionsbeweises ist, dass wir eine Aussage <span class="math notranslate nohighlight">\(A(n)\)</span> dadurch zeigen, dass wir sie für <span class="math notranslate nohighlight">\(A(1)\)</span> verifizieren, dann annehmen, dass sie für alle <span class="math notranslate nohighlight">\(A(m)\)</span> mit <span class="math notranslate nohighlight">\(m&lt;n\)</span> gilt, um dann im Induktionsschritt auf die Aussage <span class="math notranslate nohighlight">\(A(n)\)</span> zu schließen. Die „Aussage“ die hier zugrunde gelegt werden kann ist folgende:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(A(n)\)</span>: Die <span class="math notranslate nohighlight">\(n\)</span> kleinsten Ringe des Systems werden korrekt und in endlichen Schritten von X nach Y bewegt (potenziell unter Zuhilfnahme von Z), wobei zu jeder Zeit nur kleinere auf größeren Scheiben liegen und eine Scheibe nach der anderen bewegt wird und alle anderen Scheiben, außer den zu bewegenden, nicht berührt werden.</p>
+</div></blockquote>
+<p>Man prüfe leicht nach, dass der Induktionsanfang <span class="math notranslate nohighlight">\(A(1)\)</span> erfüllt ist. Unter Zuhilfnahme der Induktionshypothese <span class="math notranslate nohighlight">\(A(n-1)\)</span> beweise man dann dass <span class="math notranslate nohighlight">\(A(n)\)</span> gilt. Dabei muss insbesondere darauf geachtet werden, dass alle Bedingungen der Aussage durchgängig erfüllt bleiben.</p>
+</div>
+</section>
+</section>
+<section id="memoisation">
+<h2>Memoisation<a class="headerlink" href="#memoisation" title="Link to this heading">#</a></h2>
+<p>Rekursion ist oftmals eine sehr schöner Lösungsansatz zu einem Problem. Das Prinzip, dass die Funktion sich selber aufruft, und dabei z.B. den Laufzeitstack weiter füllt, hat allerdings auch Nachteile: die tieferen Aufrufen wissen i.d.R. nicht wie sie aufgerufen wurden und können mit der Aufrufshierarchie auch nicht „interagieren“. Das nächste Beispiel soll diese Problem verdeutlichen:</p>
+<div class="proof example admonition" id="bsp-fibonacci">
+<p class="admonition-title"><span class="caption-number">Example 5 </span> (Fibonacci Zahlen)</p>
+<section class="example-content" id="proof-content">
+<p>Eine Folge von natürlichen Zahlen, bei der jede Zahl die Summe der beiden Vorgänger Zahlen darstellt, wird Fibonacci-Folge genannt. Sie kann rekursiv folgendermaßen definiert werden:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_n := \left\{\begin{array}{ll}
+  0 &amp; \text{ wenn }n \leq 1, \\
+  f_{n-1} + f_{n-2} &amp; \text{ sonst}.
+\end{array}\right.
+\end{split}\]</div>
+<p>wobei <span class="math notranslate nohighlight">\(f_n\)</span> (<span class="math notranslate nohighlight">\(n\geq 1\)</span>) den <span class="math notranslate nohighlight">\(n\)</span>-ten Eintrag der Folge darstellt.</p>
+</section>
+</div><p>Ausgedrückt in Julia Code lautet der rekursive Algorithmus</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="nd">@time</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="p">[</span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.323008 seconds
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6-element Vector{Int64}:
+ 0
+ 1
+ 1
+ 2
+ 3
+ 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Schaut man sich an, welchen Funktionen nacheinander aufgerufen, dann stell man fest, dass einige Fibonacci-Zahlen <span class="math notranslate nohighlight">\(f_n\)</span> mehrfach berechnet werden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;fibonacci(</span><span class="si">$</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="s">)&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+<span class="n">fibonacci</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacci(5)
+fibonacci(4)
+fibonacci(3)
+fibonacci(2)
+fibonacci(1)
+fibonacci(0)
+fibonacci(1)
+fibonacci(2)
+fibonacci(1)
+fibonacci(0)
+fibonacci(3)
+fibonacci(2)
+fibonacci(1)
+fibonacci(0)
+fibonacci(1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Diese Mehrfachberechnung führt dazu, dass der Gesamtaufwand sehr groß wird und ein Fibonacci-Zahl für große <span class="math notranslate nohighlight">\(n\)</span> kaum mehr berechnet werden können.</p>
+<div class="exercise admonition" id="05.1-rekursion-exercise-5">
+
+<p class="admonition-title"><span class="caption-number">Exercise 9 </span></p>
+<section id="exercise-content">
+<p>Erhöhen Sie das Argument <span class="math notranslate nohighlight">\(n\)</span>. Wie weit können Sie gehen um in einer vertretbaren Zeit, z.B. &lt; 1min, die Zahl mir dem rekursiven Algorithmus zu berechnen?</p>
+</section>
+</div>
+<p>Eine Lösung besteht darin, sich die Zwischenergebnisse zu merken. Das bezeichnet man auch als <em>Memoisation</em>. Die erste Variante dieser Technik, auf die Fibonacci-Folgen Berechnung angewendet, nutzt ein zusätzliches Speicherargument, ein <em>Array</em> das auf einen neutralen Wert, z.B. <code class="docutils literal notranslate"><span class="pre">0</span></code>, initialisiert ist – eine Art <em>Lookup-Tabelle</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">fibonacci_memo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">lookup</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">lookup</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">lookup</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fibonacci_memo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">lookup</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fibonacci_memo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">lookup</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">lookup</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">fibonacci2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="n">lookup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="kt">Int64</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span><span class="w"> </span><span class="c"># [1,1,0,0,0,...,0]</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">fibonacci_memo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">lookup</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="nd">@time</span><span class="w"> </span><span class="n">fibonacci2</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="p">[</span><span class="n">fibonacci2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000002 seconds (6 allocations: 880 bytes)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6-element Vector{Int64}:
+ 0
+ 1
+ 1
+ 2
+ 3
+ 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Das Macro <code class="docutils literal notranslate"><span class="pre">&#64;time</span></code> misst die Zeit und die Speicheroperationen eines Julia Befehls. Im Beispiel der Fibonacci-Algorithmen ist der Rekursive Algorithmus um viele Größenordnungen langsamer, als der Memoisation Algorithmus.</p>
+</div>
+</section>
+<section id="iterativer-algorithmus">
+<h2>Iterativer Algorithmus<a class="headerlink" href="#iterativer-algorithmus" title="Link to this heading">#</a></h2>
+<p>Eine Alternative die verschiedene Nachteile der rekursiven Algorithmen vermeidet, ist die Transformation in einen iterativen Algorithmus. I.A. ist dies eine komplizierte Aufgabe, aber es gibt einige Fällt, wo es direkt durchgeführt werden kann.</p>
+<p>Für die Fibonacci-Folge ist die Transformation in einen iterativen Algorithmus leicht. Man fängt einfach bei den ersten beiden Fibonacci-Zahlen <span class="math notranslate nohighlight">\([1,1]\)</span> an und geht dann mit <span class="math notranslate nohighlight">\(n\)</span> weiter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">fibonacci2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="k">end</span>
+
+<span class="w">  </span><span class="n">f1</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">3</span><span class="o">:</span><span class="n">n</span>
+<span class="w">    </span><span class="n">f1</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f2</span><span class="p">,</span><span class="w"> </span><span class="n">f1</span><span class="o">+</span><span class="n">f2</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">f2</span>
+<span class="k">end</span>
+
+<span class="nd">@time</span><span class="w"> </span><span class="n">fibonacci2</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="p">[</span><span class="n">fibonacci2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000000 seconds
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6-element Vector{Int64}:
+ 0
+ 1
+ 1
+ 2
+ 3
+ 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Man sieht leicht, dass man in diesem Algorithmus <span class="math notranslate nohighlight">\(n\)</span> Schritte durchführen muss, um die Zahl <span class="math notranslate nohighlight">\(f_n\)</span> zu berechnen. Jeder Schritt besteht dabei aus einer Addition und einer Zuweisung zweier Zahlen. Wir haben also eine Laufzeitkomplexität von <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>. In der obigen Implementierung haben wir nur 2 Hilfsvariable verwendet <code class="docutils literal notranslate"><span class="pre">f1</span></code> und <code class="docutils literal notranslate"><span class="pre">f2</span></code>. Damit hat der Algorithmus eine konstante Speicherkomplexität, d.h. <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span>.</p>
+<p>Das ist schon viel besser als der rekursive Ansatz, mit oder ohne Memoisation. Es geht allerdings noch etwas „schneller“. Betrachten wir nochmal die Rekursionsvorschrift und betrachten wir mal 2 Schritte auf einmal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_{n+1} &amp;= f_{n} + f_{n-1} \\
+f_{n}   &amp;= f_{n-1} + f_{n-2}
+\end{split}\]</div>
+<p>Wenn wir die zweite Gleichung durch die „triviale“ Gleichung <span class="math notranslate nohighlight">\(f_n = f_n\)</span> ersetzen, dann lässt sich dies auch als Matrix-Vektor Operation schreiben:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix} f_{n+1} \\ f_n \end{pmatrix} = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0\end{pmatrix}\begin{pmatrix} f_{n} \\ f_{n-1} \end{pmatrix} = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0\end{pmatrix}^2\begin{pmatrix} f_{n-1} \\ f_{n-2} \end{pmatrix} = \ldots = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0\end{pmatrix}^n\begin{pmatrix} f_{1} \\ f_{0} \end{pmatrix}.
+\end{split}\]</div>
+<p>Das bedeutet, man kann die Fibonacci-Zahlen <span class="math notranslate nohighlight">\(f_{n+1}\)</span> und <span class="math notranslate nohighlight">\(f_n\)</span> direkt ausrechnen, durch eine Matrix-Potenz und ein Matrix-Vektor Produkt. Wir haben bei der ganzzahligen Arithmetik einen Potenzierungsalgorithmus kennengelernt, der nur <span class="math notranslate nohighlight">\(\mathcal{O}(\log(n))\)</span> Schritte benötigt, indem der Exponent mittels Division mit Rest zerlegt wurde und wir Potenzgesetze angewendet haben. Diese Zerlegung gilt auch hier. Die Potenzgesetze gelte hier weitestgehen auch.</p>
+<div class="exercise admonition" id="05.1-rekursion-exercise-6">
+
+<p class="admonition-title"><span class="caption-number">Exercise 10 </span></p>
+<section id="exercise-content">
+<p>Welche Potenzgesetze gelten für allgemeine quadratische Matrizen? Welche gelten nur für symmetrische Matrizen?</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">power2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">one</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w">   </span><span class="c"># Einheitsmatrix</span>
+<span class="w">  </span><span class="k">elseif</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">elseif</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">a</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">divrem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">power2</span><span class="p">(</span><span class="n">power2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">q</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">power2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">fibonacci3</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span>
+<span class="w">  </span><span class="n">power2</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="nd">@time</span><span class="w"> </span><span class="n">fibonacci3</span><span class="p">(</span><span class="mi">40</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">fibonacci3</span><span class="p">(</span><span class="mi">5</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.000007 seconds (30 allocations: 1.578 KiB)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Da das Potenzieren logarithmische Komplexität hat, gilt dies auch für die Fibonacci-Algorithmus.</p>
+<div class="exercise admonition" id="05.1-rekursion-exercise-7">
+
+<p class="admonition-title"><span class="caption-number">Exercise 11 </span></p>
+<section id="exercise-content">
+<p>Warum ist der Code trotzdem deutlich langsamer, als der iterative oder recursive Memoisation Algorithmus?</p>
+</section>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Wir haben in dieser Implementierung einige Operationen der Julia Sprache mitbenutzt. Das Matrix-Matrix Produkt und das Matrix-Vektor Produkt wurden einfach direkt geschrieben mittels des Operators <code class="docutils literal notranslate"><span class="pre">*</span></code>.</p>
+</div>
+<p>Auch der rekursive Algorithmus der „Türme von Hanoi“ lässt sich ersetzen durch eine iterative Verfahrensvorschrift:</p>
+<div class="proof algorithm admonition" id="alg-turme-von-hanoi-iterativ">
+<p class="admonition-title"><span class="caption-number">Algorithm 6 </span> (Türme von Hanoi iterativ)</p>
+<section class="algorithm-content" id="proof-content">
+<p>Wiederhole die folgenden Schritte bis vor Schritt 2. alle Scheiben korrekt auf einem anderen Stapel positioniert wurden:</p>
+<ol class="arabic simple">
+<li><p>Bewege die kleinste Scheibe von ihrer aktuellen Position auf den Stapel zu ihrer rechten. Wenn der letzte Stapel erreicht wurde, starte wieder ganz links.</p></li>
+<li><p>Mache die einzige mögliche Bewegung einer andere Scheibe (die nicht die kleineste Scheibe ist).</p></li>
+</ol>
+</section>
+</div><section id="endrekursion">
+<h3>Endrekursion<a class="headerlink" href="#endrekursion" title="Link to this heading">#</a></h3>
+<div class="proof definition admonition" id="def-endrekursiv">
+<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Endrekursiv)</p>
+<section class="definition-content" id="proof-content">
+<p>Wir bezeichnen eine rekursive Funktion als <strong>endrekursiv</strong> (= <em>tail recursive</em>) wenn der rekursive Funktionsaufruf die letzte Anweisung der Funktion ist.</p>
+</section>
+</div><p>Diese Form von rekursiven Algorithmen (oder Funktionen) lassen sich sehr einfach in eine iterative Vorschrift überführen. Die Anforderung ist allerdings manchmal nur über einen zusätzlichen Parameter oder ein Umschreiben des Algorithmus zu realisieren.</p>
+<p>Betrachten wir nochmal den Multiplikationsalgorithmus</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">multiply2</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c"># half n, double a</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w">                      </span><span class="c"># n is odd</span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">result</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Dies ist noch nicht in der Endrekursionsform, denn nach der rekursiven Auswertung von <code class="docutils literal notranslate"><span class="pre">multiply2(n&gt;&gt;1,a&lt;&lt;1)</span></code> wird das Ergebnis noch mit <code class="docutils literal notranslate"><span class="pre">a</span></code> addiert.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tipp</p>
+<p>Manchmal ist es einfacher <em>mehr</em> zu tun, als <em>weniger</em>.</p>
+</div>
+<p>Anstestelle, dass wir direkt <span class="math notranslate nohighlight">\(n\cdot a\)</span> ausrechnen, wollen wir die Summe <span class="math notranslate nohighlight">\(r + n\cdot a\)</span> auswerten, also das Produkt auf einen Wert aufaddieren. Man nennt diese Operation auch <em>multiply-accumulate</em>. Sie ist in vielen Algorithmen anzutreffen. Geschrieben als Julia Code ergibt sich</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply_acc</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">multiply_acc</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">multiply_acc</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Die beiden rekursiven Aufrufe unterscheiden sich nur im ersten Argument - dem Accumulator. Diese kann auch ohne rekursiven Aufruf zuerst aktualisiert werden</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply_acc2</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">multiply_acc2</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Wir können dies noch ein klein Wenig weiter optimieren. Die Operation <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">+</span> <span class="pre">a</span></code> wird in zwei Fällen, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">==</span> <span class="pre">1</span></code> oder <code class="docutils literal notranslate"><span class="pre">n</span></code> ungerade durchgeführt. Da <code class="docutils literal notranslate"><span class="pre">1</span></code> auch ungerade ist und nur genau einmal auftritt in der Rekursion, kann man diese beiden Abfragen kombinieren:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply_acc3</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">r</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">multiply_acc3</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Die Varianten <code class="docutils literal notranslate"><span class="pre">multiply_acc2()</span></code> und <code class="docutils literal notranslate"><span class="pre">multiply_acc3()</span></code> sind beide schon <em>endrekursiv</em>. Geht man aber noch einen Schritt weiter, lässt sich die Transformation in einen iterativen Algorithmus noch leichter durchführen:</p>
+<div class="proof definition admonition" id="dfn-strictly-endrecursive">
+<p class="admonition-title"><span class="caption-number">Definition 18 </span> (Strikt endrekursiv)</p>
+<section class="definition-content" id="proof-content">
+<p>Eine <strong>strikt endrekursive</strong> Funktion <span class="math notranslate nohighlight">\(f\)</span> hat als endrekursiven Aufruf die Funktion selbst mit den Argumenten die den formalen Parametern von <span class="math notranslate nohighlight">\(f\)</span> entsprechen.</p>
+</section>
+</div><p>Im Beispiel <code class="docutils literal notranslate"><span class="pre">multiply_acc3()</span></code> werden für <code class="docutils literal notranslate"><span class="pre">n</span></code> und <code class="docutils literal notranslate"><span class="pre">a</span></code> allerdings andere Werte übergeben. Dies kann aber leicht in eine <em>strikt endrekursive</em> Form gebracht werden:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply_acc4</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">r</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span>
+<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="mi">1</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">multiply_acc4</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Eine solche strikt endrekursive Implementierung lässt sich nun direkt in ein iteratives Programm überführen, indem man die Rekursion durch eine <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">true</span></code> Schleife ersetzt:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply_acc5</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">      </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">r</span>
+<span class="w">      </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="mi">1</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">multiply3</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">multiply_acc5</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="c"># a + (n-1)*a</span>
+<span class="k">end</span>
+
+<span class="n">multiply3</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Implementierung <code class="docutils literal notranslate"><span class="pre">multiply3()</span></code> ist schon recht gut, außer für den Fall dass <span class="math notranslate nohighlight">\(n=2^m\)</span>. Durch die Subtraktion von 1 in <span class="math notranslate nohighlight">\(n-1\)</span> bekommen wir eine binäre Repräsentation in der alle Ziffern <span class="math notranslate nohighlight">\(1\)</span> sind, was dem worst-case Szenario des Algorithmus entspricht. Diesen Fall kann man einfach dadurch auflösen, dass man die Operation des halbierens und verdoppelns herauszieht und explizit durchführt:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply4</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w">   </span><span class="c"># Solange n eine gerade Zahl ist</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="mi">1</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="c"># Weil nun (n-1) eine gerade Zahl ist, muss n-1 != 1</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">multiply_acc5</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Moderne CPUs implementieren die <em>multiply-accumulate</em> Operation auch als eine Instruktion, bei der das Zwischenergebnis der Multiplikation <span class="math notranslate nohighlight">\(n\cdot a\)</span> in Gelitkommaarithmetik nicht erst gerundet und dann auf den Accumulator <span class="math notranslate nohighlight">\(r\)</span> aufaddiert wird, sondern erst nach der kombinierten Operation das Ergebnis in das Zielformat gerundet wird. Diese Operation bezeichnet man dann auch als <em>fused-multiply-add</em> (FMA) Operation. In Julia can die Operation mittels <code class="docutils literal notranslate"><span class="pre">muladd(n,</span> <span class="pre">a,</span> <span class="pre">r)</span></code>, bzw. <code class="docutils literal notranslate"><span class="pre">fma(n,</span> <span class="pre">a,</span> <span class="pre">r)</span></code> durchgeführt werden.</p>
+</div>
+</section>
+</section>
+<section id="rekursive-datenstrukturen">
+<h2>Rekursive Datenstrukturen<a class="headerlink" href="#rekursive-datenstrukturen" title="Link to this heading">#</a></h2>
+<p>Wie auch Algorithmen können Datenstrukturen eine rekursive Struktur haben. Die „Rekursion“ besteht darin, dass die Datenstruktur eine „kleinere“ Version von sich selbst enthält. die Operationen die dann auf diesen Datenstrukturen durchgeführt werden, sind meist auch rekursiv implementiert. Rekursiv definierte Datenstrukturen können häufig dynamisch wachsen oder ihre Struktur verändern</p>
+<section id="listen">
+<h3>Listen<a class="headerlink" href="#listen" title="Link to this heading">#</a></h3>
+<p>Ein erstens Beispiel eine rekursiv definierten Datenstruktur ist eine <em>einfach verkettete Liste</em>. Die Einträge (<em>nodes</em>) der Liste kann man sich vorstellen als einen Werte und eine „Referenz“ auf den nächsten Eintrag. Das entspricht der <em>Rekursionsvorschrift</em>. Die „Abbruchbedingung“ realisiert man dadurch, dass die Referenz auf einen speziellen Eintrag zeigen darf, der das Ende der Liste markiert. Dieses Ende wird manchmal als <em>nil</em> (not-in-list) oder <em>null</em> (ein Zeiger auf die 0-Addresse) bezeichnet.</p>
+<div class="proof example admonition" id="example-11">
+<p class="admonition-title"><span class="caption-number">Example 6 </span> (Einfach verkettete Liste)</p>
+<section class="example-content" id="proof-content">
+<p>In Julia lässt sich eine Listen Datenstruktur für <code class="docutils literal notranslate"><span class="pre">Float64</span></code> Werte relaisieren über ein <code class="docutils literal notranslate"><span class="pre">struct</span></code>. Die beiden möglichen Zustände des nächsten Entrags wird über ein <code class="docutils literal notranslate"><span class="pre">Union</span></code> aus der Liste selbst und dem Spezialwert <code class="docutils literal notranslate"><span class="pre">nothing</span></code> gebildet:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">mutable</span><span class="w"> </span><span class="k">struct</span> <span class="kt">List</span>
+<span class="w">  </span><span class="n">head</span><span class="o">::</span><span class="kt">Float64</span>
+<span class="w">  </span><span class="n">tail</span><span class="o">::</span><span class="kt">Union</span><span class="p">{</span><span class="kt">List</span><span class="p">,</span><span class="w"> </span><span class="kt">Nothing</span><span class="p">}</span>
+<span class="k">end</span>
+
+<span class="c"># Füge einen neuen Eintrag mit `value` and das Ende der Liste an</span>
+<span class="k">function</span><span class="w"> </span><span class="n">push!</span><span class="p">(</span><span class="n">l</span><span class="o">::</span><span class="kt">List</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="o">::</span><span class="kt">Float64</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">isnothing</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">tail</span><span class="p">)</span><span class="w">   </span><span class="c"># Abbruchbedingung</span>
+<span class="w">    </span><span class="n">l</span><span class="o">.</span><span class="n">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="nb">nothing</span><span class="p">)</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="n">push!</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">tail</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="c"># rekursiver Aufruf</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="nb">nothing</span><span class="p">))))</span>
+<span class="n">push!</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</div><div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Eine Alternative zum <code class="docutils literal notranslate"><span class="pre">union</span></code> Ansatz ist es, das nächste Element auf sich selbst zeigen zu lassen. Dafür ist es notwendig den Spezialfall, dass es kein <code class="docutils literal notranslate"><span class="pre">tail</span></code> gibt, als „Constructor“ hinzuzufügen:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">mutable</span><span class="w"> </span><span class="k">struct</span> <span class="kt">List2</span>
+<span class="w">  </span><span class="n">head</span><span class="o">::</span><span class="kt">Float64</span>
+<span class="w">  </span><span class="n">tail</span><span class="o">::</span><span class="kt">List2</span>
+
+<span class="w">  </span><span class="n">List2</span><span class="p">(</span><span class="n">head</span><span class="o">::</span><span class="kt">Float64</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">new</span><span class="p">(</span><span class="n">head</span><span class="p">);</span><span class="w"> </span><span class="n">l</span><span class="o">.</span><span class="n">tail</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="w"> </span><span class="n">l</span><span class="p">)</span>
+<span class="w">  </span><span class="n">List2</span><span class="p">(</span><span class="n">head</span><span class="o">::</span><span class="kt">Float64</span><span class="p">,</span><span class="w"> </span><span class="n">tail</span><span class="o">::</span><span class="kt">List2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="n">tail</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List2</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">List2</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="n">List2</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="n">List2</span><span class="p">(</span><span class="mf">4.0</span><span class="p">))))</span>
+<span class="n">l</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List2</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.11"
+        },
+        kernelOptions: {
+            name: "julia-1.11",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05-algorithmen.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">zurück</p>
+        <p class="prev-next-title">Komplexität und Korrektheit</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="9x-bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">weiter</p>
+        <p class="prev-next-title">Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Inhalt
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turme-von-hanoi">Türme von Hanoi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korrektheit-eines-rekursiven-algorithmus">Korrektheit eines rekursiven Algorithmus</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memoisation">Memoisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterativer-algorithmus">Iterativer Algorithmus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#endrekursion">Endrekursion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rekursive-datenstrukturen">Rekursive Datenstrukturen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listen">Listen</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>(c) 2025 Technische Universität Dresden / Fakultät Mathematik / <a href="https://tu-dresden.de/Members/simon.praetorius" target="_blank">Dr. Simon Praetorius</a></p> <div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

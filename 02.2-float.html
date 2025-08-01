@@ -1,0 +1,881 @@
+
+<!DOCTYPE html>
+
+
+<html lang="de" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Gleitkommazahlen &#8212; Programmieren - Grundlegende Konzepte</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a9a42987" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=91fba89f"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=79cc9f76"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02.2-float';</script>
+    <script src="_static/custom.js?v=629f8674"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Absoluter und relativer Fehler" href="03.1-fehler.html" />
+    <link rel="prev" title="Ziffernsysteme und Zahlendarstellung" href="02.1-integer.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="de"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo3a_light.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo3a.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Math-Ba-PR10 WS25/26</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Suche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programmieren mit Julia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02-zahlen.html">Grundlagen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.1-integer.html">Ziffernsysteme und Zahlendarstellung</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Gleitkommazahlen</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fehler, Kondition und Stabilität</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03.1-fehler.html">Absoluter und relativer Fehler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.2-rundung.html">Rundung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.3-arithmetik.html">Gleitkommaarithmetik</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenstrukturen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-datenstrukturen.html">Datenstrukturen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.1-arrays.html">Arrays</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualisierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-plotting.html">Plotting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-algorithmen.html">Komplexität und Korrektheit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.1-landau.html">Asymptotische Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anhang</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="9x-bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Laden Sie diese Seite herunter">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02.2-float.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Quelldatei herunterladen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="In PDF drucken"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Vollbildmodus"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Gleitkommazahlen</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Inhalt </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rationale-zahlen">Rationale Zahlen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#festkommadarstellung">Festkommadarstellung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reelle-zahlen">Reelle Zahlen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Gleitkommazahlen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absoluter-und-relativer-abstand5">Absoluter und relativer Abstand5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisierung">Normalisierung</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="gleitkommazahlen">
+<h1>Gleitkommazahlen<a class="headerlink" href="#gleitkommazahlen" title="Link to this heading">#</a></h1>
+<section id="rationale-zahlen">
+<h2>Rationale Zahlen<a class="headerlink" href="#rationale-zahlen" title="Link to this heading">#</a></h2>
+</section>
+<section id="festkommadarstellung">
+<h2>Festkommadarstellung<a class="headerlink" href="#festkommadarstellung" title="Link to this heading">#</a></h2>
+<p>Die <strong>Festkommadarstellung</strong> (auch <em>Festpunktdarstellung</em> = <em>fixed-point representation</em>) des Betrags einer
+<em>endlich darstellbaren</em> rationalen Zahl <span class="math notranslate nohighlight">\(f\)</span> zu einer Basis <span class="math notranslate nohighlight">\(b\in\mathbb{N}\setminus\{0, 1\}\)</span> besteht im
+Allgemeinen aus einer Anzahl von Ziffern für ihren ganzzahligen Anteil (hier <span class="math notranslate nohighlight">\(k\)</span> Vorkommastellen)
+und einer Anzahl von Ziffern für ihren gebrochenen Anteil (hier <span class="math notranslate nohighlight">\(l\)</span> Nachkommastellen):</p>
+<div class="math notranslate nohighlight">
+\[
+[m_{-k+1} m_{-k+2}\cdots m_{-2} m_{-1} m_0 . m_{1} m_{2}\cdots m_{l}]_b = \sum_{i=-k+1}^{l} m_i\cdot b^{i} =: f
+\]</div>
+<p>wobei die Ziffern <span class="math notranslate nohighlight">\(m_i\in\{0,1,2,\ldots,b-1\}\)</span> sind.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Es soll hier, wie in allen Programmiersprachen und allgemein bei der Notation von Zahlen international üblich,
+zur Trennung des ganzzahligen vom gebrochenen Anteil immer ein (<em>Dezimal-</em>/<em>Binär-</em>/<em>Basis b-</em>)<em>Punkt</em> verwendet werden
+und <em>kein Komma</em>. Die üblichen deutschen Begriffe <em>Vorkommastelle(n)</em> und <em>Nachkommastelle(n)</em> werden aber beibehalten.</p>
+</div>
+<p>Die Ziffern im ganzzahligen Anteil der Zahl haben einen Indexwert in <span class="math notranslate nohighlight">\(\{-k+1, -k+2,\ldots,-2,-1,0\}\)</span>. Dieser Anteil darf auch
+leer sein, wenn der gerbrochene Anteil mindestens eine Ziffer enthält. Die Ziffern mit negativen Indizes <span class="math notranslate nohighlight">\(\{1,2,\ldots,l\}\)</span>
+umfassen den gebrochenen Anteil der Zahl. Auch dieser Anteil darf leer sein, wenn der ganzzahlige Anteil mindestens eine
+Ziffer enthält.</p>
+<p>Unnötige Nullziffern am Anfang des ganzzahligen Bereichs, z.B. <span class="math notranslate nohighlight">\(m_{-k+1}=0\)</span>, oder am Ende des gebrochenen Zahlenbereichs, z.B. <span class="math notranslate nohighlight">\(m_l=0\)</span>,
+werden typischerweise weggelassen. Allerdings kann das Weglassen von Ziffern nicht über den Nullpunkt hinausgehen. Dieser ist wichtig, um die
+Gewichte <span class="math notranslate nohighlight">\(b^i\)</span> klar bestimmen zu können. Man bezeichnet die zusätzlichen Nullziffern vor oder hinter dem Punkt auch als
+<em>Füllziffern</em> und die ersten Ziffern vor bzw. hinter dem Komma die nicht Null sind als <em>signifikante Ziffern</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die hier vorgestellten Regeln entsprechen der <em>angelsächsischen Gepflogenheit</em>, auf Ziffern
+nach dem Punkt zu verzichten, wenn es keinen gebrochenen Anteil gibt, und auf Ziffern
+vor dem Punkt zu verzichten, wenn es keinen ganzzahligen Anteil gibt. Beide Bedingungen
+gleichzeitig erfüllt nur die Null, die natürlich trotzdem mit (mindestens) einer Ziffer
+geschrieben werden muss: <code class="docutils literal notranslate"><span class="pre">0.</span></code> oder <code class="docutils literal notranslate"><span class="pre">.0</span></code> oder <code class="docutils literal notranslate"><span class="pre">0.0</span></code> kommen in Frage. (Die theoretisch denkbare
+minimalistische Darstellung der Null ganz ohne Ziffern nur als ein Punkt würde in der
+Praxis gewiss zu Problemen führen.)</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>In vielen Programmiersprachen werden Festkommazahlen daran identifiziert, dass ein Punkt <code class="docutils literal notranslate"><span class="pre">.</span></code> in deren Darstellung enthalten ist.
+Die Ausnahme bildet die sogenannte wissenschaftliche Notation (<em>scientific notation</em>) als Festkommazahl mit Exponententeil.
+Dabei wird eine Festkommazahl (oder auch ganze Zahl) mit einem Buchstaben <code class="docutils literal notranslate"><span class="pre">e</span></code> oder <code class="docutils literal notranslate"><span class="pre">E</span></code> und darauf folgend einem ganzzahligen Exponentenwert
+geschrieben (potenziell inklusive Vorzeichen), z.B. <code class="docutils literal notranslate"><span class="pre">123e-4</span> <span class="pre">=</span> <span class="pre">123.e-4</span> <span class="pre">=</span> <span class="pre">123.0e-4</span> <span class="pre">=</span> <span class="pre">0.0123</span> <span class="pre">=</span> <span class="pre">.123E-1</span> <span class="pre">=</span> <span class="pre">0.00123E1</span> <span class="pre">=</span> <span class="pre">0.00123E+1</span></code>.
+All diese Festkomma-<em>Literale</em> entsprechen der Zahl <span class="math notranslate nohighlight">\(1.23 \cdot 10^{-2}\)</span>.</p>
+</div>
+<p>Um eine gegebene Zahl in eine spezifische Festkommadarstellung zu überführen, kann man einen Algorithmus ähnlich dem Basiskonvertierungsalgorithmus von natürlichen Zahlen anwenden. Wir betrachten hier wiederum nur positive Zahlen.</p>
+<div class="proof algorithm admonition" id="alg-festkommadarstellung">
+<p class="admonition-title"><span class="caption-number">Algorithm 4 </span> (Konvertierung in Festkommadarstellung)</p>
+<section class="algorithm-content" id="proof-content">
+<p>Die Konversion des ganzzahligen Anteils vor dem Punkt erfolgt entsprechend der Basiskonversion natürlicher Zahlen <a class="reference internal" href="02.1-integer.html#alg-basis-konvertierung">Algorithm 3</a>.</p>
+<p>Die Konversion des gebrochenen Anteils nach dem Punkt zur Zielbasis <span class="math notranslate nohighlight">\(b\)</span> erfolgt mit folgendem
+Algorithmus:</p>
+<p><em>Eingabe:</em> Ausgangszahl <span class="math notranslate nohighlight">\(a\)</span>, Basis <span class="math notranslate nohighlight">\(b\)</span></p>
+<ol class="arabic simple">
+<li><p>Ausgangszahl <span class="math notranslate nohighlight">\(a\)</span> mit Zielbasis <span class="math notranslate nohighlight">\(b\)</span> multiplizieren.</p></li>
+<li><p>Ganzzahligen Anteil des Ergebnisses notieren.</p></li>
+<li><p>Falls der Nachkommaanteil gleich 0 ist, dann beende Algorithmus und springe zur Ausgabe.</p></li>
+<li><p>Der Nachkommaanteil wird zur neuen Ausgangszahl <span class="math notranslate nohighlight">\(a\)</span>. Fahre fort mit Schritt 1.</p></li>
+</ol>
+<p><em>Ausgabe:</em> Die notierten Ziffern ergeben in der generierten Reihenfolge die Nachkommastellen.</p>
+</section>
+</div><div class="exercise admonition" id="float-conversion">
+
+<p class="admonition-title"><span class="caption-number">Exercise 6 </span></p>
+<section id="exercise-content">
+<p>Konvertiere die Dezimalzahl <span class="math notranslate nohighlight">\(0.8125\)</span> in die Binärdarstellung.</p>
+</section>
+</div>
+<div class="solution admonition" id="02.2-float-solution-2">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#float-conversion"> Exercise 6</a></p>
+<section id="solution-content">
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0.8125 \cdot 2 &amp;= \underline{1}.625 \\
+0.625 \cdot 2 &amp;= \underline{1}.25 \\
+0.25 \cdot 2 &amp;= \underline{0}.5 \\
+0.5 \cdot 2 &amp;= \underline{1}.0
+\end{split}\]</div>
+<p>Das Ergebnis ist <span class="math notranslate nohighlight">\([0.8125]_{10} = [0.1101]_2\)</span>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="float-conversion-inv">
+
+<p class="admonition-title"><span class="caption-number">Exercise 7 </span></p>
+<section id="exercise-content">
+<p>Rückkonversion: Gegeben ist die Binärzahl <span class="math notranslate nohighlight">\([0.1101]_2\)</span>. Konvertiere sie in die Dezimaldarstellung (<span class="math notranslate nohighlight">\(10 = [1010]_2\)</span>).</p>
+</section>
+</div>
+<div class="solution admonition" id="02.2-float-solution-4">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#float-conversion-inv"> Exercise 7</a></p>
+<section id="solution-content">
+<p>Die Rechnung erfolgt binär:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0.1101 \cdot 1010 &amp;= \underline{1000}.001 \\
+0.001 \cdot 1010 &amp;= \underline{1}.01 \\
+0.01 \cdot 1010 &amp;= \underline{10}.1 \\
+0.1 \cdot 1010 &amp;= \underline{101}.0
+\end{split}\]</div>
+<p>wegen <span class="math notranslate nohighlight">\([1000]_2=8\)</span>, <span class="math notranslate nohighlight">\([1]_2 = 1\)</span>, <span class="math notranslate nohighlight">\([10]_2 = 2\)</span> und <span class="math notranslate nohighlight">\([101]_2 = 5\)</span> folgt <span class="math notranslate nohighlight">\([0.1101]_2=[0.8125]_{10}\)</span>.</p>
+</section>
+</div>
+<div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 2 </span> (Konversion der Dezimalzahl <span class="math notranslate nohighlight">\(0.1\)</span> in die Binärdarstellung)</p>
+<section class="example-content" id="proof-content">
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0.1 \cdot 2 &amp;= \underline{0}.2 \\
+0.2 \cdot 2 &amp;= \underline{0}.4 \\
+0.4 \cdot 2 &amp;= \underline{0}.8 \\
+0.8 \cdot 2 &amp;= \underline{1}.6 \\
+0.6 \cdot 2 &amp;= \underline{1}.2 \\
+\end{split}\]</div>
+<p>Der Nachkommaanteil <span class="math notranslate nohighlight">\(0.2\)</span> ist bereits bekannt (siehe 2te Zeile). Damit ergibt sich ein periodischer Nachkommaanteil <span class="math notranslate nohighlight">\(0.1 = [0.0\overline{0011}]_2\)</span>
+mit unendlicher Wiederholung der Bitfolge <span class="math notranslate nohighlight">\([0011]_2\)</span>.</p>
+</section>
+</div><p>Für die Dezimalzahlen <span class="math notranslate nohighlight">\(0.1, 0.2,\ldots , 0.9\)</span> ergeben sich die Binärdarstellungen:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0.1 &amp;= [0.0\overline{0011}]_2     &amp;\; 0.6 &amp;= [0.1\overline{0011}]_2 \\
+0.2 &amp;= [0.\overline{0011}]_2      &amp;\; 0.7 &amp;= [0.1011\overline{0011}]_2 \\
+0.3 &amp;= [0.01\overline{0011}]_2    &amp;\; 0.8 &amp;= [0.11\overline{0011}]_2 \\
+0.4 &amp;= [0.011\overline{0011}]_2   &amp;\; 0.9 &amp;= [0.111\overline{0011}]_2 \\
+0.5 &amp;= [0.1]_2
+\end{split}\]</div>
+<p>Keine der Dezimalzahlen <span class="math notranslate nohighlight">\(0.1, 0.2,\ldots, 0.9\)</span> außer <span class="math notranslate nohighlight">\(0.5\)</span> lässt sich also mit endlicher
+Nachkommastellenanzahl exakt binär darstellen. Diese Erkenntnis ist im praktischen
+Umgang mit Computern von großer Bedeutung, z.B. bei der Konzeption numerischer Algorithmen,
+bei der Spezifikation von Eingabedaten und der Interpretation berechneter Ergebnisse usw.</p>
+<p>Auch wenn die Festkommadarstellung eine große Menge an rationalen Zahlen darstellen kann, ist sie doch im in ihrem Wertebereich
+durch die Anzahl an Vorkomma-Ziffern, und in ihrer Genauigkeit durch die Anzahl Nachkommaziffern für viele Anwendungen
+nicht ausreichend. Wir betrachten im folgenden ein anderes Darstellungsformat, in dem das Komma (der Punkt) zusätzlich noch
+flexibel verschoben werden kann.</p>
+</section>
+<section id="reelle-zahlen">
+<h2>Reelle Zahlen<a class="headerlink" href="#reelle-zahlen" title="Link to this heading">#</a></h2>
+</section>
+<section id="id1">
+<h2>Gleitkommazahlen<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Gleitkommazahlen (GKZ) sind eine endliche Teilmenge der rationalen Zahlen, die in einem
+meistens durch Hardware festgelegten sog. Gleitkomma(zahl)format (GKZ-Format = GK-Format)
+fester Speicherbreite darstellbar sind. Sie bilden ein diskretes Raster/Gitter rationaler
+Zahlen in einem beschränkten Bereich. GKZ werden auch als <em>Fließkomma-</em>, <em>Gleitpunkt-</em> oder
+<em>Fließpunktzahlen</em> (<em>floating-point numbers</em>) bezeichnet.
+Wir bezeichnen die Menge der Gleitkommazahlen mit <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>, angelehnt an den Englischen Begriff <em>floating point numbers</em>.</p>
+<div class="proof definition admonition" id="definition-6">
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (Gleitkommazahl)</p>
+<section class="definition-content" id="proof-content">
+<p>Die Menge der <strong>Gleitkommazahlen</strong> ist definiert als</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{F} = \mathbb{F}(b, l, \underline{e}, \overline{e}) := \{x\in\mathbb{Q}\;\mid\;x=(-1)^{s_x}\cdot m_x \cdot b^{e_x}\} \subset\mathbb{Q}\subset\mathbb{R}
+\]</div>
+<p>mit <span class="math notranslate nohighlight">\(b\in\mathbb{N}, b\geq 2\)</span> die <em>Basis</em> (= <em>base</em> = <em>radix</em>) der GKZ, <span class="math notranslate nohighlight">\(s_x\in\{0,1\}\)</span> das <em>Vorzeichenbit</em> (= <em>sign</em>), <span class="math notranslate nohighlight">\(m_x=[0.m_1, m_2 \cdots m_l]_b\)</span> die <em>Mantisse</em> (= <em>mantissa</em> = <em>significand</em>) mit Ziffern <span class="math notranslate nohighlight">\(m_i\in\{0,1,\ldots,b-1\}\)</span> und <span class="math notranslate nohighlight">\(e_x\in\{\underline{e},\underline{e}+1,\ldots,\overline{e}\}\)</span> der <em>Exponent</em> (= <em>exponent</em>) mit <span class="math notranslate nohighlight">\(\underline{e}, \overline{e} \in \mathbb{Z}\)</span> und <span class="math notranslate nohighlight">\(\underline{e} &lt; \overline{e}\)</span> der kleinste/größte Exponent.</p>
+</section>
+</div><p>Wir bezeichnen mit <span class="math notranslate nohighlight">\(\mathbb{F}(b, l, \underline{e}, \overline{e})\)</span> die Parameter der Darstellung auch als das zugehörige <em>GKZ-Format</em>. Typischerweise wird der Exponentenbereich  <span class="math notranslate nohighlight">\([\underline{e}, \overline{e}]\)</span> annähernd symmetrisch (zur Null) gewählt, um die Inversion/Kehrwertbildung für möglichst viele darstellbare GKZ (genähert) zu ermöglichen.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Zahl <span class="math notranslate nohighlight">\(x=0\)</span> hat in der Menge der Gleitkommazahlen keine eindeutige Darstellung, sondern kann mit einem beliebigen Vorzeichen und beliebigen Exponenten dargestellt werden, wenn als Mantisse <span class="math notranslate nohighlight">\(m_x=[0.0\ldots 0]=0\)</span> gewählt wird. Dies bedeutet, dass die Null bei dieser (einfachen) Art der
+Kodierung <span class="math notranslate nohighlight">\(2\cdot (\overline{e} - \underline{e} + 1)\)</span> Darstellungen besitzt und insbesondere mit einem positiven oder negativen Vorzeichen versehen werden kann.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Für all <span class="math notranslate nohighlight">\(x\in\mathbb{F}(b, l, \underline{e}, \overline{e})\)</span> gilt auch <span class="math notranslate nohighlight">\(-x\in\mathbb{F}(b, l, \underline{e}, \overline{e})\)</span>.</p>
+</div>
+<p>Die GK-Darstellung einer Zahl ist also eine Art skalierter Festkommadarstellung: das Vorzeichen und die Mantisse definieren eine Festkommazahl und der Exponent definiert den Skalierungsfaktor <span class="math notranslate nohighlight">\(b^{e_x}\)</span>, mit dem der Festkommawert multipliziert werden muss. Da der Skalierungsfaktor eine ganzzahlige Potenz der Basis ist, bedeutet dieses Skalieren lediglich das Verschieben der Festkommaziffern um <span class="math notranslate nohighlight">\(e_x\)</span> Stellen/Positionen nach links, wobei ein negativer Exponent natürlich das Verschieben um <span class="math notranslate nohighlight">\(-e_x\)</span> Stellen nach rechts bedeutet.</p>
+<div class="proof definition admonition" id="definition-7">
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Normalisierte und denormalisierte Zahlen)</p>
+<section class="definition-content" id="proof-content">
+<p>Eine GKZ bzw. Mantisse (<span class="math notranslate nohighlight">\(\neq 0\)</span>) heißt <strong>normalisiert</strong>, wenn ihre erste (vordere) Mantissenziffer <span class="math notranslate nohighlight">\(m_1 \neq 0\)</span> ist,
+ansonsten <em>unnormalisiert</em>.
+Der Wert einer normalisierten Mantisse liegt im Intervall <span class="math notranslate nohighlight">\([b^{-1}, 1)\)</span>, der einer unnormalisierten Mantisse ist stets <span class="math notranslate nohighlight">\(&lt; b^{-1}\)</span>.</p>
+<p>Eine GKZ <span class="math notranslate nohighlight">\(x\neq 0\)</span> heißt <strong>denormalisiert</strong> (= <em>denormal(ized)</em> = <em>subnormal</em>), wenn ihr Exponent kleinstmöglich,
+also <span class="math notranslate nohighlight">\(e_x = \underline{e}\)</span>, und ihre erste Mantissenziffer <span class="math notranslate nohighlight">\(m_1 = 0\)</span> sind.</p>
+</section>
+</div><p>Die größte darstellbare GKZ <span class="math notranslate nohighlight">\(x_{\max}\in\mathbb{F}(b, l, \underline{e}, \overline{e})\)</span> ist</p>
+<div class="math notranslate nohighlight">
+\[
+x_{\max} = 0.\underbrace{\overline{b}\overline{b}\cdots\overline{b}}_{l} \cdot b^{\overline{e}} = (1-b^{-l})\cdot b^{\overline{e}},
+\]</div>
+<p>mit <span class="math notranslate nohighlight">\(\overline{b}:=b-1\)</span> die größtmögliche Ziffer. Die kleinste positive normalisierte GKZ <span class="math notranslate nohighlight">\(x_{\min,N}\)</span> und die kleinste positive denormalisierte GKZ <span class="math notranslate nohighlight">\(x_{\min,D}\)</span> sind</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x_{\min,N} &amp;= 0.\underbrace{10\cdots 00}_l \cdot b^{\underline{e}} = b^{\underline{e}-1}, \\
+x_{\min,D} &amp;= 0.\underbrace{00\cdots 01}_l \cdot b^{\underline{e}} = b^{\underline{e}-l}.
+\end{split}\]</div>
+<div class="proof example admonition" id="bsp-gleitkommaformat">
+<p class="admonition-title"><span class="caption-number">Example 3 </span></p>
+<section class="example-content" id="proof-content">
+<p>Im GKZ-Format <span class="math notranslate nohighlight">\(\mathbb{F}(2,3,-1,2)\)</span> werden zur Speicherung von Zahlen 6 Bit benötigt:</p>
+<ul class="simple">
+<li><p>1 Bit zur Speicherung des Vorzeichenbits <span class="math notranslate nohighlight">\(s\in\{0,1\}\)</span>,</p></li>
+<li><p>2 Bit zur Speicherung des Exponenten <span class="math notranslate nohighlight">\(e\in\{-1,0,1,2\}\)</span>,</p></li>
+<li><p>3 Bit zur Speicherung der Mantisse <span class="math notranslate nohighlight">\(m\in\{0,1/8,2/8,3/8,4/8,5/8,6/8,7/8\}\)</span>.</p></li>
+</ul>
+</section>
+</div><p>Es ist üblich, statt des tatsächlichen Exponentenwerts <span class="math notranslate nohighlight">\(e_x\)</span> eine um einen sog. Bias <span class="math notranslate nohighlight">\(\beta\)</span> verschobene
+Exponentenkennung <span class="math notranslate nohighlight">\(E_x := e_x + \beta\)</span> zu speichern, um bei der Kodierung des Exponenten
+negative Werte zu vermeiden. Wir wählen den Bias zunächst so, dass der kleinste Exponentenwert <span class="math notranslate nohighlight">\(\underline{e}\)</span>
+gerade durch die Null dargestellt wird, also <span class="math notranslate nohighlight">\(\beta = -\underline{e}\)</span>. Wenn wir in unserem Beispiel also
+<span class="math notranslate nohighlight">\(\beta = 1\)</span> wählen, dann werden die Exponentenwerte <span class="math notranslate nohighlight">\(\{-1, 0, 1, 2\}\)</span> gerade auf die Exponentenkennungen
+<span class="math notranslate nohighlight">\(\{0, 1, 2, 3\} verschoben. (Wie wir weiter unten sehen werden, wird der Bias in heutigen
+GKZ-Systemen um 1 größer gewählt, um die Exponentenkennung \)</span>E_x = 0$ für die Null und die
+denormalisierten GKZ reservieren zu können.)</p>
+<p>In unserem Beispiel gibt es also insgesamt <span class="math notranslate nohighlight">\(2 \cdot 2^2 \cdot 2^3 = 2^6 = 64\)</span> Möglichkeiten, ein Bitmuster
+und somit eine Zahl zu bilden. Offensichtlich ist die Darstellung der GKZ nicht eindeutig,
+d.h. verschiedene Werte <span class="math notranslate nohighlight">\(s_x\)</span>, <span class="math notranslate nohighlight">\(m_x\)</span> und <span class="math notranslate nohighlight">\(e_x\)</span> liefern nicht immer unterschiedliche Werte für die GKZ
+<span class="math notranslate nohighlight">\(x = (-1)^{s_x}\cdot m_x \cdot b^{e_x}\)</span> (vgl. <a class="reference internal" href="#tbl-bsp-gkz"><span class="std std-numref">Tab. 3</span></a>). Insbesondere existieren in diesem Format 8 Darstellungen
+für die Null, je 4 für jedes Vorzeichen. Andere Zahlen besitzen <span class="math notranslate nohighlight">\(3\)</span> (z.B. <span class="math notranslate nohighlight">\(1 / 4\)</span> und <span class="math notranslate nohighlight">\(1 / 2\)</span>), <span class="math notranslate nohighlight">\(2\)</span> (z.B. <span class="math notranslate nohighlight">\(1 / 8\)</span>
+und <span class="math notranslate nohighlight">\(3 / 2\)</span>) oder auch nur <span class="math notranslate nohighlight">\(1\)</span> Darstellung:</p>
+<div class="pst-scrollable-table-container"><table class="table table-center" id="tbl-bsp-gkz">
+<caption><span class="caption-number">Tab. 3 </span><span class="caption-text">Tabelle der nichtnegativen GKZ des Formats <span class="math notranslate nohighlight">\(\mathbb{F}(2, 3, −1, 2)\)</span></span><a class="headerlink" href="#tbl-bsp-gkz" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(m_x\cdot 2^{e_x}\)</span></p></th>
+<th class="head"><p>0.111</p></th>
+<th class="head"><p>0.110</p></th>
+<th class="head"><p>0.101</p></th>
+<th class="head"><p>0.100</p></th>
+<th class="head"><p>0.011</p></th>
+<th class="head"><p>0.010</p></th>
+<th class="head"><p>0.001</p></th>
+<th class="head"><p>0.000</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(e_x=-1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(7/16\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3/8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(5/16\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3/16\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/16\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(e_x= 0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(7/8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3/4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(5/8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3/8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(e_x= 1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(7/4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3/2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(5/4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3/4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(e_x= 2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(7/2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(5/2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3/2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="absoluter-und-relativer-abstand5">
+<h3>Absoluter und relativer Abstand5<a class="headerlink" href="#absoluter-und-relativer-abstand5" title="Link to this heading">#</a></h3>
+<p>Wenn man die nichtnegativen GKZ des Formats <span class="math notranslate nohighlight">\(\mathbb{F}(2, 3, −1, 2)\)</span> auf einer Zahlengerade anordnet,
+dann ergibt sich ein Muster (GKZ-Raster), das für GKZ-Formate typisch ist:</p>
+<figure class="align-default" id="fig-gkzraster1">
+<img alt="_images/gkz-raster1.png" src="_images/gkz-raster1.png" />
+<figcaption>
+<p><span class="caption-number">Abb. 2 </span><span class="caption-text">Nichtnegative GKZ des Formats <span class="math notranslate nohighlight">\(\mathbb{F}(2, 3, −1, 2)\)</span>.</span><a class="headerlink" href="#fig-gkzraster1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Wie man an dem oben abgebildeten GKZ-Raster in <a class="reference internal" href="#fig-gkzraster1"><span class="std std-numref">Abb. 2</span></a> sieht, sind die GKZ, zumindest die normalisiert
+darstellbaren, grob gesehen logarithmisch gleichverteilt, d.h. ihre relative Dichte (oder ihr
+relativer Abstand) ist global gesehen überall ungefähr gleich – in Wirklichkeit ist der absolute
+Abstand benachbarter GKZ aber von einem Exponentensprung zum nächsten konstant und
+springt dann um den Faktor <span class="math notranslate nohighlight">\(b\)</span>. Man nennt GKZ-Raster deshalb auch <em>semilogarithmisch</em>.</p>
+<p>Während der relative Abstand benachbarter GKZ (und somit auch der relative Fehler bzw.
+die Genauigkeit der Ergebnisse elementarer Rechenoperationen) im gesamten Bereich der normalisiert
+darstellbaren GKZ maximal um den Faktor <span class="math notranslate nohighlight">\(b\)</span> schwankt, nimmt dieser unterhalb der
+kleinsten normalisiert darstellbaren GKZ bis zur Null rapide zu. Im Bereich dieser denormalisierten
+GKZ bleibt der absolute Abstand benachbarter GKZ bis zur Null konstant, d.h. der
+relative Abstand/Fehler wächst bis auf 1 (oder 100%), da die zweitkleinste denormalisierte GKZ
+doppelt so groß ist wie die kleinste.</p>
+<div class="proof definition admonition" id="definition-9">
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Unit in the last place)</p>
+<section class="definition-content" id="proof-content">
+<p>Der Begriff <strong>Einheit in der letzten Stelle</strong> (der Mantisse einer GKZ), bzw. <strong>unit in the last place</strong> (<strong>ulp</strong>) gibt das Gewicht der letzten Mantissenziffer einer GKZ <span class="math notranslate nohighlight">\(x\neq 0\)</span> an.</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{ulp}(x) := b^{e_x-l}\qquad\text{ für }x\neq 0.
+\]</div>
+</section>
+</div><div class="proof lemma admonition" id="lemma-10">
+<p class="admonition-title"><span class="caption-number">Lemma 2 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Die <span class="math notranslate nohighlight">\(\operatorname{ulp}(x)\)</span> einer GKZ <span class="math notranslate nohighlight">\(x\not\in \{0, x_{\max}\}\)</span> entspricht dem Abstand dieser GKZ zu ihrem betragsgrößeren Nachbarn in der Menge der Gleitkommazahlen.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Sei <span class="math notranslate nohighlight">\(x\neq 0\)</span> eine GKZ und <span class="math notranslate nohighlight">\(\hat{x}\)</span> die nächst größere GKZ. Ist <span class="math notranslate nohighlight">\(\hat{x}=0\)</span>, dann muss <span class="math notranslate nohighlight">\(x=x_{\min,D}\)</span> und die Aussage folgt sofort. Wir nehmen also an, dass <span class="math notranslate nohighlight">\(\hat{x}\neq 0\)</span>. Dann sind die Vorzeichen beider GKZ gleich und es folgt</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|\hat{x} - x| &amp;= |m_{\hat{x}} \cdot b^{e_{\hat{x}}} - m_x \cdot b^{e_x}| \\
+              &amp;= 0.\underbrace{00\cdots 01}_{l} \cdot b^{e_x} = b^{e_x-l}.
+\end{split}\]</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Da das <em>ulp</em> nur von der Mantissenlänge <span class="math notranslate nohighlight">\(l\)</span> (die für ein gegebenes GK-Format fest ist) und dem Exponenten <span class="math notranslate nohighlight">\(e_x\)</span> der betrachteten GKZ <span class="math notranslate nohighlight">\(x\)</span> abhängt, ist es für alle GKZ mit demselben Exponentenwert identisch, d.h. diese GKZ sind in einem GK-Raster äquidistant angeordnet. Dies gilt auch für denormalisierte GKZ, die alle denselben Exponenten <span class="math notranslate nohighlight">\(\underline{e}\)</span> und den Abstand <span class="math notranslate nohighlight">\(b^{\underline{e}-l}\)</span> zu ihren GK-Nachbarn haben.</p>
+</div>
+<p>Um den Begriff des GK-Nachbarn zu präzisieren, definieren wir den Vorgänger und den Nachfolger einer GKZ <span class="math notranslate nohighlight">\(x \neq 0\)</span> wie folgt:</p>
+<div class="proof definition admonition" id="definition-11">
+<p class="admonition-title"><span class="caption-number">Definition 15 </span> (GK-Nachbarn)</p>
+<section class="definition-content" id="proof-content">
+<p>Der <strong>Vorgänger</strong> (= <em>predecessor</em>) einer GKZ <span class="math notranslate nohighlight">\(x\not\in\{0,-x_{\max}\}\)</span> ist definiert als</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \operatorname{pred}(x) := \left\{\begin{array}{ll}
+    x - \frac{\operatorname{ulp}(x)}{b} &amp; \text{ false }x=b^k\text{ mit }k\in\mathbb{Z}\text{ und normalisiert}, \\
+    x - \operatorname{ulp}(x)            &amp; \text{ sonst (auch denormalisiert)}.
+  \end{array}\right.
+\end{split}\]</div>
+<p>Der <strong>Nachfolger</strong> (= <em>successor</em>) einer GKZ <span class="math notranslate nohighlight">\(x\not\in\{0,x_{\max}\}\)</span> ist definiert als</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \operatorname{succ}(x) := \left\{\begin{array}{ll}
+    x + \frac{\operatorname{ulp}(x)}{b} &amp; \text{ false }x=-b^k\text{ mit }k\in\mathbb{Z}\text{ und normalisiert}, \\
+    x + \operatorname{ulp}(x)            &amp; \text{ sonst (auch denormalisiert)}.
+  \end{array}\right.
+\end{split}\]</div>
+<p>Die jeweils erstgenannten Sonderfälle (mit Schrittweite <span class="math notranslate nohighlight">\(\frac{\operatorname{ulp}(x)}{b}\)</span>) treten also nur auf, wenn man
+von einer GKZ, deren Betrag eine ganzzahlige Potenz der Basis ist, zu ihrem betragskleineren
+GK-Nachbarn geht; ansonsten ist ein GK-Nachbar immer <span class="math notranslate nohighlight">\(\operatorname{ulp}(x)\)</span> entfernt.</p>
+</section>
+</div><p>Mit dem Begriff <span class="math notranslate nohighlight">\(\operatorname{ulp}\)</span> eng verbunden ist das sog. <strong>Wilkinson-<span class="math notranslate nohighlight">\(\varepsilon\)</span></strong>, welches nach dem englischen
+Numeriker und Computerpionier <em>James H. Wilkinson</em>, der mit seinem 1963 erschienenen, sehr
+einflussreichen Buch „Rounding Errors in Algebraic Processes“ die Theorie der Fehlerabschätzung
+bei Gleitkommarechnung begründete. Er erhielt 1970 unter anderem für diese Arbeit und
+für seine maßgebliche Beteiligung an der Entwicklung mehrerer englischer Computer seit den
+späten 1940er Jahren (zu Beginn noch gemeinsam mit Alan Turing) den renommierten ACM
+Alan M. Turing Award (quasi der Nobelpreis der Informatik).</p>
+<div class="proof definition admonition" id="dfn-wilkonson-epsilon">
+<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Wilkonson-<span class="math notranslate nohighlight">\(\varepsilon\)</span>)</p>
+<section class="definition-content" id="proof-content">
+<p>Das Wilkinson-<span class="math notranslate nohighlight">\(\varepsilon\)</span> gibt den <em>maximalen relativen Abstand</em> benachbarter normalisierter GKZ
+und somit auch den <em>maximalen relativen Fehler</em>, den eine arithmetische Grundoperation (durch
+Rundung des exakten Ergebnisses in das GK-Format) machen darf, an:</p>
+<div class="math notranslate nohighlight">
+\[
+\varepsilon := b^{1-l}
+\]</div>
+</section>
+</div><p>Dieser maximale relative Abstand tritt immer direkt nach einem Exponentensprung (siehe auch
+weiter oben) auf, also zwischen <span class="math notranslate nohighlight">\(b^k\)</span> und <span class="math notranslate nohighlight">\(b^k + \operatorname{ulp}(b^k)\)</span> mit <span class="math notranslate nohighlight">\(k\in\mathbb{Z}\)</span>, während er direkt davor fast
+um den Faktor <span class="math notranslate nohighlight">\(b^{-1}\)</span> kleiner ist. Das Wilkinson-<span class="math notranslate nohighlight">\(\varepsilon\)</span> ist also ein Maß für die Granularität eines
+GK-Rasters und somit für die maximal erreichbare Genauigkeit beim Rechnen in diesem GK-Format.</p>
+<p>Wie man leicht sieht, ist <span class="math notranslate nohighlight">\(\varepsilon = \operatorname{ulp}(1)\)</span>, da die Zahl <span class="math notranslate nohighlight">\(1\)</span> als die GKZ <span class="math notranslate nohighlight">\([0.100\cdots 0]_b \cdot b^1\)</span> dargestellt wird,
+also mit dem Exponentenwert <span class="math notranslate nohighlight">\(1\)</span>. Anders ausgedrückt ist das Wilkinson-<span class="math notranslate nohighlight">\(\varepsilon\)</span> gerade der Abstand
+zwischen <span class="math notranslate nohighlight">\(1\)</span> und der nächstgrößeren GKZ (die nächstkleinere GKZ ist nur <span class="math notranslate nohighlight">\(\varepsilon / b\)</span> von <span class="math notranslate nohighlight">\(1\)</span> entfernt).</p>
+</section>
+<section id="normalisierung">
+<h3>Normalisierung<a class="headerlink" href="#normalisierung" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.11"
+        },
+        kernelOptions: {
+            name: "julia-1.11",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02.1-integer.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">zurück</p>
+        <p class="prev-next-title">Ziffernsysteme und Zahlendarstellung</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03.1-fehler.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">weiter</p>
+        <p class="prev-next-title">Absoluter und relativer Fehler</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Inhalt
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rationale-zahlen">Rationale Zahlen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#festkommadarstellung">Festkommadarstellung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reelle-zahlen">Reelle Zahlen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Gleitkommazahlen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absoluter-und-relativer-abstand5">Absoluter und relativer Abstand5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisierung">Normalisierung</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>(c) 2025 Technische Universität Dresden / Fakultät Mathematik / <a href="https://tu-dresden.de/Members/simon.praetorius" target="_blank">Dr. Simon Praetorius</a></p> <div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -31,10 +31,10 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a9a42987" />
   
@@ -184,9 +184,41 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="00-getting-started.html">Getting started with Julia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01-integer.html">Ganze Zahlen</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programmieren mit Julia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02-zahlen.html">Grundlagen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.1-integer.html">Ziffernsysteme und Zahlendarstellung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.2-float.html">Gleitkommazahlen</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fehler, Kondition und Stabilität</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03.1-fehler.html">Absoluter und relativer Fehler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.2-rundung.html">Rundung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.3-arithmetik.html">Gleitkommaarithmetik</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenstrukturen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-datenstrukturen.html">Datenstrukturen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.1-arrays.html">Arrays</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualisierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-plotting.html">Plotting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-algorithmen.html">Komplexität und Korrektheit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.1-landau.html">Asymptotische Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anhang</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="9x-bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -294,28 +326,316 @@ document.write(`
    <h1>Proof Index</h1>
 
    <div class="modindex-jumpbox">
-   <a href="#cap-alg-basiskonvertierung"><strong>alg-basiskonvertierung</strong></a> | 
-   <a href="#cap-thm-div-rem"><strong>thm-div-rem</strong></a> | 
+   <a href="#cap-alg-basis-konvertierung"><strong>alg-basis-konvertierung</strong></a> | 
+   <a href="#cap-alg-festkommadarstellung"><strong>alg-festkommadarstellung</strong></a> | 
+   <a href="#cap-alg-tuerme-von-hanoi"><strong>alg-tuerme-von-hanoi</strong></a> | 
+   <a href="#cap-alg-turme-von-hanoi-iterativ"><strong>alg-turme-von-hanoi-iterativ</strong></a> | 
+   <a href="#cap-algorithm-1"><strong>algorithm-1</strong></a> | 
+   <a href="#cap-algorithm-2"><strong>algorithm-2</strong></a> | 
+   <a href="#cap-bsp-fibonacci"><strong>bsp-fibonacci</strong></a> | 
+   <a href="#cap-bsp-gleitkommaformat"><strong>bsp-gleitkommaformat</strong></a> | 
+   <a href="#cap-bsp-tuerme-von-hanoi"><strong>bsp-tuerme-von-hanoi</strong></a> | 
+   <a href="#cap-def-endrekursiv"><strong>def-endrekursiv</strong></a> | 
+   <a href="#cap-definition-0"><strong>definition-0</strong></a> | 
+   <a href="#cap-definition-11"><strong>definition-11</strong></a> | 
+   <a href="#cap-definition-14"><strong>definition-14</strong></a> | 
+   <a href="#cap-definition-6"><strong>definition-6</strong></a> | 
+   <a href="#cap-definition-7"><strong>definition-7</strong></a> | 
+   <a href="#cap-definition-9"><strong>definition-9</strong></a> | 
+   <a href="#cap-dfn-addition-N"><strong>dfn-addition-N</strong></a> | 
+   <a href="#cap-dfn-algorithmus"><strong>dfn-algorithmus</strong></a> | 
+   <a href="#cap-dfn-div-rem"><strong>dfn-div-rem</strong></a> | 
+   <a href="#cap-dfn-equivalence-subtraction"><strong>dfn-equivalence-subtraction</strong></a> | 
+   <a href="#cap-dfn-ganze-zahlen"><strong>dfn-ganze-zahlen</strong></a> | 
+   <a href="#cap-dfn-multiplication-N"><strong>dfn-multiplication-N</strong></a> | 
+   <a href="#cap-dfn-natuerliche-zahlen"><strong>dfn-natuerliche-zahlen</strong></a> | 
+   <a href="#cap-dfn-power-N"><strong>dfn-power-N</strong></a> | 
+   <a href="#cap-dfn-strictly-endrecursive"><strong>dfn-strictly-endrecursive</strong></a> | 
+   <a href="#cap-dfn-wilkonson-epsilon"><strong>dfn-wilkonson-epsilon</strong></a> | 
+   <a href="#cap-dfn-zweier-komplement"><strong>dfn-zweier-komplement</strong></a> | 
+   <a href="#cap-example-11"><strong>example-11</strong></a> | 
+   <a href="#cap-example-15"><strong>example-15</strong></a> | 
+   <a href="#cap-example-5"><strong>example-5</strong></a> | 
+   <a href="#cap-lemma-10"><strong>lemma-10</strong></a> | 
+   <a href="#cap-lemma-2"><strong>lemma-2</strong></a> | 
+   <a href="#cap-obs-zifferndarstellung-Z"><strong>obs-zifferndarstellung-Z</strong></a> | 
+   <a href="#cap-theorem-3"><strong>theorem-3</strong></a> | 
    <a href="#cap-thm-multiply-algorithm"><strong>thm-multiply-algorithm</strong></a> | 
    <a href="#cap-thm-restklassenring"><strong>thm-restklassenring</strong></a>
    </div>
 
    <table class="indextable modindextable">
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-alg-basiskonvertierung"><td></td><td>
-       <strong>alg-basiskonvertierung</strong></td><td></td></tr>
+     <tr class="cap" id="cap-alg-basis-konvertierung"><td></td><td>
+       <strong>alg-basis-konvertierung</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="01-integer.html#alg-basiskonvertierung"><code class="xref">alg-basiskonvertierung</code></a> <em>(01-integer)</em></td><td>
+       <a href="02.1-integer.html#alg-basis-konvertierung"><code class="xref">alg-basis-konvertierung</code></a> <em>(02.1-integer)</em></td><td>
        <em>algorithm</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-thm-div-rem"><td></td><td>
-       <strong>thm-div-rem</strong></td><td></td></tr>
+     <tr class="cap" id="cap-alg-festkommadarstellung"><td></td><td>
+       <strong>alg-festkommadarstellung</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="01-integer.html#thm-div-rem"><code class="xref">thm-div-rem</code></a> <em>(01-integer)</em></td><td>
+       <a href="02.2-float.html#alg-festkommadarstellung"><code class="xref">alg-festkommadarstellung</code></a> <em>(02.2-float)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-alg-tuerme-von-hanoi"><td></td><td>
+       <strong>alg-tuerme-von-hanoi</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="05.3-rekursion.html#alg-tuerme-von-hanoi"><code class="xref">alg-tuerme-von-hanoi</code></a> <em>(05.3-rekursion)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-alg-turme-von-hanoi-iterativ"><td></td><td>
+       <strong>alg-turme-von-hanoi-iterativ</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="05.3-rekursion.html#alg-turme-von-hanoi-iterativ"><code class="xref">alg-turme-von-hanoi-iterativ</code></a> <em>(05.3-rekursion)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-algorithm-1"><td></td><td>
+       <strong>algorithm-1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="01-programmieren.html#algorithm-1"><code class="xref">algorithm-1</code></a> <em>(01-programmieren)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-algorithm-2"><td></td><td>
+       <strong>algorithm-2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="01-programmieren.html#algorithm-2"><code class="xref">algorithm-2</code></a> <em>(01-programmieren)</em></td><td>
+       <em>algorithm</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-bsp-fibonacci"><td></td><td>
+       <strong>bsp-fibonacci</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="05.3-rekursion.html#bsp-fibonacci"><code class="xref">bsp-fibonacci</code></a> <em>(05.3-rekursion)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-bsp-gleitkommaformat"><td></td><td>
+       <strong>bsp-gleitkommaformat</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.2-float.html#bsp-gleitkommaformat"><code class="xref">bsp-gleitkommaformat</code></a> <em>(02.2-float)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-bsp-tuerme-von-hanoi"><td></td><td>
+       <strong>bsp-tuerme-von-hanoi</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="05.3-rekursion.html#bsp-tuerme-von-hanoi"><code class="xref">bsp-tuerme-von-hanoi</code></a> <em>(05.3-rekursion)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def-endrekursiv"><td></td><td>
+       <strong>def-endrekursiv</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="05.3-rekursion.html#def-endrekursiv"><code class="xref">def-endrekursiv</code></a> <em>(05.3-rekursion)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-0"><td></td><td>
+       <strong>definition-0</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.1-integer.html#definition-0"><code class="xref">definition-0</code></a> <em>(02.1-integer)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-11"><td></td><td>
+       <strong>definition-11</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.2-float.html#definition-11"><code class="xref">definition-11</code></a> <em>(02.2-float)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-14"><td></td><td>
+       <strong>definition-14</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.1-integer.html#definition-14"><code class="xref">definition-14</code></a> <em>(02.1-integer)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-6"><td></td><td>
+       <strong>definition-6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.2-float.html#definition-6"><code class="xref">definition-6</code></a> <em>(02.2-float)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-7"><td></td><td>
+       <strong>definition-7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.2-float.html#definition-7"><code class="xref">definition-7</code></a> <em>(02.2-float)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-9"><td></td><td>
+       <strong>definition-9</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.2-float.html#definition-9"><code class="xref">definition-9</code></a> <em>(02.2-float)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-addition-N"><td></td><td>
+       <strong>dfn-addition-N</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02-zahlen.html#dfn-addition-N"><code class="xref">dfn-addition-N</code></a> <em>(02-zahlen)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-algorithmus"><td></td><td>
+       <strong>dfn-algorithmus</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="01-programmieren.html#dfn-algorithmus"><code class="xref">dfn-algorithmus</code></a> <em>(01-programmieren)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-div-rem"><td></td><td>
+       <strong>dfn-div-rem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02-zahlen.html#dfn-div-rem"><code class="xref">dfn-div-rem</code></a> <em>(02-zahlen)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-equivalence-subtraction"><td></td><td>
+       <strong>dfn-equivalence-subtraction</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.1-integer.html#dfn-equivalence-subtraction"><code class="xref">dfn-equivalence-subtraction</code></a> <em>(02.1-integer)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-ganze-zahlen"><td></td><td>
+       <strong>dfn-ganze-zahlen</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.1-integer.html#dfn-ganze-zahlen"><code class="xref">dfn-ganze-zahlen</code></a> <em>(02.1-integer)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-multiplication-N"><td></td><td>
+       <strong>dfn-multiplication-N</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02-zahlen.html#dfn-multiplication-N"><code class="xref">dfn-multiplication-N</code></a> <em>(02-zahlen)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-natuerliche-zahlen"><td></td><td>
+       <strong>dfn-natuerliche-zahlen</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02-zahlen.html#dfn-natuerliche-zahlen"><code class="xref">dfn-natuerliche-zahlen</code></a> <em>(02-zahlen)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-power-N"><td></td><td>
+       <strong>dfn-power-N</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02-zahlen.html#dfn-power-N"><code class="xref">dfn-power-N</code></a> <em>(02-zahlen)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-strictly-endrecursive"><td></td><td>
+       <strong>dfn-strictly-endrecursive</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="05.3-rekursion.html#dfn-strictly-endrecursive"><code class="xref">dfn-strictly-endrecursive</code></a> <em>(05.3-rekursion)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-wilkonson-epsilon"><td></td><td>
+       <strong>dfn-wilkonson-epsilon</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.2-float.html#dfn-wilkonson-epsilon"><code class="xref">dfn-wilkonson-epsilon</code></a> <em>(02.2-float)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dfn-zweier-komplement"><td></td><td>
+       <strong>dfn-zweier-komplement</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.1-integer.html#dfn-zweier-komplement"><code class="xref">dfn-zweier-komplement</code></a> <em>(02.1-integer)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-11"><td></td><td>
+       <strong>example-11</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="05.3-rekursion.html#example-11"><code class="xref">example-11</code></a> <em>(05.3-rekursion)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-15"><td></td><td>
+       <strong>example-15</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.1-integer.html#example-15"><code class="xref">example-15</code></a> <em>(02.1-integer)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-5"><td></td><td>
+       <strong>example-5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.2-float.html#example-5"><code class="xref">example-5</code></a> <em>(02.2-float)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-lemma-10"><td></td><td>
+       <strong>lemma-10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.2-float.html#lemma-10"><code class="xref">lemma-10</code></a> <em>(02.2-float)</em></td><td>
+       <em>lemma</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-lemma-2"><td></td><td>
+       <strong>lemma-2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02-zahlen.html#lemma-2"><code class="xref">lemma-2</code></a> <em>(02-zahlen)</em></td><td>
+       <em>lemma</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-zifferndarstellung-Z"><td></td><td>
+       <strong>obs-zifferndarstellung-Z</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="02.1-integer.html#obs-zifferndarstellung-Z"><code class="xref">obs-zifferndarstellung-Z</code></a> <em>(02.1-integer)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-3"><td></td><td>
+       <strong>theorem-3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="05.3-rekursion.html#theorem-3"><code class="xref">theorem-3</code></a> <em>(05.3-rekursion)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-thm-multiply-algorithm"><td></td><td>
@@ -323,7 +643,7 @@ document.write(`
      <tr>
        <td></td>
        <td>
-       <a href="01-integer.html#thm-multiply-algorithm"><code class="xref">thm-multiply-algorithm</code></a> <em>(01-integer)</em></td><td>
+       <a href="02.1-integer.html#thm-multiply-algorithm"><code class="xref">thm-multiply-algorithm</code></a> <em>(02.1-integer)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-thm-restklassenring"><td></td><td>
@@ -331,7 +651,7 @@ document.write(`
      <tr>
        <td></td>
        <td>
-       <a href="01-integer.html#thm-restklassenring"><code class="xref">thm-restklassenring</code></a> <em>(01-integer)</em></td><td>
+       <a href="02.1-integer.html#thm-restklassenring"><code class="xref">thm-restklassenring</code></a> <em>(02.1-integer)</em></td><td>
        <em>theorem</em></td></tr>
    </table>
 
@@ -361,21 +681,10 @@ document.write(`
   
   <div class="footer-item">
     
-<p class="component-author">
-Durch Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
-</p>
-
   </div>
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
 
   </div>
   
@@ -386,7 +695,7 @@ Durch Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
   <div class="footer-item">
     
 <div class="extra_footer">
-  <p>License information!</p><div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
+  <p>(c) 2025 Technische Universität Dresden / Fakultät Mathematik / <a href="https://tu-dresden.de/Members/simon.praetorius" target="_blank">Dr. Simon Praetorius</a></p> <div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
 </div>
   </div>
   

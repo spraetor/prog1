@@ -1,0 +1,1715 @@
+
+<!DOCTYPE html>
+
+
+<html lang="de" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Ziffernsysteme und Zahlendarstellung &#8212; Programmieren - Grundlegende Konzepte</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a9a42987" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=91fba89f"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=79cc9f76"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02.1-integer';</script>
+    <script src="_static/custom.js?v=629f8674"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Gleitkommazahlen" href="02.2-float.html" />
+    <link rel="prev" title="Grundlagen" href="02-zahlen.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="de"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo3a_light.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/logo3a.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">Math-Ba-PR10 WS25/26</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Suche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programmieren mit Julia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02-zahlen.html">Grundlagen</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ziffernsysteme und Zahlendarstellung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.2-float.html">Gleitkommazahlen</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fehler, Kondition und Stabilität</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03.1-fehler.html">Absoluter und relativer Fehler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.2-rundung.html">Rundung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.3-arithmetik.html">Gleitkommaarithmetik</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenstrukturen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-datenstrukturen.html">Datenstrukturen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.1-arrays.html">Arrays</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualisierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-plotting.html">Plotting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-algorithmen.html">Komplexität und Korrektheit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.1-landau.html">Asymptotische Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anhang</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="9x-bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Laden Sie diese Seite herunter">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02.1-integer.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Quelldatei herunterladen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="In PDF drucken"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Vollbildmodus"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ziffernsysteme und Zahlendarstellung</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Inhalt </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#darstellung">Darstellung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vorzeichenbehaftete-zahlen">Vorzeichenbehaftete Zahlen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsigned-integer">Unsigned integer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-integer">Signed integer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetik">Arithmetik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negation">Negation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition">Addition</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#halbaddierer-und-volladdierer">Halbaddierer und Volladdierer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ripple-carry-addierer">Ripple-Carry Addierer</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtraktion">Subtraktion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplikation">Multiplikation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#division">Division</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potenzieren">Potenzieren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grosze-integer">Große Integer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung">Zusammenfassung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#begriffe">Begriffe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-befehle">Julia Befehle</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ziffernsysteme-und-zahlendarstellung">
+<h1>Ziffernsysteme und Zahlendarstellung<a class="headerlink" href="#ziffernsysteme-und-zahlendarstellung" title="Link to this heading">#</a></h1>
+<p>Außer die <span class="math notranslate nohighlight">\(1\in\mathbb{N}\)</span>, bzw. die <span class="math notranslate nohighlight">\(0\in\mathbb{N}_0\)</span> haben wir noch keine Symbole für die natürlichen Zahlen eingeführt, mit denen man rechnen könnte. Aus der Schule ist allerdings noch die Bezeichnungen <span class="math notranslate nohighlight">\(\mathbb{N}=\{1,2,3,4,\ldots\}\)</span> geläufig, also ein Ziffernsystem, bei dem man jeder Zahl eine Folge von Ziffern aus <span class="math notranslate nohighlight">\(0-9\)</span> zuordnet. Hierbei wird eine Darstellung in der „Basis“ 10 angenommen, was dann als <em>Dezimalzahlensystem</em> bezeichnet wird. Wieviele verschiedene Ziffern man aber benötigt, um alle natürlichen Zahlen auszudrücken, hängt von der Wahl der Basis ab. Neben der Basis 10 sind andere Basen auch geläufig oder wurden in der Geschichte verwendet.</p>
+<section id="darstellung">
+<h2>Darstellung<a class="headerlink" href="#darstellung" title="Link to this heading">#</a></h2>
+<p>Wir bezeichnen eine Zahlendarstellung als <em>Positionssystem/Stellenwertsystem</em> bzgl. einer Basis <span class="math notranslate nohighlight">\(b \in \mathbb{N}\setminus\{0, 1\}\)</span>, wenn all ihre Ziffern aus der Menge <span class="math notranslate nohighlight">\(\{0,1,\ldots, b-1\}\subset\mathbb{N}_0\)</span> bestehen</p>
+<p>Allgemein lässt sich der Wert einer <span class="math notranslate nohighlight">\(n\)</span>-ziffrigen natürlichen Zahl zur Basis <span class="math notranslate nohighlight">\(b\)</span> folgendermaßen
+berechnen:</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Positionssystem zur Basis <span class="math notranslate nohighlight">\(b\)</span>)</p>
+<section class="definition-content" id="proof-content">
+<p>Eine <span class="math notranslate nohighlight">\(n\)</span>-stellige Zahl <span class="math notranslate nohighlight">\(x\in\mathbb{N}_0\)</span> mit der Darstellung</p>
+<div class="math notranslate nohighlight" id="equation-binary-int">
+<span class="eqno">(1)<a class="headerlink" href="#equation-binary-int" title="Link to this equation">#</a></span>\[
+x = [m_{n-1} m_{n-2} \cdots m_1 m_0]_b = \sum_{i=0}^{n-1} m_i\cdot b^i
+\]</div>
+<p>mit <em>Ziffern</em> <span class="math notranslate nohighlight">\(m_i\in\{0,1,\ldots,b-1\}\)</span> heißt <strong>Positionssystem</strong> zur Basis <span class="math notranslate nohighlight">\(b\)</span> und die Darstellung <strong><span class="math notranslate nohighlight">\(b\)</span>-adische Zahldarstellung</strong>.</p>
+<p>Überlicherweise werden führende Nullen weggelassen, d.h. wir nehmen an <span class="math notranslate nohighlight">\(m_{n−1} \neq 0\)</span>.</p>
+</section>
+</div><p>Diese Darstellung heißt <em>Positionssystem</em>, weil es auf der Position der Ziffern in der Folge ankommt. Die Position, <span class="math notranslate nohighlight">\(i\)</span>, bestimmt, mit welchem Faktor, <span class="math notranslate nohighlight">\(b^i\)</span>, die Ziffer multipliziert werden muss.</p>
+<p>Die Dual-/Binärdarstellung zur Basis <span class="math notranslate nohighlight">\(b = 2\)</span> spielt in der Informatik eine besonders wichtige
+Rolle, da heutige Computer Zahlen und Daten immer dual/binär speichern und verarbeiten.
+Eine weitere wichtige Darstellung ist das Oktalsystem, zur Basis <span class="math notranslate nohighlight">\(b=8\)</span> mit Ziffern <span class="math notranslate nohighlight">\(m_i\in\{0,1,\ldots,7\}\)</span>
+und das Hexadezimalsystem zur Basis <span class="math notranslate nohighlight">\(b=16\)</span> mit Ziffern <span class="math notranslate nohighlight">\(m_i\in\{0,1,\ldots,9,a,b,\ldots,f\}\)</span>. Man hat also noch
+ein paar Buchstabe hinzugenommen, um alle Ziffern ausdrücken zu können.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>In einem Computer und in den meisten Programmiersprachen stehen zur Darstellung natürlicher
+Zahlen typischerweise nur einige wenige binäre <code class="docutils literal notranslate"><span class="pre">Integer</span></code>-Formate mit jeweils einer festen
+Speicherbreite (z.B. 16, 32 oder 64 bits) hardware-unterstützt zur Verfügung.</p>
+<p>In Julia heißen die zugehörigen Integer Typen entsprechend <code class="docutils literal notranslate"><span class="pre">UInt16</span></code>, <code class="docutils literal notranslate"><span class="pre">UInt32</span></code>, und <code class="docutils literal notranslate"><span class="pre">UInt64</span></code>.</p>
+</div>
+<div class="admonition-beispiel admonition">
+<p class="admonition-title">Beispiel</p>
+<p>Zum Beispiel ergibt sich für eine natürliche Zahl mit <span class="math notranslate nohighlight">\(n=3\)</span> Ziffern zur Basis <span class="math notranslate nohighlight">\(b=2\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-binary-int4">
+<span class="eqno">(2)<a class="headerlink" href="#equation-binary-int4" title="Link to this equation">#</a></span>\[
+[m_2 m_1 m_0]_2 = \sum_{i=0}^2 m_i \cdot 2^i
+\]</div>
+<p>mit Ziffern (bits) <span class="math notranslate nohighlight">\(m_i\in\{0,1\}\)</span>. Es lassen sich folglich die natürlichen Zahlen
+<span class="math notranslate nohighlight">\(0,1,2,\ldots,7=2^3-1\)</span> darstellen.</p>
+</div>
+<p>Man kann Zahlen in einer beliebigen Basis ausdrücken, bzw. sie in diese Darstellung bringen.
+Dafür müssen die einzelnen Ziffern <span class="math notranslate nohighlight">\(m_i\)</span> zu den Faktoren <span class="math notranslate nohighlight">\(b^i\)</span> bestimmt werden. Der folgende Algorithmus
+beschreibt das Vorgehen.</p>
+<div class="proof algorithm admonition" id="alg-basis-konvertierung">
+<p class="admonition-title"><span class="caption-number">Algorithm 3 </span></p>
+<section class="algorithm-content" id="proof-content">
+<p><em>Eingabe:</em> Eine natürliche Zahl <span class="math notranslate nohighlight">\(a\in\mathbb{N}_0\)</span> und eine Zielbasis <span class="math notranslate nohighlight">\(b\geq 2\)</span>.</p>
+<ol class="arabic simple">
+<li><p>Ausgangszahl <span class="math notranslate nohighlight">\(a\)</span> durch Zielbasis <span class="math notranslate nohighlight">\(b\)</span> dividieren.</p></li>
+<li><p>Falls das Ergebnis 0 ist, beende den Algorithmus und springe zur Ausgabe.</p></li>
+<li><p>Das Ergebnis wird zur neuen Ausgangszahl <span class="math notranslate nohighlight">\(a\)</span>.</p></li>
+<li><p>Notiere den erhaltenen Rest. Fahre fort mit Schritt 1.</p></li>
+</ol>
+<p><em>Ausgabe:</em> Die notierten Zahlen, von hinten nach vorne gelesen, ergeben die konvertierte Zahl.</p>
+</section>
+</div><div class="exercise admonition" id="int-conversion">
+
+<p class="admonition-title"><span class="caption-number">Exercise 2 </span></p>
+<section id="exercise-content">
+<p>Konvertiere die Dezimalzahl 57 in die Binärdarstellung.</p>
+</section>
+</div>
+<div class="solution admonition" id="02.1-integer-solution-3">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#int-conversion"> Exercise 2</a></p>
+<section id="solution-content">
+<div class="math notranslate nohighlight">
+\[\begin{split}
+57 : 2 &amp;\to 28\, R\, 1\\
+28 : 2 &amp;\to 14\, R\, 0\\
+14 : 2 &amp;\to 7\, R\, 0\\
+7 : 2 &amp;\to 3\, R\, 1\\
+3 : 2 &amp;\to 1\, R\, 1\\
+1 : 2 &amp;\to 0\, R\, 1
+\end{split}\]</div>
+<p>Das Ergebnis ist <span class="math notranslate nohighlight">\([57]_{10} = [111001]_2\)</span>.</p>
+</section>
+</div>
+<div class="exercise admonition" id="number-conversion-inv">
+
+<p class="admonition-title"><span class="caption-number">Exercise 3 </span></p>
+<section id="exercise-content">
+<p>Rückkonversion: Gegeben ist die Binärzahl <span class="math notranslate nohighlight">\([111001]_2\)</span>. Konvertiere sie in die Dezimaldarstellung (<span class="math notranslate nohighlight">\(10 = [1010]_2\)</span>).</p>
+</section>
+</div>
+<div class="solution admonition" id="02.1-integer-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#number-conversion-inv"> Exercise 3</a></p>
+<section id="solution-content">
+<p>Die Rechnung erfolgt binär:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+111001 : 1010 \to 101\, R\, 111\\
+101 : 1010 \to 0\, R\, 101
+\end{split}\]</div>
+<p>wegen <span class="math notranslate nohighlight">\([111]_2=7\)</span> und <span class="math notranslate nohighlight">\([101]_2 = 5\)</span> folgt <span class="math notranslate nohighlight">\([111001]_2=57\)</span>.</p>
+<p>Beachte: In dieser Rechnung haben wir binäre Division mit Rest angewendet.</p>
+</section>
+</div>
+<p>Das Verfahren zur Konvertierung von Zahlen von einer in eine andere Darstellung wurden
+durch einen Algorithmus beschrieben. Wir werden uns später noch viel mehr mit Algorithmen
+auseinandersetzen. Eine alternative Darstellung des Konvertierungsalgorithmus nutzt die
+Sprache Julia, um das Verfahren zu illustrieren. Die verwendeten Operationen <code class="docutils literal notranslate"><span class="pre">÷</span></code> und <code class="docutils literal notranslate"><span class="pre">%</span></code>
+entsprechen der Division und Modulo (Rest) und werden weiter unten noch erklärt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">convert</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="kt">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">::</span><span class="kt">Integer</span><span class="p">)</span>
+<span class="w">  </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Integer</span><span class="p">[]</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">b</span><span class="w">   </span><span class="c"># divide by b and compute the remainder</span>
+<span class="w">    </span><span class="n">prepend!</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">m</span>
+<span class="k">end</span>
+
+<span class="n">convert</span><span class="p">(</span><span class="mi">57</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6-element Vector{Integer}:
+ 1
+ 1
+ 1
+ 0
+ 0
+ 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vorzeichenbehaftete-zahlen">
+<h2>Vorzeichenbehaftete Zahlen<a class="headerlink" href="#vorzeichenbehaftete-zahlen" title="Link to this heading">#</a></h2>
+<p>Bisher haben wir nur die Darstellung der natürlichen Zahlen betrachtet. In der Programmierung bezeichnet man diesen
+Zahlenbereich auch als „vorzeichenlos“, bzw. <code class="docutils literal notranslate"><span class="pre">Unsigned</span></code>. Dem gegenüber stehen noch die vorzeichenbehafteten Zahlen (<code class="docutils literal notranslate"><span class="pre">Signed</span></code>),
+die auch negative Werte annehmen können.</p>
+<section id="unsigned-integer">
+<h3>Unsigned integer<a class="headerlink" href="#unsigned-integer" title="Link to this heading">#</a></h3>
+<p>In der Sprache Julia umfasst die Kategorie von <code class="docutils literal notranslate"><span class="pre">Unsigned</span></code> Typen mehrere konkrete Typen, die sich in der Anzahl an Bits zur
+Repräsentation unterscheiden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">subtypes</span><span class="p">(</span><span class="kt">Unsigned</span><span class="p">)</span><span class="w">  </span><span class="c"># Alle Repräsentationen des abstrakten Typs `Unsigned`</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Any}:
+ UInt128
+ UInt16
+ UInt32
+ UInt64
+ UInt8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Bezeichnung <code class="docutils literal notranslate"><span class="pre">UInt&lt;n&gt;</span></code> enstpricht also einer Binärzahl mit <code class="docutils literal notranslate"><span class="pre">n</span></code> Bit Länge, wobei <code class="docutils literal notranslate"><span class="pre">n=8,16,32,64</span></code> oder <code class="docutils literal notranslate"><span class="pre">n=128</span></code> annehmen kann.
+Wie oben schon erläutert, ist der Wertebereich entsprechend gegeben durch</p>
+<div class="math notranslate nohighlight">
+\[
+0 \leq x &lt; 2^n
+\]</div>
+<p>Im wissenschaftlichen Rechnen finden diese vorzeichenlosen Typen eher selten Anwendung. Ein Beispiel für eine Anwendung sind
+die Räpresentation von Speicheradressen, oder auch in der Modulo-Arithmetik.</p>
+<p>In Julia werden Zahlen von diesem Typ dargestellt im <em>Hexadezimalformat</em>, d.h., in einer Darstellung
+zur Basis <span class="math notranslate nohighlight">\(b=16\)</span>. Man verwendet als Symbole für die Ziffern die Dezimalziffern <code class="docutils literal notranslate"><span class="pre">0-9</span></code> und zusätzlich die Buchstaben <code class="docutils literal notranslate"><span class="pre">a-f</span></code>.
+Die Darstellung in Julia fügt zur besseren Unterscheidbarkeit von Dezimalzahlen den Prefix <code class="docutils literal notranslate"><span class="pre">0x</span></code> vorne ran:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">UInt32</span><span class="p">(</span><span class="mi">3403759</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0x0033efef
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>In Julia können unsigned Integer auch über die Hexadezimaldarstellung direkt eingegeben werden, z.B.
+<code class="docutils literal notranslate"><span class="pre">y=0x0033efef</span></code>. Da Julia weiterhin auch die Multiplikation einer Variablen oder Funktion mit einem
+Faktor ohne Multiplikationszeichen zulässt, z.B. <code class="docutils literal notranslate"><span class="pre">2x</span></code>, kann es dazu führen, dass man unerwartet einen
+Fehler bekommt, denn <code class="docutils literal notranslate"><span class="pre">0x</span></code> ist  eine unvollständige Darstellung einer Hexadezimalzahl.</p>
+</div>
+<div class="admonition-beispiel admonition">
+<p class="admonition-title">Beispiel</p>
+<p>Betrachten wir einen <em>fiktiven</em> Datentype mit nur 3 Bits, <code class="docutils literal notranslate"><span class="pre">UInt3</span></code>. Die kleinste darstellbare Zahl ist die Null, <span class="math notranslate nohighlight">\([0]_{10} = [000]_2\)</span>,
+die größte darstellbare Zahl ist entsprechend <span class="math notranslate nohighlight">\(2^3-1 = [7]_{10} = [111]_2\)</span>. Was passiert, wenn wir diese Zahl um eins hochzählen?
+Hätte man beliebig viele Ziffern zur Verfügung, ergäbe sich <span class="math notranslate nohighlight">\([1000]_2\)</span>. In der Repräsentation mit 3 Bits wird das nächst höhere
+Bit verworfen und es bleibt <span class="math notranslate nohighlight">\([8]_{10} = [000]_2 = [0]_{10}\)</span>.</p>
+</div>
+<p>Die Darstellung der unsigned integer ist zyklisch modulo <span class="math notranslate nohighlight">\(2^n\)</span>. Mathematisch ausgedrückt, bildet die Zahlenmenge <code class="docutils literal notranslate"><span class="pre">UInt&lt;n&gt;</span></code> einen
+<em>Restklassenring modulo <span class="math notranslate nohighlight">\(2^n\)</span></em>, geschrieben als <span class="math notranslate nohighlight">\(\mathbb{Z}/2^n\mathbb{Z}\)</span>. Die Zahlen <span class="math notranslate nohighlight">\(0,1,\ldots,2^{n}-1\)</span> bilden dabei die Repräsentanten,
+oder Elemente, der Klassen.</p>
+<div class="note admonition">
+<p class="admonition-title">Definition</p>
+<p>Sei <span class="math notranslate nohighlight">\(a\in\mathbb{N}_0\)</span> und bezeichne <span class="math notranslate nohighlight">\(\overline{a}\)</span> die Restklasse von <span class="math notranslate nohighlight">\(a\)</span>, dargestellt durch einen Repräsentanten <span class="math notranslate nohighlight">\(a \operatorname{mod} 2^n\)</span>, dann definiert man die Addition
+und Multiplikation von Restklassen durch ganzzahlige Addition und Multiplikation mit anschließender Restbildung, d.h.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\overline{a} \oplus \overline{b} := \overline{a + b}\\
+\overline{a} \odot \overline{b} := \overline{a \cdot b}
+\end{split}\]</div>
+</div>
+<div class="proof theorem admonition" id="thm-restklassenring">
+<p class="admonition-title"><span class="caption-number">Theorem 1 </span> (Rechenregeln in Restklassenringen)</p>
+<section class="theorem-content" id="proof-content">
+<p>Für alle natürlichen Zahlen <span class="math notranslate nohighlight">\(m\in\mathbb{N}_0\)</span> sind die Operationen <span class="math notranslate nohighlight">\(\oplus,\odot\)</span>
+über den Restklassen <span class="math notranslate nohighlight">\(\mathbb{Z}/m\mathbb{Z}\)</span> wohldefiniert und für alle
+<span class="math notranslate nohighlight">\(\overline{a},\overline{b},\overline{c}\in\mathbb{Z}/m\mathbb{Z}\)</span> gelten</p>
+<ul class="simple">
+<li><p>die Assoziativgesetze:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\overline{a} \oplus (\overline{b} \oplus \overline{c}) &amp;= (\overline{a} \oplus \overline{b}) \oplus \overline{c} \\
+\text{und }\quad \overline{a} \odot (\overline{b} \odot \overline{c}) &amp;= (\overline{a} \odot \overline{b}) \odot \overline{c},
+\end{split}\]</div>
+<ul class="simple">
+<li><p>die Kommutativgesetze:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\overline{a} \oplus \overline{b} &amp;= \overline{b} \oplus \overline{a} \\
+\text{und }\quad \overline{a} \odot \overline{b} &amp;= \overline{b} \odot \overline{a},
+\end{split}\]</div>
+<ul class="simple">
+<li><p>das Distributivgesetz: <span class="math notranslate nohighlight">\(\overline{a} \odot (\overline{b} \oplus \overline{c}) = (\overline{a} \odot \overline{b}) \oplus (\overline{a} \odot \overline{c})\)</span>,</p></li>
+<li><p>und die Existenz neutraler Elemente: <span class="math notranslate nohighlight">\(\overline{a} \oplus \overline{0} = \overline{a}\)</span> und <span class="math notranslate nohighlight">\(\overline{1} \odot \overline{a} = \overline{a}\)</span>.</p></li>
+</ul>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Für die Wohldefiniertheit muss man zeigen, dass die Operationen unabhängig von der Wahl der Repräsentanten der Restklasse ist.</p>
+<p>Exemplarisch zeigen wir das Distributivgesetz:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\overline{a} \odot (\overline{b} \oplus \overline{c}) &amp;\overset{\text{Def.}\oplus}{=} \overline{a} \odot \overline{b+c} \overset{\text{Def.}\odot}{=} \overline{a\cdot(b+c)} \\
+&amp;\overset{\text{DG.}}{=} \overline{a\cdot b + a\cdot c} \overset{\text{Def.}\oplus}{=} \overline{a\cdot b} \oplus \overline{a\cdot c} \overset{\text{Def.}\odot}{=} (\overline{a} \odot \overline{b}) \oplus (\overline{a} \odot \overline{c})
+\end{split}\]</div>
+</div>
+<p>Im folgenden schreiben wir einfach <span class="math notranslate nohighlight">\(+,\cdot\)</span> für die Operationen und lassen i.d.R. den Überstrich weg.</p>
+<p>Die Arithmetik mit <code class="docutils literal notranslate"><span class="pre">Unsigned</span></code> Integer Zahlen folgt der Arithmetik im Restklassenring. Das bedeutet insbesondere, dass wir beim
+Rechnen mit Zahlen vom gleichen Typ nicht aus dessen Wertebereich herauslaufen können.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">UInt8</span><span class="p">(</span><span class="mi">207</span><span class="p">)</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">UInt8</span><span class="p">(</span><span class="mi">129</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="kt">Int</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Int(x + y) = 80
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>typeof(x + y) = UInt8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>In manchen Programmiersprachen wird die Arithmetik flexibler gehandhabt. Ist das Ergebnis eines Ausdrucks größer als es der
+Wertebereich der Operanden zulässt, wird automatisch ein größerer Zahlentyp verwendet. Dies ist häufig aber auf Kosten der
+Performance. Die zyklische Arithmetik ist so direkt in Hardware implementiert und entsprechend schnell.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Eine weitere Alternative zur zyklischen Arithmetik ist die <em>saturierende Arithmetik</em>. Dabei dient die kleinste und größte Zahl im
+Wertebereich als Schranke die nicht überschritten werden kann. Ein größeres Ergebnis eines Ausdrucks wird auf die größte Zahl des
+Wertebereichs verkleinert, entsprechend vergrößert bei einem zu kleinen Wert. Diese Arithmetik findet beispielsweise Anwendung in
+der Computergrafik, in der Farben durch einen eingeschränkten Wertebereich, z.B. <code class="docutils literal notranslate"><span class="pre">UInt8</span></code> darstestellt werden, z.B. <code class="docutils literal notranslate"><span class="pre">0</span></code> für Schwarz
+und <code class="docutils literal notranslate"><span class="pre">255</span></code> für Weiß, und man nicht bei kleinen Bildänderungen von Schwarz auf Weiß springen möchte.</p>
+</div>
+</section>
+<section id="signed-integer">
+<h3>Signed integer<a class="headerlink" href="#signed-integer" title="Link to this heading">#</a></h3>
+<p>Bisher haben wir von den natürlichen Zahlen <span class="math notranslate nohighlight">\(\mathbb{N}\)</span> oder <span class="math notranslate nohighlight">\(\mathbb{N}_0\)</span> gesprochen. Möchte man die Subtraktion als Operation einführen, dann ist es hilfreich die Menge um sogenannte <em>negative Zahlen</em> zu erweitern. Man spricht hier von den <em>ganzen Zahlen</em> <span class="math notranslate nohighlight">\(\mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\}\)</span>. Diese Menge könnte man z.B. darüber definieren, dass man sie versteht als alle möglichen Differenzen natürlicher Zahlen.</p>
+<p>Für <span class="math notranslate nohighlight">\(n\leq m\)</span> existiert genau ein <span class="math notranslate nohighlight">\(d\in\mathbb{N}_0\)</span>, so dass <span class="math notranslate nohighlight">\(d + n = m\)</span>. (Diese Aussage muss bewiesen werden!) Wir bezeichnen das Element <span class="math notranslate nohighlight">\(d\)</span> als <em>Differenz</em> und schreiben <span class="math notranslate nohighlight">\(d = m - n\)</span>. Zwar ist <span class="math notranslate nohighlight">\(d\)</span> eundeutig bzgl. <span class="math notranslate nohighlight">\(n,m\)</span> bestimmt, allerdings existieren umgekehrt zu gegebenem <span class="math notranslate nohighlight">\(d\)</span> unendlich viele Repräsentationen <span class="math notranslate nohighlight">\(m,n\in\mathbb{N}_0\)</span>. Seien nun <span class="math notranslate nohighlight">\(n\leq m\)</span> und <span class="math notranslate nohighlight">\(n'\leq m'\)</span> gegeben, so dass <span class="math notranslate nohighlight">\(m - n = m' - n'\)</span>, also die Differenzen übereinstimmen. Das können wir auch ohne das <span class="math notranslate nohighlight">\(-\)</span> ausdrücken, als <span class="math notranslate nohighlight">\(n' + m = n + m'\)</span>. Diese Eigenschaft kann man auch für Paaren <span class="math notranslate nohighlight">\(n&gt;m\)</span> und <span class="math notranslate nohighlight">\(n'&gt;m'\)</span> sinnvoll auswerten und erlaubt es die Menge der ganzen Zahlen über die Menge von Paaren natürlicher Zahlen auszudrücken, die die gleiche Different haben.</p>
+<div class="proof definition admonition" id="dfn-equivalence-subtraction">
+<p class="admonition-title"><span class="caption-number">Definition 8 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Zwei Paare natürlicher Zahlen <span class="math notranslate nohighlight">\((m,n),(m',n')\in\mathbb{N}_0\times\mathbb{N}_0\)</span> heißen <em>äquivalent</em> bzgl. der Subtraktion, wenn sie die gleiche Differenz bilden, d.h.</p>
+<div class="math notranslate nohighlight">
+\[
+(m,n) \simeq (m',n') \Leftrightarrow n+m' = n'+m.
+\]</div>
+<p>Wir bezeichnen mit <span class="math notranslate nohighlight">\([m,n]_{-}\)</span> die Äquivalenzklassen dieser Relation, d.h.,</p>
+<div class="math notranslate nohighlight">
+\[
+[m,n]_{-} := \{(m',n')\in\mathbb{N}_0\times\mathbb{N}_0\,\mid\,(m,n) \simeq (m',n')\}.
+\]</div>
+</section>
+</div><p>Die Menge der ganzen Zahlen kann nun über die Menge der Äquivalenzklassen bzgl. Subtraktion definiert werden:</p>
+<div class="proof definition admonition" id="dfn-ganze-zahlen">
+<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Ganze Zahlen)</p>
+<section class="definition-content" id="proof-content">
+<p>Die Menge <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> ist definiert als</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{Z} := \{[m,n]_{-}\,\mid\, m,n\in\mathbb{N}_0\}
+\]</div>
+</section>
+</div><div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Addition, Multiplikation, Potenzieren und auch die Rechenregeln lassen sich auf die ganzen Zahlen übertragen. z.T. wird dies in der LA Vorlesung diskutiert.</p>
+<p>Äquivalenzklassen werden typischerweise durch einen Repräsentanten dargestellt. Im Falle der ganzen Zahlen könnte man z.B. wählen <span class="math notranslate nohighlight">\((m-n, 0)\)</span>, falls <span class="math notranslate nohighlight">\(n\leq m\)</span> und <span class="math notranslate nohighlight">\((0,n-m)\)</span>, falls <span class="math notranslate nohighlight">\(n &gt; m\)</span>. Um die klassische Notation der ganzen Zahlen zu erhalten, nutzt man für die Repräsentanten <span class="math notranslate nohighlight">\((a,0)\)</span> die Schreibweise <span class="math notranslate nohighlight">\(a\)</span> und für <span class="math notranslate nohighlight">\((0,a)\)</span> die Schreibweise <span class="math notranslate nohighlight">\(-a\)</span>.</p>
+</div>
+<p>Wie stellt man mit einem Bitmuster aus <code class="docutils literal notranslate"><span class="pre">0</span></code> und <code class="docutils literal notranslate"><span class="pre">1</span></code> eine negative Zahl dar? In der Dezimalrepräsentation nehmen wir einfach
+ein zusätzliches Zeichen hinzu, das Minus <code class="docutils literal notranslate"><span class="pre">-</span></code>. Dies benötigt allerdings eine weitere „Ziffer“ zum Speichern und hat dabei nur zwei
+Zustände <code class="docutils literal notranslate"><span class="pre">-</span></code> oder <code class="docutils literal notranslate"><span class="pre">+</span></code>. Binär ließen sich diese zwei Zustände einfach als <code class="docutils literal notranslate"><span class="pre">1</span></code> oder <code class="docutils literal notranslate"><span class="pre">0</span></code> repräsentieren.</p>
+<p>Da man einfach nur eine weitere Ziffer benötigt, um die ganzen Zahlen darzustellen, ist folgende Aussage direkt nachvollziehbar:</p>
+<div class="proof observation admonition" id="obs-zifferndarstellung-Z">
+<p class="admonition-title"><span class="caption-number">Observation 1 </span></p>
+<section class="observation-content" id="proof-content">
+<p>Jede Zifferndarstellung von <span class="math notranslate nohighlight">\(\mathbb{N}_0\)</span> induziert eine Zifferndarstellung von <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>.</p>
+</section>
+</div><p>Statt ein Bit einfach nur als Vorzeichen zu verwenden, um die negativen Zahlen darstellen zu können, hat man sich verschiedene
+Varianten der Repräsentation der gesamten Zahl überlegt, die einen möglichst großen Wertebereich hat und deren Arithmetik
+einfach umzusetzen ist. Heutzutage hat sich die <em>2er-Komplement-Darstellung</em> etabliert.</p>
+<div class="proof definition admonition" id="dfn-zweier-komplement">
+<p class="admonition-title"><span class="caption-number">Definition 10 </span> (2er-Komplement Darstellung)</p>
+<section class="definition-content" id="proof-content">
+<p>Eine <span class="math notranslate nohighlight">\(n\)</span>-stellige ganze Zahl <span class="math notranslate nohighlight">\(x\in\mathbb{Z}\)</span> lässt sich in der Basis <span class="math notranslate nohighlight">\(b=2\)</span> im <strong>2er-Komplement</strong> darstellen, als</p>
+<div class="math notranslate nohighlight">
+\[
+x = [m_{n-1} m_{n-2}\cdots m_1 m_0]_2 = -m_{n-1}\cdot 2^{n-1} + \sum_{i=0}^{n-2} m_i \cdot 2^i,
+\]</div>
+<p>mit Ziffern <span class="math notranslate nohighlight">\(m_i\in\{0,1\}\)</span>.</p>
+</section>
+</div><p>Analog wie bei <code class="docutils literal notranslate"><span class="pre">Unsigned</span></code> Typen, gibt es in Julia die Klasse der <code class="docutils literal notranslate"><span class="pre">Signed</span></code> Typen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">subtypes</span><span class="p">(</span><span class="kt">Signed</span><span class="p">)</span><span class="w">  </span><span class="c"># Alle Repräsentationen des abstrakten Typs `Signed`</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6-element Vector{Any}:
+ BigInt
+ Int128
+ Int16
+ Int32
+ Int64
+ Int8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ignorieren wir mal den speziellen Typ <code class="docutils literal notranslate"><span class="pre">BigInt</span></code>, dann habe alle wieder die Bezeichnung <code class="docutils literal notranslate"><span class="pre">Int&lt;n&gt;</span></code>, wobei <code class="docutils literal notranslate"><span class="pre">n</span></code> für die Länge des
+Bitmusters, also die Anzahl an verfügbaren Bits, steht. Reserviert man das vorderste Bit <span class="math notranslate nohighlight">\(m_{n-1}\)</span> für das Vorzeichen, dann
+bleiben nur noch <span class="math notranslate nohighlight">\(n-1\)</span> Bits für die Darstellung der Ziffern übrig. In der 2er-Komplement Darstellung ergibt sich für die
+verschiedenen Integer Typen der Wertebereich</p>
+<div class="math notranslate nohighlight">
+\[
+-2^{n-1} \leq x &lt; 2^{n-1}
+\]</div>
+<p>Für alle negativen Zahlen setzt man das Vorzeichenbit <span class="math notranslate nohighlight">\(m_{n-1}=1\)</span> und für alle nichtnegativen Zahlen inklusive der 0 auf <span class="math notranslate nohighlight">\(m_{n-1}=0\)</span>.
+Durch diese zusätzliche Ziffer 0 ergibt sich also eine Asymmetrie (bzgl. der 0), so dass es für die kleinste negative Zahl <span class="math notranslate nohighlight">\(-2^{n-1}\)</span>
+kein darstellbares additives Inverses gibt.</p>
+<div class="admonition-beispiel admonition">
+<p class="admonition-title">Beispiel</p>
+<p>Betrachten wir wieder einen <em>fiktiven</em> Datentype mit nur 3 Bits, <code class="docutils literal notranslate"><span class="pre">Int3</span></code>. Die Werte und zugehörigen Bitmuster aller dieser Zahlen
+stellen sich nun folgendermaßen dar:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lrl}
+011 &amp; 3 &amp;= 2^2 - 1\\
+010 &amp; 2 \\
+001 &amp; 1 \\
+000 &amp; 0 \\
+111 &amp; -1 \\
+110 &amp; -2 \\
+101 &amp; -3 \\
+100 &amp; -4 &amp;= -2^2
+\end{array}
+\end{split}\]</div>
+</div>
+<p>Wenn man alle <em>Bitmuster</em> von <span class="math notranslate nohighlight">\([00\cdots0]_2\)</span> bis <span class="math notranslate nohighlight">\([11\cdots1]_2\)</span> durchläuft, so erhält man zuerst in aufsteigender Reihenfolge
+die Zahlen <span class="math notranslate nohighlight">\(0\)</span> bis <span class="math notranslate nohighlight">\(2^{n-1} - 1\)</span> (alle mit Vorzeichenbit = 0) und sodann in aufsteigender Reihenfolge die Zahlen <span class="math notranslate nohighlight">\(-2^{n-1}\)</span> bis <span class="math notranslate nohighlight">\(-1\)</span>
+(alle mit Vorzeichenbit = 1).</p>
+<p>Man sieht, dass beim Übergang von <span class="math notranslate nohighlight">\([011\cdots1]_2 = 2^{n-1}-1\)</span> zu <span class="math notranslate nohighlight">\([100\cdots0]_2\)</span> anstelle der vorzeichenlosen Interpretation,
+welche die Zahl <span class="math notranslate nohighlight">\(2^{n-1}\)</span> liefern würde, die um <span class="math notranslate nohighlight">\(2^n\)</span> kleinere Zahl <span class="math notranslate nohighlight">\(2^{n-1}-2^n =-2^{n-1}\)</span> in der 2er-Komplementdarstellung
+gemeint ist. Die Darstellung ist also wieder zyklisch module <span class="math notranslate nohighlight">\(2^n\)</span>, aber um <span class="math notranslate nohighlight">\(2^{n-1}\)</span> nach unten verschoben.</p>
+</section>
+</section>
+<section id="arithmetik">
+<h2>Arithmetik<a class="headerlink" href="#arithmetik" title="Link to this heading">#</a></h2>
+<p>Wir wollen uns ein paar arithmetische Operationen anschauen, wie sie für (unsigned) Integer definiert sind.</p>
+<section id="negation">
+<h3>Negation<a class="headerlink" href="#negation" title="Link to this heading">#</a></h3>
+<p>Das sog. <em>1er-Komplement</em> einer Zahl erhält man, indem man alle <span class="math notranslate nohighlight">\(n\)</span> bits (inklusive Vorzeichenbit)
+in ihrem Bitmuster invertiert, also jede 0 gegen eine 1 und jede 1 gegen eine 0 austauscht.
+Das 1er-Komplement ergänzt also das Bitmuster der zu negierenden Zahl zur Summe <span class="math notranslate nohighlight">\(2^{n}-1 = [111\cdots1]_2\)</span>.</p>
+<p>Um eine Zahl in 2er-Komplement-Darstellung zu negieren, muss man zunächst ihr 1er-Komplement bilden
+(indem man einfach alle bits invertiert) und dann noch eine 1 (in der hinteren Bitposition) binär addieren,
+was im Allgemeinen einen kompletten Additionsprozess (siehe nächsten Abschnitt) erfordert, da im ungünstigsten
+Fall eine Übertragsbehandlung über alle Bitpositionen erforderlich sein kann. Das Resultat dieser Negation
+(= 2er-Komplement-Bildung) nennt man auch einfach das <em>2er-Komplement</em> der ursprünglichen Zahl, weil sein
+Bitmuster das Bitmuster der zu negierenden Zahl zur Summe <span class="math notranslate nohighlight">\(2^n\)</span> ergänzt.</p>
+<p>Im folgenden Beispiel implementieren wir die Negation mittels der 2er-Komplement Definition und wenden diese
+Operation auf den Wert 7 als signed und unsigned Integer an:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">negate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">one</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="c"># ~ bedeutet flippe alle Bits</span>
+<span class="w">                        </span><span class="c"># one(x) bedeutet eine 1 vom Typ wie x</span>
+
+<span class="c"># Utility zum Darstellen des Ergebnisses</span>
+<span class="n">show</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">$</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="s">(</span><span class="si">$</span><span class="p">(</span><span class="kt">Int</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="s">)=</span><span class="si">$</span><span class="p">(</span><span class="n">bitstring</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="s">&quot;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="kt">Int8</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="kt">UInt8</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">negate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x=</span><span class="si">$</span><span class="p">(</span><span class="n">show</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="s"> =&gt; -x=</span><span class="si">$</span><span class="p">(</span><span class="n">show</span><span class="p">(</span><span class="n">negate</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x=Int8(7)=00000111 =&gt; -x=Int8(-7)=11111001
+x=UInt8(7)=00000111 =&gt; -x=UInt8(249)=11111001
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es zeigt sich, dass das zyklische Weiterzählen von unsigned Integern analog funktioniert, wie bei signed Integern
+in der 2er-Komplement Darstellung.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Da der Zahlbereich bei der 2er-Komplement-Darstellung asymmetrisch ist, stellt sich noch
+die Frage, was mit der betragsgrößten Zahl <span class="math notranslate nohighlight">\(-2^{n-1} = [100\cdots0]_2\)</span> bei diesem Negationsprozess
+geschieht. Wie man leicht sieht, ist das 1er-Komplement gerade die größte darstellbare Zahl
+<span class="math notranslate nohighlight">\(2^{n-1} - 1 = [011\cdots1]_2\)</span>, so dass die anschließende binäre Addition von 1 zu diesem Bitmuster
+gerade den ungünstigsten Fall in obigem Sinne darstellt: der Übertrag läuft über alle Bitpositionen
+und es ergibt sich das wohlbekannte Bitmuster <span class="math notranslate nohighlight">\([100\cdots0]_2\)</span>, nämlich wieder die eigentlich
+zu negierende Zahl <span class="math notranslate nohighlight">\(-2^{n-1}\)</span>. Dies ist wegen der Restklassenring-Eigenschaft auch nur logisch
+und ganz korrekt, da das mathematisch zu erwartende Ergebnis <span class="math notranslate nohighlight">\(2^{n-1}\)</span> nicht darstellbar ist und
+deshalb ein um <span class="math notranslate nohighlight">\(2^n\)</span> zu kleines Ergebnis geliefert wird.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">typemin</span><span class="p">(</span><span class="kt">Int8</span><span class="p">)</span><span class="w">                 </span><span class="c"># kleinste darstellbare Zahl von Int8  =&gt; -128</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;-x = </span><span class="si">$</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span><span class="w">             </span><span class="c"># Negation</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;abs(x) = </span><span class="si">$</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span><span class="w">     </span><span class="c"># Betrag einer Zahl (Absolutwert)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;-1x = -1*x = </span><span class="si">$</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span><span class="w">   </span><span class="c"># -1*x ist Int64*Int8 -&gt; Int64</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-x = -128
+abs(x) = -128
+-1x = -1*x = 128
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="addition">
+<h3>Addition<a class="headerlink" href="#addition" title="Link to this heading">#</a></h3>
+<p>Die Addition hat für Zahlen in 2er-Komplement-Darstellung die überaus angenehme Eigenschaft, dass man
+einfach die Bitmuster der zwei zu addierenden Zahlen (ohne Sonderbehandlung der Vorzeichenbits) binär
+addieren kann und einen eventuell entstehenden Übertrag vorne (<em>carry-out</em> aus der Vorzeichenbit-Position heraus)
+<em>einfach ignorieren</em> darf. Heraus kommt immer das korrekte Ergebnis - unabhängig von den ursprünglichen
+Vorzeichen der Addenden. Dieses ist allenfalls (wegen der zyklischen Eigenschaft der 2er-Komplement-Darstellung)
+um <span class="math notranslate nohighlight">\(2^n\)</span> zu groß oder zu klein, wenn <em>Überlauf</em> (<em>integer overflow</em>) eingetreten ist. Dieser lässt sich (auch in Hardware)
+leicht erkennen, wird aber von typischen Arithmetikeinheiten (ALU = arithmetic logic unit) heutiger
+Prozessoren <em>normalerweise immer ignoriert</em>.</p>
+<section id="halbaddierer-und-volladdierer">
+<h4>Halbaddierer und Volladdierer<a class="headerlink" href="#halbaddierer-und-volladdierer" title="Link to this heading">#</a></h4>
+<p>Die einfachste Art zwei Binärzahlen zu addieren folgt der klassischen schriftlichen Addition mit Übertrag.
+Dazu muss man Bit für Bit die Ziffern addieren. In einer CPU könnte diese Bitweise Addition als elektrosche
+Schaltung z.B. durch einen <em>Halbaddierer</em> umgesetzt werden. Dieser hat zwei Eingäng für die beiden Bits
+die addiert werden sollen, nennen wie sie <span class="math notranslate nohighlight">\(m_0\)</span> und <span class="math notranslate nohighlight">\(m_1\)</span>, und zwei Ausgänge, die Summe der Bits <span class="math notranslate nohighlight">\(s\)</span> und den
+Übertrag <span class="math notranslate nohighlight">\(c\)</span> (= <em>carry</em>). Wir können diese Operation z.B. über die Wertetabelle darstellen</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(m_0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(m_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(c\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>oder mathematisch als <span class="math notranslate nohighlight">\(c = m_0 \wedge m_1\)</span> (bitweise <em>and</em>) und <span class="math notranslate nohighlight">\(s = m_0 \veebar m_1\)</span> (bitwise <em>xor</em>).</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>In der Julia Programmiersprache lassen sich diese bitweisen Operationen auch auswerten, z.B.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">m0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">UInt8</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">m1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">UInt8</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="n">m0</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="n">m0</span><span class="w"> </span><span class="o">⊻</span><span class="w"> </span><span class="n">m1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>wobei <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> das bitweise <em>und</em> repräsentiert und <code class="docutils literal notranslate"><span class="pre">⊻</span></code> als (<code class="docutils literal notranslate"><span class="pre">\veebar</span></code>) das bitweise <em>xor</em>.</p>
+</div>
+<p>Möchte man den Übertrag aus einer vorherigen Stelle mit berücksichtigen, dann benötigt man einen Addierer, der 3 Eingänge hat. Solch ein Addierwerk nennt man dan <em>Volladdierer</em>. Er könnte beispielsweise über die Verkettung von zwei Halbaddierer aufgebaut werden. Betrachten wir aber erstmal die Wertetabelle. Neben <span class="math notranslate nohighlight">\(m_0\)</span> und <span class="math notranslate nohighlight">\(m_1\)</span> sei nun auch ein Übertrag <span class="math notranslate nohighlight">\(c_{\text{in}}\)</span> aus einer andere Schaltung gegeben. Wir berechnen die Summe <span class="math notranslate nohighlight">\(s\)</span>, und den Übertrag <span class="math notranslate nohighlight">\(c_{\text{out}}\)</span>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(m_0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(m_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(c_{\text{in}}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(c_{\text{out}}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(s\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Um eine mathematische Formel für diese Tabelle/Operation herzuleiten, kann man z.B. alle möglichen Zustände die den Wert <code class="docutils literal notranslate"><span class="pre">1</span></code> ergeben mittels <em>oder</em>-Verknüpfung zusammenbringen. Man bezeichnet eine solche Form in der <em>Boolschen Algebra</em> dann auch als <em>disjunktive Normalform</em>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+c_{\text{out}} &amp;= (\neg m_0\wedge m_1\wedge c_{\text{in}}) \vee (m_0\wedge \neg m_1\wedge c_{\text{in}}) \vee (m_0\wedge m_1\wedge \neg c_{\text{in}}) \vee (m_0\wedge m_1\wedge c_{\text{in}}) \\
+&amp;= (c_{\text{in}} \wedge (m_0\veebar m_1))\vee (m_0\wedge m_1)
+\end{split}\]</div>
+<p>Das Symbol <span class="math notranslate nohighlight">\(\neg\)</span> stellt hierbei die boolsche <em>Negation</em> dar.</p>
+<p>Für die Summe ergibt sich <span class="math notranslate nohighlight">\(s = m_0\veebar m_1\veebar c_{\text{in}}\)</span>.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Die bitweisen Operationen <em>oder</em> und <em>nicht</em> lassen sich in Julia über die Operatoren <code class="docutils literal notranslate"><span class="pre">|</span></code> und <code class="docutils literal notranslate"><span class="pre">~</span></code> ausdrücken.</p>
+</div>
+</section>
+<section id="ripple-carry-addierer">
+<h4>Ripple-Carry Addierer<a class="headerlink" href="#ripple-carry-addierer" title="Link to this heading">#</a></h4>
+<p>Die Addition einer Folge von Bits kann un über eine Hintereinanderschaltung von Volladdierer geschehen. Dazu wird der Übertrag <span class="math notranslate nohighlight">\(c_{\text{out}}\)</span> aus einer vorherigen Schaltung als Input <span class="math notranslate nohighlight">\(c_{\text{int}}\)</span> in die nächste Schaltung gegeben, zusammen mit dem paar an Bits aus den Ziffern der zwei Zahlen die addiert werden sollen.</p>
+<figure class="align-default" id="id1">
+<img alt="Darstellung eines Ripple-Carry-Addierers" src="_images/Ripple-carry-adder.svg" />
+<figcaption>
+<p><span class="caption-number">Abb. 1 </span><span class="caption-text">Ein Ripple-Carry-Addierer ist hier dargestellt als Hintereinanderschaltung mehrerer Volladdierer. Dabei gibt es ein zusätzliches Eingabe Carry, das z.B. für die Implementierung einer Subtraktionsoperation genutzt werden kann, siehe unten. (Quelle: Wikipedia)</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Man sieht hier, dass ein solches Addierwerk nur sequenziell die Bits abarbeiten kann. Jeder Volladdierer muss auf das Ergebnis der vorherigen Schaltung warten. Moderne Schaltungen, wie der <em>Carry-Look-Ahead-Addierer</em> erlauben es die Addition durch gewisses paralleles Abarbeiten zu beschleunigen. Solche Schaltungen werden u.U. in einer Vorlesung zu Computer-Arithmetik weiter diskutiert.</p>
+</div>
+</section>
+</section>
+<section id="subtraktion">
+<h3>Subtraktion<a class="headerlink" href="#subtraktion" title="Link to this heading">#</a></h3>
+<p>Um für die Subtraktion <span class="math notranslate nohighlight">\(a - b\)</span> dieselbe Logik und letztlich dieselbe elektronische Schaltung wie
+für die Addition verwenden zu können, muss man zunächst den Subtrahenden <span class="math notranslate nohighlight">\(b\)</span> negieren, bevor
+man diesen dann addieren darf: <span class="math notranslate nohighlight">\(a - b = a + (-b)\)</span>. Da zur Negation von <span class="math notranslate nohighlight">\(b\)</span> das 2er-Komplement
+von <span class="math notranslate nohighlight">\(b\)</span> gebildet werden muss und dieses neben der Inversion aller bits (1er-Komplement) noch
+die Addition einer 1 (in der hinteren Bitposition) erfordert, bevor das Ergebnis zu a addiert
+werden kann, erscheint dieser Prozess zunächst recht ungünstig.</p>
+<p>In Wirklichkeit wird jedoch von <span class="math notranslate nohighlight">\(b\)</span> nur das <em>1er-Komplement</em> gebildet (eine extrem einfache
+und schnelle Operation, die bit-parallel ausgeführt werden kann) und dieses sodann direkt
+auf <span class="math notranslate nohighlight">\(a\)</span> addiert, wobei jedoch im Additionsprozess das sog. <em>carry-in bit</em>, welches in die hintere
+Bitposition wie ein Übertrag (aus einer fiktiven dahinter liegenden Stelle) eingeht, mit dem
+Wert 1 mitaddiert wird, sodass tatsächlich das um 1 vergrößerte 1er-Komplement, also das
+2er-Komplement von <span class="math notranslate nohighlight">\(b\)</span> addiert wird.</p>
+<p>Da (wie in jedem Stellenwertsystem) bei der binären Addition in allen Bitpositionen außer der
+hinteren zur Summe der eingehenden Operandenziffern immer noch der Übertrag der dahinterliegenden
+Stelle addiert werden muss, führt die zusätzliche Notwendigkeit eines Übertrags
+in die hintere Bitposition zur Regularisierung der Logik und des elektronischen Layouts. Im
+einfachsten Fall (siehe oben) bestünde ein solches Addierwerk (<em>Ripple-Carry Adder</em>) aus <span class="math notranslate nohighlight">\(n\)</span> <em>Volladdierern</em>,
+von denen jeder aus den 2 Operanden-bits und dem <em>carry-in</em> bit in
+diese Bitposition die binäre Summe (<span class="math notranslate nohighlight">\(\in \{0, 1, 2, 3\}\)</span>) als 2-stellige Binärzahl berechnet, wobei das
+hintere bit das Summenbit an dieser Bitposition ist und das vordere als <em>Übertrag</em> (<em>carry</em>) (oder
+genauer <em>carry-out</em> bit) in die nächst höherwertige Stelle weitergeleitet wird.</p>
+<p>So benötigt die Subtraktion außer der vorgeschalteten, sehr schnellen 1er-Komplement-Bildung
+des Subtrahenden keine zusätzliche Hardware und praktisch auch nicht mehr Zeit als eine Addition.
+Diese bestechende Einfachheit der Logik und des Hardware-Layouts ist der wesentliche
+Grund, warum alle ALUs für die Darstellung vorzeichenbehafteter ganzer Zahlen seit über 50
+Jahren <em>2er-Komplement</em> verwenden. Darüberhinaus ist dieselbe Hardware auch für das Rechnen
+mit <code class="docutils literal notranslate"><span class="pre">Unsigned</span></code> Zahlen ohne Änderung geeignet, siehe auch Negation oben.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Es sei noch bemerkt, dass der einzige ernsthafte Konkurrent, das <em>1er-Komplement</em>,
+zwar eine bestechend einfache Negation besitzt, dafür aber die wesentlich häufiger auftretende
+Addition unter dem Problem leidet, dass ein eventuell auftretender Übertrag (carry-out) aus
+der vorderen Bitposition als sog. <em>end-around carry</em> in einer zweiten Additionsphase in der hinteren
+Bitposition addiert werden muss. Auch diese zweite Phase kann einen weit durchlaufenden
+Übertrag erzeugen, und dies macht die 1er-Komplement-Addition komplexer und langsamer.
+Außerdem kann eine 1er-Komplement-Darstellung nicht ohne Weiteres für <code class="docutils literal notranslate"><span class="pre">Unsigned</span></code> Typen verwendet werden.</p>
+</div>
+<div class="admonition-beispiel admonition">
+<p class="admonition-title">Beispiel</p>
+<p>Betrachten wir wieder einen <em>fiktiven</em> Datentype mit nur 3 Bits, <code class="docutils literal notranslate"><span class="pre">Int3</span></code>. Sei <span class="math notranslate nohighlight">\(a=[-1]_{10}=[111]_2\)</span> und
+<span class="math notranslate nohighlight">\(b=[3]_{10}=[011]_2\)</span>. Wir berechnen zuerst <span class="math notranslate nohighlight">\(a + b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rlllcr}
+   &amp; 1  &amp;1  &amp;1 &amp; = &amp; -1 \\
++_1&amp; 0_1&amp;1_1&amp;1 &amp;   &amp;  3 \\\hline
+   &amp; 0  &amp;1  &amp;0 &amp;   &amp;  2
+\end{array}
+\end{split}\]</div>
+<p>und dann <span class="math notranslate nohighlight">\(a - b\)</span> über das 1er-Komplement von <span class="math notranslate nohighlight">\(b\)</span> mit zusätzlichem <em>carry-in</em> bit.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left(\begin{array}{rlllcr}
+ &amp; 1&amp;1&amp;1&amp;=&amp;-1 \\
+-&amp; 0&amp;1&amp;1&amp; &amp; 3
+\end{array}\right)\quad \to \quad \begin{array}{rlllcr}
+   &amp; 1  &amp;1  &amp;1   &amp; = &amp; -1 \\
++_1&amp; 1_1&amp;0_1&amp;0_{(1)} &amp;   &amp; -4 + (1) \\\hline
+   &amp; 1  &amp;0  &amp;0   &amp;   &amp; -4
+\end{array}
+\end{split}\]</div>
+<p>Die <em>Überträge</em> (<em>carrys</em>) sind in der obigen Darstellung als kleine Fußzahlen dargestellt und das
+zusätzliche carry-in Bit als <code class="docutils literal notranslate"><span class="pre">(1)</span></code> in Klammern, zur Verdeutlichung.</p>
+</div>
+</section>
+<section id="multiplikation">
+<span id="sec-integer-multiplication"></span><h3>Multiplikation<a class="headerlink" href="#multiplikation" title="Link to this heading">#</a></h3>
+<p>Die Multiplikation zweier natürlicher Zahlen kann man sich erst mal vorstellen als wiederholte Addition.
+Eine rekursive/induktive Definition der Multiplikation basiert auf zwei Eigenschaften der Multiplikation natürlicher Zahlen:
+Seien <span class="math notranslate nohighlight">\(n,a\in\mathbb{N}\)</span>, dann gilt</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+1 a = a \\
+(n + 1) a = n a + a
+\end{split}\]</div>
+<p>Die erste Eigenschaft ist die Existenz eines <em>Einselements</em>, d.h. eines neutralen Elements bzgl. der Multiplikation, und die
+zweite Eigenschaft ist im Prinzip das Distributivgesetz. Laut <a class="reference internal" href="#thm-restklassenring">Theorem 1</a>
+gelten diese Eigenschaften auch für das Rechnen mit Restklassen, wie z.B. den <code class="docutils literal notranslate"><span class="pre">Integer</span></code> Zahlen.</p>
+<p>Wir können damit einen einfachen Algorithm, also eine Verfahrensvorschrift, formulieren, mit der wir zwei Zahlen <span class="math notranslate nohighlight">\(n\)</span> und <span class="math notranslate nohighlight">\(a\)</span>
+multiplizieren können, in dem wir mehrfach addieren und subtrahieren:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">multiply</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="c"># =                   multiply(4,4) + 4</span>
+<span class="c"># =             (multiply(3,4) + 4) + 4</span>
+<span class="c"># =       ((multiply(2,4) + 4) + 4) + 4</span>
+<span class="c"># = (((multiply(1,4) + 4) + 4) + 4) + 4</span>
+<span class="c"># = (((4             + 4) + 4) + 4) + 4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dies scheint noch eine sehr ineffiziente Methode zu sein, sie liefert aber erstmal das richtige Ergebnis.</p>
+<div class="proof theorem admonition" id="thm-multiply-algorithm">
+<p class="admonition-title"><span class="caption-number">Theorem 2 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Der <code class="docutils literal notranslate"><span class="pre">multiply</span></code> Algorithmus liefert für alle Zahlen <span class="math notranslate nohighlight">\(n,a\in\mathbb{N}\)</span> das Produkt <span class="math notranslate nohighlight">\(n\cdot a\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Der Beweis für die Korrektheit des Algorithmus wird per Induktionsargument über den Faktor <span class="math notranslate nohighlight">\(n\)</span> geführt.</p>
+<ul class="simple">
+<li><p>Für <span class="math notranslate nohighlight">\(n=1\)</span> liefert der Algorithmus das korrekte Ergebnis <span class="math notranslate nohighlight">\(1\cdot n = a\)</span>.</p></li>
+<li><p>Sei <span class="math notranslate nohighlight">\(m&gt;1\)</span>. Wir nehmen im Folgenden an, dass für alle <span class="math notranslate nohighlight">\(n=1,2,\ldots,m-1\)</span> gilt <code class="docutils literal notranslate"><span class="pre">multiply(n,a)</span> <span class="pre">==</span> <span class="pre">n*a</span></code>.</p></li>
+<li><p>Betrachte den Fall <span class="math notranslate nohighlight">\(n=m&gt;1\)</span>. Es gilt <code class="docutils literal notranslate"><span class="pre">multiply(m,a)</span> <span class="pre">==</span> <span class="pre">multiply(m-1,a)</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">==</span> <span class="pre">(m-1)*a</span> <span class="pre">+</span> <span class="pre">a</span> <span class="pre">==</span> <span class="pre">m*a</span></code> und damit
+die Behauptung.</p></li>
+</ul>
+</div>
+<p>Auch wenn auf den ersten Blick der Beweis für die Korrektheit des Algorithmus hier trivial erscheint,
+gilt es doch die Details zu beachten. Wir haben gezeigt, dass der Algorithmus für alle
+<span class="math notranslate nohighlight">\(n,a\in\mathbb{N}=\{1,2,\ldots\}\)</span> funktioniert, aber was ist mit der Zahl 0? Was ist mit negativen Zahlen?</p>
+<div class="admonition tip">
+<p class="admonition-title">Tipp</p>
+<p>Bevor man anfängt einen Algorithmus zu verbessern oder zu erweitern, ist es wichtig erst mal einen funktionierenden
+Basisalgorithmus zu haben. Mit dem kann man dann das Ergebnis verifizieren, und mit dem kann man auch die Geschwindigkeit
+oder Komplexität (siehe später) vergleichen.</p>
+</div>
+<p>Wenn man mehr Eigenschaften der ganzen Zahlen ausnutzt, kann man sich eine Variante überlegen, die z.B. weniger
+Additionsschritte benötigt. Betrachten wir dazu erstmal folgendes Beispiel:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+4a &amp;= ((a + a) + a) + a \\
+   &amp;= (a + a) + (a + a)
+\end{split}\]</div>
+<p>Hierbei haben wir das Assoziativgesetz ausgenutzt. Anstelle also 4x einzeln das <span class="math notranslate nohighlight">\(a\)</span> zu addieren, könnte man zuerst <span class="math notranslate nohighlight">\(a+a\)</span> berechnen,
+und dies auf sich selbst addieren. Dadurch hätten wir die Gesamtanzahl an Additionen reduziert.</p>
+<p>Diese Beobachtung geht wohl zurück auf die Ägypter, andere bezeichnen den Algorithmus, der auf dieser Idee basiert, auch
+als „Russische Bauernmultiplikation“. Die Grundidee ist, dass man kontinuierlich <span class="math notranslate nohighlight">\(n\)</span> halbiert, während man <span class="math notranslate nohighlight">\(a\)</span> verdoppelt und
+damit Summen von Vielfachen von <span class="math notranslate nohighlight">\(2^i\)</span> produziert. (Beachte den Bezug zur Darstellung von Binärzahlen!)</p>
+<p>Betrachten wir nochmal Division mit Rest, <a class="reference internal" href="02-zahlen.html#dfn-div-rem">Definition 6</a>, im Speziellen die Division durch 2. Dann nimmer
+der Rest die Werte <span class="math notranslate nohighlight">\(r\in\{0,1\}\)</span> an. Wir nennen eine Zahl <span class="math notranslate nohighlight">\(a\)</span> eine <em>gerade Zahl</em>, wenn bei Division durch 2 der Rest <span class="math notranslate nohighlight">\(r=0\)</span>
+bleibt, ansonsten heißt sie <em>ungerade</em>. Im Kontext von Binärzahlen lassen sich die Operationen „mal 2“ und „durch 2“, sowie Rest
+bei Division durch 2, sehr einfach durchführen. Sei <span class="math notranslate nohighlight">\(a\)</span> eine <span class="math notranslate nohighlight">\(n\)</span>-stellige Binärzahl mit den Ziffern <span class="math notranslate nohighlight">\(m_i\)</span>. Dann ergibt sich
+aus der Darstellung</p>
+<div class="math notranslate nohighlight">
+\[
+2\cdot\sum_{i=0}^{n-1} m_i\cdot 2^i = \sum_{i=0}^{n-1} m_i\cdot 2^{i+1} =: \sum_{j=0}^{n} \tilde{m}_j\cdot 2^j
+\]</div>
+<p>mit <span class="math notranslate nohighlight">\(\tilde{m}_0=0\)</span> und <span class="math notranslate nohighlight">\(\tilde{m}_j = m_{j-1}\)</span> for <span class="math notranslate nohighlight">\(j=1,2,\ldots,n\)</span>. Man sieht an dieser einfachen Rechnung, dass eine
+Multiplikation mit 2 einem Shift der Bits, um eins nach vorne (links) entspricht, wobei die hinterste Stelle mit 0
+aufgefüllt wird. Das vorderste Bit fällt bei den arithmetischen Operationen dann typischerwise als Übertrag raus. Die
+inverse Operation zur Multiplikation ist die Division und mit einem ähnlichen Argument ergibt sich, dass die Division <em>durch 2</em> einem
+shift der Bits nach hinten (rechts) entspricht, wobei vorne mit dem vordersten Bit der Ausgangszahl aufgefüllt wird (das
+Vorzeichen bleibt erhalten) und ganz hinten das Bit rausfällt. Das <em>rausfallende Bit</em> entspricht auch gerade dem Rest bei
+der Division. Der Rest ist also das hinterste Bit in der Ausgangszahl.</p>
+<p>In der Sprache Julia wird der arithmetische Shift nach links oder rechts mittels der Operatoren <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> durchgeführt,
+wobei man die Anzahl an Stellen angiebt, um die verschoben werden soll. Dies entspricht der Potenz von 2 mit der multipliziert
+bzw. dividiert werden soll. Die bitweise „Und“-Verknüpfung mit der Zahl 1 liefert entweder 1 oder 0 wenn das letzte Bit
+gesetzt ist, oder nicht.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Int8</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x    = &quot;</span><span class="p">,</span><span class="n">bitstring</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x&lt;&lt;1 = &quot;</span><span class="p">,</span><span class="n">bitstring</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x&gt;&gt;1 = &quot;</span><span class="p">,</span><span class="n">bitstring</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x&amp;1  = &quot;</span><span class="p">,</span><span class="n">bitstring</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x1</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x    = 11111001
+x&lt;&lt;1 = 11110010
+x&gt;&gt;1 = 11111100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x&amp;1  = 00000001
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zurück zur Multiplikation zweier beliebiger natürlicher Zahlen. Wenn <span class="math notranslate nohighlight">\(n\)</span> eine gerade Zahl ist, dann kann man sie einfach halbieren.
+Dann ließe sich ausnutzen</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+n\cdot a = \left\{\begin{array}{ll}
+a &amp; \text{ wenn }n=1,\\
+(n\div 2) \cdot (2\cdot a)     &amp; \text{ wenn }n\text{ gerade,} \\
+((n-1)\div 2) \cdot (2\cdot a) + a &amp; \text{ wenn }n\text{ ungerade}.
+\end{array}\right.
+\end{split}\]</div>
+<p>Weil die Integer-Division <span class="math notranslate nohighlight">\(\div 2\)</span> mittels Rest definiert ist, gilt für <span class="math notranslate nohighlight">\(n\)</span> ungerade außerdem <span class="math notranslate nohighlight">\(n\div 2=(n-1)\div 2\)</span>.
+Anstelle also in 1er Schritten den Faktor <span class="math notranslate nohighlight">\(n\)</span> solange zu reduzieren, bis wir 1 erreichen, können wir ihn solange halbieren, wie
+das Ergebnis eine gerade Zahl ist:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">multiply2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">multiply2</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c"># half n, double a</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w">                      </span><span class="c"># n is odd</span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">result</span>
+<span class="k">end</span>
+
+<span class="n">multiply2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="c"># = multiply2(2, 8) + 4</span>
+<span class="c"># = multiply2(1, 16) + 4</span>
+<span class="c"># = 16 + 4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="02.1-integer-exercise-12">
+
+<p class="admonition-title"><span class="caption-number">Exercise 4 </span></p>
+<section id="exercise-content">
+<p>Man beweise, dass der Algorithmus <code class="docutils literal notranslate"><span class="pre">multiply2</span></code> für alle <span class="math notranslate nohighlight">\(n,a\in\mathbb{N}\)</span> das korrekte Ergebnis <span class="math notranslate nohighlight">\(n\cdot a\)</span> liefert.</p>
+</section>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>In Julia ist die Multiplikation direkt über <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code> abgebildet und muss nicht manuell implementiert werden. Für <code class="docutils literal notranslate"><span class="pre">Unsigned</span></code>
+Typen ist die Arithmetik modulo <span class="math notranslate nohighlight">\(2^n\)</span>. Die Gedanken, die wir uns hier gemacht haben, wie man eine Multiplikation selbst
+implementiert, sind aber sehr nützlich wenn man dies auf andere Objekte als ganze Zahlen übertragen möchte. Man beachte
+außerdem, dass der vorgestellte Algorithmus so nicht direkt für negative Zahlen <span class="math notranslate nohighlight">\(n\)</span> funktioniert (probiert es aus!) Man
+kann aber z.B. eine Abfrage des Vorzeichens voranstellen, um dann auszunutzen dass <span class="math notranslate nohighlight">\((-n)\cdot a = -(n\cdot a)\)</span> gilt.</p>
+</div>
+</section>
+<section id="division">
+<h3>Division<a class="headerlink" href="#division" title="Link to this heading">#</a></h3>
+<p>Die inverse Operation zur Multiplikation ist die Division. Hier muss man allerdings ein bisschen aufpassen, denn dies gilt
+im Allgemeinen nicht. Es ist nicht unbedingt jedem Element ein inverses Element zugeordnet, zumindest nicht in den ganzen Zahlen. Wie in
+<a class="reference internal" href="02-zahlen.html#dfn-div-rem">Division mit Rest</a> ausgedrückt, bleibt u.U. ein Rest der nicht 0 ist.</p>
+<p>Trotzdem lässt sich das Prinzip der Multiplikation quasi umkehren, um zwei Zahlen <span class="math notranslate nohighlight">\(a\)</span> und <span class="math notranslate nohighlight">\(b\)</span> zu dividieren: wir subtrahieren <span class="math notranslate nohighlight">\(b\)</span> so lange
+von <span class="math notranslate nohighlight">\(a\)</span>, bis etwas heraus kommt, das kleiner als <span class="math notranslate nohighlight">\(b\)</span> ist und dem Rest der Division entsprechen muss:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+a \div b = \left\{\begin{array}{ll}
+1 + (a-b)\div b &amp; \text{ wenn }a\geq b, \\
+0               &amp; \text{ sonst.}
+\end{array}\right.
+\end{split}\]</div>
+<p>Dies ist wieder eine rekursive Vorschrift, die wir in Julia Code übersetzen können:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">divide</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">divide</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>In der Sprache Julia gibt es verschiedene Divisions-Operationen. Die hier vorgestellte Division mit Rest, oder <em>Integer-Division</em>
+wird entweder über die integrierte Funktion <code class="docutils literal notranslate"><span class="pre">div(a,b)</span></code> durchgeführt, oder mittels des Operators <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">÷</span> <span class="pre">b</span></code>. Dieser kann als
+Sonderzeichen eingegeben werden, oder in der REPL Umgebung durch den LaTeX Befehl <code class="docutils literal notranslate"><span class="pre">\div[TAB]</span></code>, wobei <code class="docutils literal notranslate"><span class="pre">[TAB]</span></code> die Tabulator-Taste
+bedeutet. Manche Code-Editoren, z.B. VS Code mit installierter Julia Extensions, erlauben auch eine Autovervollständigung, wenn man
+<code class="docutils literal notranslate"><span class="pre">\div</span></code> anfängt zu tippen.</p>
+<p>Neben der Integer-Division gibt es auch den zugehörigen Rest (<em>remainder</em>). Dieser wird entweder durch die
+integrierte Funktion <code class="docutils literal notranslate"><span class="pre">rem(a,b)</span></code> abgerufen, oder mittels des Operators <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">b</span></code>. Möchte man beide Ergebnisse gleichzeitig,
+bietet sich die kombinierte Funktion <code class="docutils literal notranslate"><span class="pre">divrem(a,b)</span></code> an, die das Resultat als 2-Tupel zurück gibt.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>In Julia ergibt die Division <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code> eine sog. Gleitkommazahl (siehe später), z.B. <code class="docutils literal notranslate"><span class="pre">21/4</span> <span class="pre">=&gt;</span> <span class="pre">5.25</span></code> und ist entspechend nicht
+mehr vom <code class="docutils literal notranslate"><span class="pre">Integer</span></code> Typ. Diese Verhalten ist anders als in manchen anderen Sprachen. In C, C++, Java, Python2, Rust… ist
+der Operator <code class="docutils literal notranslate"><span class="pre">/</span></code> mit zwei Integer Argumenten automatisch eine Integer-Division. Das Verhalten der Sprachen Python3, Matlab…
+ist hingegen so wie in Julia.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Anders als bei der Multiplikation und Addition lässt sich für die Division nicht so leicht ein schnelles Verfahren finden, außer die Division durch 2. In modernen CPUs ist die Divisions Operation immernoch sehr langsam gegenüber der Multiplikation (Faktor 10 - 100). Dividiert man allerdings durch einen Konstante, dann kann ein Compiler diese Operation durch eine Multiplikation mit geeignetem Faktor ersetzen und diesen Faktor vorberechnen.</p>
+</div>
+</section>
+<section id="potenzieren">
+<h3>Potenzieren<a class="headerlink" href="#potenzieren" title="Link to this heading">#</a></h3>
+<p>Potenzieren <span class="math notranslate nohighlight">\(a^b\)</span> ist ähnlich wie das Multiplizieren, es kann durch wiederholtes Anwenden der Multiplikation durchgeführt werden.
+Wir können dabei die Potenz-Gesetze ausnutzen:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+a^0 &amp;= 1 \\
+a^1 &amp;= a \\
+a^{n+1} &amp;= a^{n}\cdot a
+\end{split}\]</div>
+<p>Ausgedrückt in Julia Code ergibt sich</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">power</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">one</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">elseif</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">power</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">power</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="w">  </span><span class="c"># (((3 * 3) * 3) * 3) * 3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>243
+</pre></div>
+</div>
+</div>
+</div>
+<p>und genau wie beim Multiplizieren, kann man einen schnelleren Algorithmus finden, in dem man weitere Potenzgesetze in die
+Herleitung des Algorithmus mit einbezieht. Das Verfahren wird auch als <em>Binäre Exponentiation</em> bezeichnet. Nach Division
+mit Rest, <a class="reference internal" href="02-zahlen.html#dfn-div-rem">Definition 6</a>, wissen wir, dass es zu jedem <span class="math notranslate nohighlight">\(n\)</span> eine eindeutige Zerlegung in <span class="math notranslate nohighlight">\(n=2q + r\)</span> gibt mit <span class="math notranslate nohighlight">\(r\in\{0,1\}\)</span>.
+Das bedeutet, man kann das Potenzieren folgendermaßen umschreiben:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+a^n &amp;= a^{2q+r} \\
+    &amp;= (a^q)^2 a^r.
+\end{split}\]</div>
+<p>mit <span class="math notranslate nohighlight">\(q,r &lt; n\)</span> ergibt sich also wieder eine Rekursionsvorschrift, die sich einfach in Code übersetzem lässt</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">power2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">one</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="k">elseif</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="k">elseif</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">a</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">divrem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">power2</span><span class="p">(</span><span class="n">power2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">q</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">power2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">power2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="w">  </span><span class="c"># (3^2)^2 * 3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>243
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>In Julia gibt es den Operator <code class="docutils literal notranslate"><span class="pre">a^n</span></code> zum Potenzieren zweier ganzer Zahlen. Ist der Exponent nicht-negativ, dann wird das
+Ergebnis exakt module <span class="math notranslate nohighlight">\(2^n\)</span> berechnet, bei negativen Exponenten allerdings ergibt sich eine Gleitkommazahl. Der Spezialfall <code class="docutils literal notranslate"><span class="pre">0^0</span></code>
+ist in Julia als <code class="docutils literal notranslate"><span class="pre">1</span></code> definiert.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Potenzierungs-Operation <code class="docutils literal notranslate"><span class="pre">^</span></code> ist in manchen Programmiersprachen (z.B. Python, Fortran) mit dem doppelten Multiplikationssymbol <code class="docutils literal notranslate"><span class="pre">**</span></code>
+repräsentiert. Andere Sprachen, wie C, C++, oder Java haben keinen power Operator, sondern implementieren dies über eine Bibliotheksfunktion,
+z.B. <code class="docutils literal notranslate"><span class="pre">std::pow(a,n)</span></code> in C++ oder <code class="docutils literal notranslate"><span class="pre">Math.pow(a,n)</span></code> in Java. Der Operator <code class="docutils literal notranslate"><span class="pre">^</span></code> ist in diesen Sprachen dem xor (exklusives bitweises Oder)
+zugeordnet und hat insbesondere eine andere Präzedenz/Priorität.</p>
+</div>
+</section>
+</section>
+<section id="grosze-integer">
+<h2>Große Integer<a class="headerlink" href="#grosze-integer" title="Link to this heading">#</a></h2>
+<p>Neben den Integer Datentype <code class="docutils literal notranslate"><span class="pre">Int&lt;n&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">UInt&lt;n&gt;</span></code>, gibt es in Julia auch noch den Datentyp <code class="docutils literal notranslate"><span class="pre">BigInt</span></code>. Dieser ermöglicht Ganzzahlen beliebiger Länge, hat dadurch allerdings keine feste Breite in Bits mehr, sondern belegt soviel Speicher wie für die Repräsentation benötigt wird.</p>
+<p>Numerische Konstanten haben automatisch einen ausreichend großen Typ:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10_000_000_000_000_000</span><span class="w">    </span><span class="c"># 10 Billiarden</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10_000_000_000_000_000_000</span><span class="w">  </span><span class="c"># 10 Trillionen</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10_000_000_000_000_000_000_000_000_000_000_000_000_000</span><span class="w">   </span><span class="c"># 10 Sextilliarden</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>typeof(z) = Int64
+typeof(z) = Int64
+typeof(z) = Int128
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>typeof(z) = BigInt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Im Beispiel oben sieht man ein weiteres Feature von Julia. Man kann die 1000er Stellen einer Zahl zur besser Lesbarkeit mittels des <code class="docutils literal notranslate"><span class="pre">_</span></code> abtrennen.</p>
+</div>
+<p>Der Standard Integer Typ ist, wie im obigen Beispiel zu sehen, der Typ <code class="docutils literal notranslate"><span class="pre">Int64</span></code>, der auch mit <code class="docutils literal notranslate"><span class="pre">Int</span></code> abgekürzt werden kann.
+Meist wird man dadurch den Datentyp <code class="docutils literal notranslate"><span class="pre">BigInt</span></code> explizit anfordern müssen, damit nicht modulo <span class="math notranslate nohighlight">\(2^n\)</span> gerechnet wird:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nd">@show</span><span class="w"> </span><span class="mi">3</span><span class="o">^</span><span class="mi">300</span><span class="p">;</span>
+<span class="nd">@show</span><span class="w"> </span><span class="kt">BigInt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">^</span><span class="mi">300</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 ^ 300 = 4157753088978724465
+BigInt(3) ^ 300 = 136891479058588375991326027382088315966463695625337436471480190078368997177499076593800206155688941388250484440597994042813512732765695774566001
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Arithmetik mit <code class="docutils literal notranslate"><span class="pre">BigInt</span></code> ist deutlich langsamer als die mit <code class="docutils literal notranslate"><span class="pre">Int</span></code>, da es über eine Implementierung in Software realisiert ist (In Julia wird die <a class="reference external" href="https://gmplib.org">GMP Bibliothek</a> verwendet). Damit sollten Zahlen dieses Typs nur dann verwendet werden, wenn
+zu erwarten ist, dass der Wertebereich von 64-Bit oder 128-Bit Integern nicht ausreicht.</p>
+<div class="exercise admonition" id="02.1-integer-exercise-13">
+
+<p class="admonition-title"><span class="caption-number">Exercise 5 </span></p>
+<section id="exercise-content">
+<p>Erzeuge einen Vektor mit <span class="math notranslate nohighlight">\(10^7\)</span> Zufallszahlen vom Typ <code class="docutils literal notranslate"><span class="pre">Int64</span></code> mittels der Methode <code class="docutils literal notranslate"><span class="pre">rand()</span></code>, und einen Vektor mit den gleichen Zahlen als <code class="docutils literal notranslate"><span class="pre">BigInt</span></code>. Miss die Zeit die es benötigt, um alle Einträge des Vektors aufzusummieren. Dafür steht das macro <code class="docutils literal notranslate"><span class="pre">&#64;time</span></code> und die Methode <code class="docutils literal notranslate"><span class="pre">sum()</span></code> zur Verfügung.</p>
+</section>
+</div>
+</section>
+<section id="zusammenfassung">
+<h2>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Link to this heading">#</a></h2>
+<p>In diesem Kapitel haben wir uns mit der Darstellung von ganzen und natürlichen (signed und unsigned)
+Zahlen beschäftigt, sowie einige Operationen mit diesen Zahlen kennengelernt. Die konkrete Repräsentation dieser Zahlen in der Sprache Julia
+wurde über sogenante <em>Datentypen</em> realisiert.</p>
+<div class="proof definition admonition" id="definition-14">
+<p class="admonition-title"><span class="caption-number">Definition 11 </span> (Datentyp)</p>
+<section class="definition-content" id="proof-content">
+<p>Ein <strong>Datentyp</strong> (oder kurz <em>Typ</em>) ist charakterisiert durch einen <em>Typenamen</em>, seine <em>Wertemenge</em>, die alle möglichen Werte/Zustände einer Objekts dieses Typs umfasst, durch eine Festlegung wie Objekte eines solchen Typs erzeugt werden können (z.B. durch Konstanten/Literale), sowie durch eine Menge von <em>Operatoren</em> und <em>Funktionen</em>/<em>Methoden</em>, welche auf Operanden/Argumente dieses Typs anwendbar sind und/oder solche Werte evtl. (als Ergebnis) erzeugen.</p>
+</section>
+</div><div class="proof example admonition" id="example-15">
+<p class="admonition-title"><span class="caption-number">Example 1 </span></p>
+<section class="example-content" id="proof-content">
+<p>Der Datentyp <code class="docutils literal notranslate"><span class="pre">Int64</span></code> repräsentiert 64-stellige (binäre) ganze Zahlen. Diese Zahlen können über die Dezimalnotation, also eine Folge von Ziffern <span class="math notranslate nohighlight">\(0-9\)</span>, erzeugt werden, oder mittels der direkten Wertkonvertierung <code class="docutils literal notranslate"><span class="pre">Int64(&lt;Zahl&gt;)</span></code>, wobei <code class="docutils literal notranslate"><span class="pre">&lt;Zahl&gt;</span></code> eine ganze Zahl in einer beliebigen anderen Darstellungsform repräsentiert (auch als <em>Fließkommazahl</em>, z.B. <code class="docutils literal notranslate"><span class="pre">2.0</span></code>, solange der Wert eine ganze Zahl darstellt). Neben den arithmetische Operatoren <code class="docutils literal notranslate"><span class="pre">+,-,*,/,^</span></code> gibt es auch Methoden wie <code class="docutils literal notranslate"><span class="pre">div(),rem()</span></code> die <code class="docutils literal notranslate"><span class="pre">Int64</span></code> Argumente erlauben. Außerhalb der Arithmetik haben wir auch die Methode <code class="docutils literal notranslate"><span class="pre">println()</span></code> kennengelernt, die eine textuelle Repräsentation der Integerzahl auf dem Terminal erzeugt. Andere Datentypen, wie z.B. <code class="docutils literal notranslate"><span class="pre">UInt64</span></code> erzeugen hierbei eine andere Ausgabe.</p>
+</section>
+</div><p>Zur Übersicht über die Integer Datentypen, wie sie in der Sprache Julia verfügbar sind, lässt
+sich folgende rekursive Funktion verwenden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">show_subtype_tree</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;    &quot;</span><span class="o">^</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">Ts</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="n">subtypes</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="w">        </span><span class="n">show_subtype_tree</span><span class="p">(</span><span class="n">Ts</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">show_subtype_tree</span><span class="p">(</span><span class="kt">Integer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integer
+    Bool
+    Signed
+        BigInt
+        Int128
+        Int16
+        Int32
+        Int64
+        Int8
+    Unsigned
+        UInt128
+        UInt16
+        UInt32
+        UInt64
+        UInt8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wir werden im Laufe des Kurses noch weitere Datentypen kennenlernen.</p>
+<section id="begriffe">
+<h3>Begriffe<a class="headerlink" href="#begriffe" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p>1er-Komplement</p></td>
+<td><p>2er-Komplement</p></td>
+<td><p>Basisdarstellung</p></td>
+</tr>
+<tr class="row-even"><td><p>Basiskonversion</p></td>
+<td><p>Binärzahl</p></td>
+<td><p>Bitshift</p></td>
+</tr>
+<tr class="row-odd"><td><p>carry-in, carry-out</p></td>
+<td><p>Division mit Rest</p></td>
+<td><p>Integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Restklassenring</p></td>
+<td><p>saturierende Arithmetik</p></td>
+<td><p>Signed</p></td>
+</tr>
+<tr class="row-odd"><td><p>Überlauf (overflow)</p></td>
+<td><p>Unsigned</p></td>
+<td><p>zyklische Arithmetik</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="julia-befehle">
+<h3>Julia Befehle<a class="headerlink" href="#julia-befehle" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-number">Tab. 1 </span><span class="caption-text">Types</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BigInt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Int</span></code>, <code class="docutils literal notranslate"><span class="pre">Int&lt;n&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Integer</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">UInt</span></code>, <code class="docutils literal notranslate"><span class="pre">UInt&lt;n&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Unsigned</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Signed</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table" id="id3">
+<caption><span class="caption-number">Tab. 2 </span><span class="caption-text">Methods</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">abs()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bitstring()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">div()</span></code>, <code class="docutils literal notranslate"><span class="pre">÷</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">divrem()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">one()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">prepend!()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">println()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rem()</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">subtypes()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">typemin()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">typeof()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.11"
+        },
+        kernelOptions: {
+            name: "julia-1.11",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02-zahlen.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">zurück</p>
+        <p class="prev-next-title">Grundlagen</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02.2-float.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">weiter</p>
+        <p class="prev-next-title">Gleitkommazahlen</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Inhalt
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#darstellung">Darstellung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vorzeichenbehaftete-zahlen">Vorzeichenbehaftete Zahlen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsigned-integer">Unsigned integer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-integer">Signed integer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetik">Arithmetik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negation">Negation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition">Addition</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#halbaddierer-und-volladdierer">Halbaddierer und Volladdierer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ripple-carry-addierer">Ripple-Carry Addierer</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtraktion">Subtraktion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplikation">Multiplikation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#division">Division</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potenzieren">Potenzieren</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grosze-integer">Große Integer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zusammenfassung">Zusammenfassung</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#begriffe">Begriffe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-befehle">Julia Befehle</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>(c) 2025 Technische Universität Dresden / Fakultät Mathematik / <a href="https://tu-dresden.de/Members/simon.praetorius" target="_blank">Dr. Simon Praetorius</a></p> <div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+Traceback (most recent call last):
+  File "/home/spraetor/lehre/prog/lecture/venv/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/spraetor/lehre/prog/lecture/venv/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/spraetor/lehre/prog/lecture/venv/lib/python3.11/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spraetor/lehre/prog/lecture/venv/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/spraetor/lehre/prog/lecture/venv/lib/python3.11/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/spraetor/lehre/prog/lecture/venv/lib/python3.11/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/spraetor/lehre/prog/lecture/venv/lib/python3.11/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+using CairoMakie
+
+seconds = 0:0.1:2
+measurements = [8.2, 8.4, 6.3, 9.5, 9.1, 10.5, 8.6, 8.2, 10.5, 8.5, 7.2,
+        8.8, 9.7, 10.8, 12.5, 11.6, 12.1, 12.1, 15.1, 14.7, 13.1]
+
+f = CairoMakie.Figure()
+ax = CairoMakie.Axis(f[1, 1])
+scatter!(ax, seconds, measurements)
+lines!(ax, seconds, exp.(seconds) .+ 7)
+f
+------------------
+
+
+Cannot convert Axis to series data for plotting
+
+Stacktrace:
+  [1] [0m[1merror[22m[0m[1m([22m[90ms[39m::[0mString[0m[1m)[22m
+[90m    @[39m [90mBase[39m [90m./[39m[90m[4merror.jl:35[24m[39m
+  [2] [0m[1m_prepare_series_data[22m[0m[1m([22m[90mx[39m::[0mAxis[0m[1m)[22m
+[90m    @[39m [35mRecipesPipeline[39m [90m~/.julia/packages/RecipesPipeline/BGM3l/src/[39m[90m[4mseries.jl:8[24m[39m
+  [3] [0m[1m_series_data_vector[22m[0m[1m([22m[90mx[39m::[0mAxis, [90mplotattributes[39m::[0mDict[90m{Symbol, Any}[39m[0m[1m)[22m
+[90m    @[39m [35mRecipesPipeline[39m [90m~/.julia/packages/RecipesPipeline/BGM3l/src/[39m[90m[4mseries.jl:36[24m[39m
+  [4] [0m[1mmacro expansion[22m
+[90m    @[39m [90m~/.julia/packages/RecipesPipeline/BGM3l/src/[39m[90m[4mseries.jl:128[24m[39m[90m [inlined][39m
+  [5] [0m[1mapply_recipe[22m[0m[1m([22m[90mplotattributes[39m::[0mAbstractDict[90m{Symbol, Any}[39m, ::[0mType[90m{RecipesPipeline.SliceIt}[39m, [90mx[39m::[0mAny, [90my[39m::[0mAny, [90mz[39m::[0mAny[0m[1m)[22m
+[90m    @[39m [35mRecipesPipeline[39m [90m~/.julia/packages/RecipesBase/BRe07/src/[39m[90m[4mRecipesBase.jl:300[24m[39m
+  [6] [0m[1m_process_userrecipes![22m[0m[1m([22m[90mplt[39m::[0mAny, [90mplotattributes[39m::[0mAny, [90margs[39m::[0mAny[0m[1m)[22m
+[90m    @[39m [35mRecipesPipeline[39m [90m~/.julia/packages/RecipesPipeline/BGM3l/src/[39m[90m[4muser_recipe.jl:38[24m[39m
+  [7] [0m[1mrecipe_pipeline![22m[0m[1m([22m[90mplt[39m::[0mAny, [90mplotattributes[39m::[0mAny, [90margs[39m::[0mAny[0m[1m)[22m
+[90m    @[39m [35mRecipesPipeline[39m [90m~/.julia/packages/RecipesPipeline/BGM3l/src/[39m[90m[4mRecipesPipeline.jl:72[24m[39m
+  [8] [0m[1m_plot![22m[0m[1m([22m[90mplt[39m::[0mPlots.Plot, [90mplotattributes[39m::[0mAny, [90margs[39m::[0mAny[0m[1m)[22m
+[90m    @[39m [36mPlots[39m [90m~/.julia/packages/Plots/gYkEG/src/[39m[90m[4mplot.jl:223[24m[39m
+  [9] [0m[1mplot![22m[0m[1m([22m::[0mPlots.Plot, ::[0mAny, ::[0mVararg[90m{Any}[39m; [90mkw[39m...[0m[1m)[22m
+[90m    @[39m [36mPlots[39m [90m~/.julia/packages/Plots/gYkEG/src/[39m[90m[4mplot.jl:213[24m[39m
+ [10] [0m[1mplot![22m[0m[1m([22m::[0mAny, ::[0mVararg[90m{Any}[39m; [90mkw[39m...[0m[1m)[22m
+[90m    @[39m [36mPlots[39m [90m~/.julia/packages/Plots/gYkEG/src/[39m[90m[4mplot.jl:202[24m[39m
+ [11] [0m[1mscatter![22m[0m[1m([22m::[0mAny, ::[0mVararg[90m{Any}[39m; [90mkw[39m...[0m[1m)[22m
+[90m    @[39m [36mPlots[39m [90m~/.julia/packages/RecipesBase/BRe07/src/[39m[90m[4mRecipesBase.jl:429[24m[39m
+ [12] top-level scope
+[90m    @[39m [90m[4mIn[3]:9[24m[39m
+

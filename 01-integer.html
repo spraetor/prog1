@@ -67,7 +67,7 @@
     <script src="_static/custom.js?v=629f8674"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
-    <link rel="next" title="Bibliography" href="9x-bibliography.html" />
+    <link rel="next" title="Gleitkommazahlen" href="02-float.html" />
     <link rel="prev" title="Getting started with Julia" href="00-getting-started.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
@@ -183,6 +183,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00-getting-started.html">Getting started with Julia</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Ganze Zahlen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-float.html">Gleitkommazahlen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="9x-bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -414,7 +415,7 @@ Speicherbreite (z.B. 16, 32 oder 64 bits) hardware-unterstützt zur Verfügung.<
 <li><p>Notiere den erhaltenen Rest. Fahre fort mit Schritt 1.</p></li>
 <li><p>Die notierten Zahlen, von hinten nach vorne gelesen, ergeben die konvertierte Zahl.</p></li>
 </ol>
-<div class="exercise admonition" id="number-conversion">
+<div class="exercise admonition" id="int-conversion">
 
 <p class="admonition-title"><span class="caption-number">Exercise 1 </span></p>
 <section id="exercise-content">
@@ -423,7 +424,7 @@ Speicherbreite (z.B. 16, 32 oder 64 bits) hardware-unterstützt zur Verfügung.<
 </div>
 <div class="solution admonition" id="01-integer-solution-1">
 
-<p class="admonition-title">Solution to<a class="reference internal" href="#number-conversion"> Exercise 1</a></p>
+<p class="admonition-title">Solution to<a class="reference internal" href="#int-conversion"> Exercise 1</a></p>
 <section id="solution-content">
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -627,7 +628,9 @@ Rechnen mit Zahlen vom gleichen Typ nicht aus dessen Wertebereich herauslaufen k
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Int(x + y) = 80
-typeof(x + y) = UInt8
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>typeof(x + y) = UInt8
 </pre></div>
 </div>
 </div>
@@ -1193,10 +1196,9 @@ zugeordnet und hat insbesondere eine andere Präzedenz/Priorität.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>typeof(z) = Int64
 typeof(z) = Int64
 typeof(z) = Int128
-typeof(z) = 
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BigInt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>typeof(z) = BigInt
 </pre></div>
 </div>
 </div>
@@ -1216,10 +1218,7 @@ Meist wird man dadurch den Datentyp <code class="docutils literal notranslate"><
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 ^ 300 = 4157753088978724465
-BigInt(3) ^ 300 = 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>136891479058588375991326027382088315966463695625337436471480190078368997177499076593800206155688941388250484440597994042813512732765695774566001
+BigInt(3) ^ 300 = 136891479058588375991326027382088315966463695625337436471480190078368997177499076593800206155688941388250484440597994042813512732765695774566001
 </pre></div>
 </div>
 </div>
@@ -1257,9 +1256,7 @@ sich folgende rekursive Funktion verwenden:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integer
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Bool
+    Bool
     Signed
         BigInt
         Int128
@@ -1393,11 +1390,11 @@ sich folgende rekursive Funktion verwenden:</p>
       </div>
     </a>
     <a class="right-next"
-       href="9x-bibliography.html"
+       href="02-float.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title">Bibliography</p>
+        <p class="prev-next-title">Gleitkommazahlen</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1455,21 +1452,10 @@ sich folgende rekursive Funktion verwenden:</p>
   
   <div class="footer-item">
     
-<p class="component-author">
-Durch Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
-</p>
-
   </div>
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
 
   </div>
   
@@ -1480,7 +1466,7 @@ Durch Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
   <div class="footer-item">
     
 <div class="extra_footer">
-  <p>License information!</p><div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
+  <p>(c) 2025 Technische Universität Dresden / Fakultät Mathematik / <a href="https://tu-dresden.de/Members/simon.praetorius" target="_blank">Dr. Simon Praetorius</a></p> <div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
 </div>
   </div>
   

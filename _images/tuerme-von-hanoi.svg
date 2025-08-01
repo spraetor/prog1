@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="tuerme-von-hanoi.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.73673541"
+     inkscape:cx="304.7227"
+     inkscape:cy="507.64494"
+     inkscape:window-width="1920"
+     inkscape:window-height="1007"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.499999;stroke-linecap:butt;stroke-dasharray:none"
+       id="rect2811"
+       width="5"
+       height="30"
+       x="40.344238"
+       y="92.724022" />
+    <g
+       id="g1919">
+      <rect
+         style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-dasharray:none"
+         id="rect1574"
+         width="55.70924"
+         height="10.028523"
+         x="14.989618"
+         y="122.8106" />
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#000000;stroke:#000000;stroke-width:0;stroke-dasharray:none"
+         x="40.611816"
+         y="130.35356"
+         id="text1682"><tspan
+           sodipodi:role="line"
+           id="tspan1680"
+           style="font-size:7.05556px;fill:#000000;stroke-width:0;stroke-dasharray:none"
+           x="40.611816"
+           y="130.35356">A</tspan></text>
+    </g>
+    <g
+       id="g1914"
+       transform="translate(-0.26466656)">
+      <rect
+         style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-dasharray:none"
+         id="rect1792"
+         width="55.70924"
+         height="10.028523"
+         x="76.373009"
+         y="122.8106" />
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#000000;stroke:#000000;stroke-width:0;stroke-dasharray:none"
+         x="101.79022"
+         y="130.34323"
+         id="text1796"><tspan
+           sodipodi:role="line"
+           id="tspan1794"
+           style="font-weight:normal;font-size:7.05556px;fill:#000000;stroke-width:0;stroke-dasharray:none"
+           x="101.79022"
+           y="130.34323">B</tspan></text>
+    </g>
+    <g
+       id="g1909">
+      <rect
+         style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-dasharray:none"
+         id="rect1798"
+         width="55.70924"
+         height="10.028523"
+         x="137.22707"
+         y="122.8106" />
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#000000;stroke:#000000;stroke-width:0;stroke-dasharray:none"
+         x="162.74591"
+         y="130.34496"
+         id="text1802"><tspan
+           sodipodi:role="line"
+           id="tspan1800"
+           style="font-size:7.05556px;fill:#000000;stroke-width:0;stroke-dasharray:none"
+           x="162.74591"
+           y="130.34496">C</tspan></text>
+    </g>
+    <rect
+       style="fill:#4d4d4d;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-dasharray:none"
+       id="rect1973"
+       width="50"
+       height="5"
+       x="17.844238"
+       y="115.6799"
+       rx="2"
+       ry="2" />
+    <rect
+       style="fill:#666666;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-dasharray:none"
+       id="rect2807"
+       width="40"
+       height="5"
+       x="22.844238"
+       y="109.3299"
+       rx="2"
+       ry="2" />
+    <rect
+       style="fill:#808080;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-dasharray:none"
+       id="rect2809"
+       width="30"
+       height="5"
+       x="27.844238"
+       y="102.97992"
+       rx="2"
+       ry="2" />
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.499999;stroke-linecap:butt;stroke-dasharray:none"
+       id="rect2813"
+       width="5"
+       height="30"
+       x="101.46296"
+       y="92.723999" />
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.499999;stroke-linecap:butt;stroke-dasharray:none"
+       id="rect2815"
+       width="5"
+       height="30"
+       x="162.58168"
+       y="92.723999" />
+  </g>
+</svg>

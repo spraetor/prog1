@@ -1,0 +1,1 @@
+# Absoluter und relativer Fehler

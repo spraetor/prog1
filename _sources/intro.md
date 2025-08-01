@@ -3,6 +3,9 @@
 Herzlich willkommen zur Vorlesung **„Programmieren - Grundlegende Konzepte“ (Math-Ba-PR10)** im Wintersemester 2025/26!
 In diesem Kurs lernen Sie grundlegende Techniken, Konzepte und Denkweisen der Programmierung kennen - mit direktem Bezug zu mathematischen und wissenschaftlichen Anwendungen.
 
+**Dozent:** Dr. Simon Praetorius (Institut für Wisenschaftliches Rechnen) \
+**Vorlesungsassistent**: Dr. Rainer Backofen (Institut für Wissenschaftliches Rechnen)
+
 ---
 
 ## Was lernt man in diesem Kurs?
@@ -38,12 +41,6 @@ Zum Bestehen des Moduls gehören:
 
 2. **Klausur am Semesterende**
    - prüft das Verständnis der Inhalte aus Vorlesung, Übungen und Hausaufgaben
-
-## Wer betreut den Kurs?
-
-- **Dozent**: [Dr. Simon Praetorius](https://tu-dresden.de/Members/simon.praetorius) (Institut für Wissenschaftliches Rechnen)
-- **Vorlesungsassistent**: Dr. Rainer BAckofen (Institut für Wissenschaftliches Rechnen)
-- **Tutor:innen**: betreuen die Übungen in Kleingruppen und stehen als Ansprechpersonen zur Verfügung
 
 ## Wie sind die Übungen organisiert?
 

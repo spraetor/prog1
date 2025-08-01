@@ -32,10 +32,10 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css?v=982b99e0" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a9a42987" />
   
@@ -67,7 +67,7 @@
     <script src="_static/custom.js?v=629f8674"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
-    <link rel="next" title="Getting started with Julia" href="00-getting-started.html" />
+    <link rel="next" title="Computer, Algorithmen und Programmierung" href="01-programmieren.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
   </head>
@@ -181,9 +181,41 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="00-getting-started.html">Getting started with Julia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01-integer.html">Ganze Zahlen</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programmieren mit Julia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-programmieren.html">Computer, Algorithmen und Programmierung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01.1-getting-started.html">Getting started with Julia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Zahlen und deren Darstellung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02-zahlen.html">Grundlagen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.1-integer.html">Ziffernsysteme und Zahlendarstellung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.2-float.html">Gleitkommazahlen</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fehler, Kondition und Stabilität</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03.1-fehler.html">Absoluter und relativer Fehler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.2-rundung.html">Rundung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.3-arithmetik.html">Gleitkommaarithmetik</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datenstrukturen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-datenstrukturen.html">Datenstrukturen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.1-arrays.html">Arrays</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualisierung</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04-plotting.html">Plotting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithmen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05-algorithmen.html">Komplexität und Korrektheit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.1-landau.html">Asymptotische Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.2-laufzeitanalyse.html">Laufzeitanalyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.3-rekursion.html">Rekursion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Anhang</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="9x-bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -336,7 +368,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#was-lernt-man-in-diesem-kurs">Was lernt man in diesem Kurs?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wie-ist-der-kurs-aufgebaut">Wie ist der Kurs aufgebaut?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#was-muss-man-leisten-um-das-modul-zu-bestehen">Was muss man leisten, um das Modul zu bestehen?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wer-betreut-den-kurs">Wer betreut den Kurs?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wie-sind-die-ubungen-organisiert">Wie sind die Übungen organisiert?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warum-julia-als-programmiersprache">Warum Julia als Programmiersprache?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fragen-oder-probleme">Fragen oder Probleme?</a></li>
@@ -355,6 +386,8 @@ document.write(`
 <h1>Programmieren - Grundlegende Konzepte<a class="headerlink" href="#programmieren-grundlegende-konzepte" title="Link to this heading">#</a></h1>
 <p>Herzlich willkommen zur Vorlesung <strong>„Programmieren - Grundlegende Konzepte“ (Math-Ba-PR10)</strong> im Wintersemester 2025/26!
 In diesem Kurs lernen Sie grundlegende Techniken, Konzepte und Denkweisen der Programmierung kennen - mit direktem Bezug zu mathematischen und wissenschaftlichen Anwendungen.</p>
+<p><strong>Dozent:</strong> Dr. Simon Praetorius (Institut für Wisenschaftliches Rechnen) <br />
+<strong>Vorlesungsassistent</strong>: Dr. Rainer Backofen (Institut für Wissenschaftliches Rechnen)</p>
 <hr class="docutils" />
 <section id="was-lernt-man-in-diesem-kurs">
 <h2>Was lernt man in diesem Kurs?<a class="headerlink" href="#was-lernt-man-in-diesem-kurs" title="Link to this heading">#</a></h2>
@@ -396,14 +429,6 @@ In diesem Kurs lernen Sie grundlegende Techniken, Konzepte und Denkweisen der Pr
 </li>
 </ol>
 </section>
-<section id="wer-betreut-den-kurs">
-<h2>Wer betreut den Kurs?<a class="headerlink" href="#wer-betreut-den-kurs" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Dozent</strong>: <a class="reference external" href="https://tu-dresden.de/Members/simon.praetorius">Dr. Simon Praetorius</a> (Institut für Wissenschaftliches Rechnen)</p></li>
-<li><p><strong>Vorlesungsassistent</strong>: Dr. Rainer BAckofen (Institut für Wissenschaftliches Rechnen)</p></li>
-<li><p><strong>Tutor:innen</strong>: betreuen die Übungen in Kleingruppen und stehen als Ansprechpersonen zur Verfügung</p></li>
-</ul>
-</section>
 <section id="wie-sind-die-ubungen-organisiert">
 <h2>Wie sind die Übungen organisiert?<a class="headerlink" href="#wie-sind-die-ubungen-organisiert" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -439,6 +464,18 @@ In diesem Kurs lernen Sie grundlegende Techniken, Konzepte und Denkweisen der Pr
 </section>
 <div class="toctree-wrapper compound">
 </div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -472,11 +509,11 @@ In diesem Kurs lernen Sie grundlegende Techniken, Konzepte und Denkweisen der Pr
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="00-getting-started.html"
+       href="01-programmieren.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title">Getting started with Julia</p>
+        <p class="prev-next-title">Computer, Algorithmen und Programmierung</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -499,7 +536,6 @@ In diesem Kurs lernen Sie grundlegende Techniken, Konzepte und Denkweisen der Pr
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#was-lernt-man-in-diesem-kurs">Was lernt man in diesem Kurs?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wie-ist-der-kurs-aufgebaut">Wie ist der Kurs aufgebaut?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#was-muss-man-leisten-um-das-modul-zu-bestehen">Was muss man leisten, um das Modul zu bestehen?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wer-betreut-den-kurs">Wer betreut den Kurs?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wie-sind-die-ubungen-organisiert">Wie sind die Übungen organisiert?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warum-julia-als-programmiersprache">Warum Julia als Programmiersprache?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fragen-oder-probleme">Fragen oder Probleme?</a></li>
@@ -516,21 +552,10 @@ In diesem Kurs lernen Sie grundlegende Techniken, Konzepte und Denkweisen der Pr
   
   <div class="footer-item">
     
-<p class="component-author">
-Durch Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
-</p>
-
   </div>
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2025.
-      <br/>
-    
-  </p>
 
   </div>
   
@@ -541,7 +566,7 @@ Durch Dr. Simon Praetorius (Institut für Wissenschaftliches Rechnen)
   <div class="footer-item">
     
 <div class="extra_footer">
-  <p>License information!</p><div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
+  <p>(c) 2025 Technische Universität Dresden / Fakultät Mathematik / <a href="https://tu-dresden.de/Members/simon.praetorius" target="_blank">Dr. Simon Praetorius</a></p> <div id="wh-modal"> <button class="wh-venti-button" aria-label="close modal" id="wh-modal-close">✕</button> <img id="wh-modal-img"> </div>
 </div>
   </div>
   
